@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#001E3C"/>
+      <stop offset="50%" stop-color="#003865"/>
+      <stop offset="100%" stop-color="#0071C5"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,199,253,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="200" cy="150" r="80" fill="rgba(0,199,253,0.15)" filter="blur(40px)"/>
+  <circle cx="600" cy="350" r="100" fill="rgba(0,113,197,0.2)" filter="blur(50px)"/>
+  <text x="400" y="260" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" opacity="0.9">KABO IT Group</text>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.6)" text-anchor="middle">sol_smartcity</text>
+</svg>
