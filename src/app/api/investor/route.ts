@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendMail } from "@/lib/email";
+import { deliverFormSubmission, sendMail } from "@/lib/email";
 
 /**
  * POST /api/investor
  *
  * Handles investor enquiries — emails the enquiry directly to
- * kenny@kaboitgroup.co.za (with CC to info@ for team visibility)
- * and sends an auto-reply to the investor.
+ * kenny@kaboitgroup.co.za (with CC to info@ for team visibility) and
+ * silently fires a WhatsApp notification to the KABO team as a backup
+ * delivery channel. The visitor sees only the email-style acknowledgement
+ * — neither kenny@kaboitgroup.co.za nor the WhatsApp number is exposed
+ * in the UI or the JSON response.
+ *
+ * Sends an auto-reply to the investor.
  */
 export async function POST(req: NextRequest) {
   try {
@@ -96,16 +101,32 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
-      to: "kenny@kaboitgroup.co.za",
-      cc: "info@kaboitgroup.co.za",
-      replyTo: email,
-      subject: `[Investor Enquiry · Confidential] ${investorType} — ${fullName} (${organisation})`,
-      text: teamText,
-      html: teamHtml,
-    });
+    await deliverFormSubmission(
+      {
+        to: "kenny@kaboitgroup.co.za",
+        cc: "info@kaboitgroup.co.za",
+        replyTo: email,
+        subject: `[Investor Enquiry · Confidential] ${investorType} — ${fullName} (${organisation})`,
+        text: teamText,
+        html: teamHtml,
+      },
+      {
+        kind: "Investor Enquiry · Confidential",
+        headline: `${investorType} — ${fullName} (${organisation})`,
+        fields: [
+          { label: "Email", value: email },
+          { label: "Phone", value: phone || "—" },
+          { label: "Organisation", value: organisation },
+          { label: "Fund size", value: fundSize || "—" },
+          { label: "Timeline", value: timeline || "—" },
+          { label: "Routed to", value: "KABO Executive Team" },
+          { label: "Logged", value: now.toISOString() },
+        ],
+        body: message,
+      }
+    );
 
-    // ---- Email auto-reply to the investor ----
+    // ---- Email auto-reply to the investor (SMTP only — customer-facing) ----
     const customerText = [
       `KABO IT Group — Investor Enquiry Acknowledgement`,
       ``,
@@ -154,6 +175,11 @@ export async function POST(req: NextRequest) {
 
     await sendMail({
       to: email,
+      // Reply-To routes customer replies to a monitored inbox (info@) instead
+      // of bouncing off the noreply@ sender. The auto-reply comes FROM
+      // noreply@kaboitgroup.co.za — without Reply-To, a customer who hits
+      // "Reply" would get a bounce.
+      replyTo: "info@kaboitgroup.co.za",
       subject: `[KABO] We've received your investor enquiry`,
       text: customerText,
       html: customerHtml,

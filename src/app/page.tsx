@@ -5,7 +5,10 @@ import { PageProvider, usePage } from "@/components/kabo/page-context";
 import { Navbar } from "@/components/kabo/navbar";
 import { Footer } from "@/components/kabo/footer";
 import { Hero } from "@/components/kabo/hero";
-import { Stats } from "@/components/kabo/stats";
+// The Stats component (src/components/kabo/stats.tsx) is intentionally not
+// rendered on the home page — the hero already has its own animated counter
+// strip, and the 6-block Stats panel was redundant above "The KABO Difference".
+// The component file is retained for potential reuse on other pages.
 import { About } from "@/components/kabo/about";
 import { Framework } from "@/components/kabo/framework";
 import { Solutions } from "@/components/kabo/solutions";
@@ -37,7 +40,6 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Stats />
       <About />
       <Framework />
       <Solutions variant="home" />

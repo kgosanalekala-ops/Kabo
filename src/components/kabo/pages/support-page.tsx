@@ -551,6 +551,31 @@ function TicketForm() {
             </button>
           )}
         </div>
+
+        {/* Inline progress hint — explains what's still required so the user
+            doesn't think the Submit/Continue button is broken when it's greyed out. */}
+        <div className="mt-3 text-xs text-[#5A6B7C] min-h-[1rem]">
+          {step === 1 && !canProceedStep1 && (
+            <span>
+              {!category && "Select a category · "}
+              {subject.trim().length < 5 && "Subject needs at least 5 characters · "}
+              {description.trim().length < 20 && "Description needs at least 20 characters"}
+            </span>
+          )}
+          {step === 1 && canProceedStep1 && (
+            <span className="text-[#0071C5] font-medium">✓ Ready to continue — click Continue to enter your contact details.</span>
+          )}
+          {step === 2 && !canSubmit && (
+            <span>
+              {!fullName.trim() && "Enter your full name · "}
+              {email && !/\S+@\S+\.\S+/.test(email) && "Enter a valid email address"}
+              {!email && "Enter your email address"}
+            </span>
+          )}
+          {step === 2 && canSubmit && (
+            <span className="text-[#0071C5] font-medium">✓ Ready to submit — click Submit Ticket to log your ticket.</span>
+          )}
+        </div>
       </div>
     </div>
   );

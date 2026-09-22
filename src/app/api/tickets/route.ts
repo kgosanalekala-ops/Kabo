@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendMail } from "@/lib/email";
+import { deliverFormSubmission, sendMail } from "@/lib/email";
 
 /**
  * POST /api/tickets
@@ -11,6 +11,8 @@ import { sendMail } from "@/lib/email";
  * "Everyone must see tickets lodged" → tickets are sent to:
  *   - support@kaboitgroup.co.za (primary TAC inbox)
  *   - info@kaboitgroup.co.za (CC — general visibility for the team)
+ *   - WhatsApp silent notification to KABO team mobile (backup channel,
+ *     visitor never sees this)
  *
  * No database — the email inbox IS the system of record.
  */
@@ -161,16 +163,35 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
-      to: "support@kaboitgroup.co.za",
-      cc: "info@kaboitgroup.co.za",
-      replyTo: email,
-      subject: `[${ticketNumber}] ${sla.label} — ${subject}`,
-      text: teamText,
-      html: teamHtml,
-    });
+    await deliverFormSubmission(
+      {
+        to: "support@kaboitgroup.co.za",
+        cc: "info@kaboitgroup.co.za",
+        replyTo: email,
+        subject: `[${ticketNumber}] ${sla.label} — ${subject}`,
+        text: teamText,
+        html: teamHtml,
+      },
+      {
+        kind: `Support Ticket ${ticketNumber}`,
+        headline: `${sla.label} — ${subject}`,
+        fields: [
+          { label: "Ticket", value: ticketNumber },
+          { label: "Priority", value: sla.label },
+          { label: "Category", value: category },
+          { label: "SLA", value: `First response within ${slaText} (${sla.hours})` },
+          { label: "Customer", value: fullName },
+          { label: "Email", value: email },
+          { label: "Phone", value: phone || "—" },
+          { label: "Organisation", value: organisation || "—" },
+          { label: "Routed to", value: "support@kaboitgroup.co.za" },
+          { label: "Logged", value: now.toISOString() },
+        ],
+        body: description,
+      }
+    );
 
-    // ---- Email auto-reply to the customer ----
+    // ---- Email auto-reply to the customer (SMTP only — customer-facing) ----
     const customerText = [
       `KABO IT Group — Support Ticket Acknowledgement`,
       ``,
@@ -241,6 +262,13 @@ export async function POST(req: NextRequest) {
 
     await sendMail({
       to: email,
+      // Reply-To routes customer replies to a monitored inbox (support@) instead
+      // of bouncing off the noreply@ sender. The auto-reply comes FROM
+      // noreply@kaboitgroup.co.za — without Reply-To, a customer who hits
+      // "Reply" to the ticket acknowledgement would get a bounce.
+      // For support tickets specifically, replies should go to support@ so
+      // they're tracked against the ticket number in the subject line.
+      replyTo: "support@kaboitgroup.co.za",
       subject: `[${ticketNumber}] Your KABO support ticket is logged`,
       text: customerText,
       html: customerHtml,

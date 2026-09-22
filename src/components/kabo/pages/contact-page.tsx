@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Send, CheckCircle2, Mail, Phone, MapPin, Clock, ShieldCheck } from "lucide-react";
+import { ArrowRight, Send, CheckCircle2, Mail, Phone, MapPin, Clock, ShieldCheck, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { VideoHero } from "../video-hero";
 import { toast } from "sonner";
@@ -163,19 +163,21 @@ export function ContactPage() {
                     <Mail className="h-4 w-4 text-[#0071C5] shrink-0 mt-0.5" strokeWidth={1.5} />
                     <span>This enquiry will be routed to <span className="font-semibold text-[#0071C5]">info@kaboitgroup.co.za</span>. For investor enquiries use the <span className="font-semibold">Investors</span> page; for support tickets use the <span className="font-semibold">Support</span> page (SLA-backed).</span>
                   </div>
-                  <button type="submit" disabled={submitting} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
-                    {submitting ? (
-                      <>
-                        <div className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        Send Enquiry
-                        <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
-                      </>
-                    )}
-                  </button>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button type="submit" disabled={submitting} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
+                      {submitting ? (
+                        <>
+                          <div className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          Send Enquiry
+                          <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
             </motion.div>
@@ -205,6 +207,16 @@ export function ContactPage() {
                     <ContactLine icon={ShieldCheck} label="Support (SLA-backed)" lines={["support@kaboitgroup.co.za", "via KABO portal or email"]} />
                     <ContactLine icon={Clock} label="Engineering & NOC" lines={["24/7 operations from", "Gauteng SOC"]} />
                     <ContactLine icon={Phone} label="Voice" lines={["+27 612 85 4418"]} />
+                    {/* WhatsApp click-to-chat — direct engagement channel */}
+                    <a
+                      href={`https://wa.me/27612854418?text=${encodeURIComponent("Hello KABO IT Group, I'd like to start a conversation about your solutions.")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center gap-2 rounded-full bg-[#00C7FD]/10 border border-[#00C7FD]/40 px-4 py-2 text-sm font-semibold text-[#00C7FD] hover:bg-[#00C7FD]/20 hover:border-[#00C7FD]/60 transition-colors"
+                    >
+                      <MessageCircle className="h-4 w-4" strokeWidth={2} />
+                      Chat on WhatsApp · +27 612 85 4418
+                    </a>
                   </div>
                 </div>
               </div>

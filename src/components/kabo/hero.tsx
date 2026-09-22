@@ -142,9 +142,15 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="lg:col-span-5 relative hidden lg:block"
             >
-              <div className="relative h-[26rem]">
-                {/* Backdrop card */}
-                <div className="absolute top-8 right-0 w-72 h-96 rounded-3xl bg-gradient-to-br from-[#00C7FD]/15 to-[#0071C5]/5 border border-white/10 backdrop-blur-sm overflow-hidden">
+              <div className="relative h-[26rem] group/methodology">
+                {/* Backdrop card — the 8-Step Methodology card.
+                    On hover of the cluster, this card scales up, lifts forward
+                    (higher z-index + translateZ via scale + shadow) and the
+                    two foreground floating cards dim slightly to give focus.
+                    This lets the user actually read all 8 steps when they
+                    engage with the card, instead of the foreground cards
+                    covering parts of it. */}
+                <div className="absolute top-8 right-0 w-72 h-96 rounded-3xl bg-gradient-to-br from-[#00C7FD]/15 to-[#0071C5]/5 border border-white/10 backdrop-blur-sm overflow-hidden transition-all duration-500 ease-out group-hover/methodology:scale-[1.08] group-hover/methodology:-translate-y-2 group-hover/methodology:shadow-[0_30px_80px_-20px_rgba(0,199,253,0.45)] group-hover/methodology:border-[#00C7FD]/60 group-hover/methodology:z-20">
                   <div className="absolute inset-0 grid-pattern-dark opacity-40" />
                   <div className="relative p-6 flex flex-col h-full justify-between">
                     <div>
@@ -154,17 +160,19 @@ export function Hero() {
                     </div>
                     <div className="grid grid-cols-4 gap-2">
                       {["01","02","03","04","05","06","07","08"].map((n) => (
-                        <div key={n} className="aspect-square rounded-md bg-white/5 border border-[#00C7FD]/20 flex items-center justify-center text-[10px] text-[#00C7FD] font-mono font-semibold">{n}</div>
+                        <div key={n} className="aspect-square rounded-md bg-white/5 border border-[#00C7FD]/20 flex items-center justify-center text-[10px] text-[#00C7FD] font-mono font-semibold transition-colors group-hover/methodology:border-[#00C7FD]/50 group-hover/methodology:bg-[#00C7FD]/10">{n}</div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                {/* Foreground floating cards */}
+                {/* Foreground floating cards — dim + recede slightly when the
+                    methodology card is hovered, so visual focus shifts to the
+                    8-step card and the foreground cards don't block its content. */}
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 left-0 w-64 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 p-5 shadow-2xl"
+                  className="absolute top-0 left-0 w-64 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 p-5 shadow-2xl transition-all duration-500 group-hover/methodology:opacity-40 group-hover/methodology:scale-95 group-hover/methodology:-z-10"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00C7FD] to-[#0071C5] flex items-center justify-center">
@@ -181,7 +189,7 @@ export function Hero() {
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-4 left-12 w-60 rounded-2xl bg-gradient-to-br from-[#003865] to-[#001E3C] backdrop-blur-md border border-[#00C7FD]/30 p-5 shadow-2xl"
+                  className="absolute bottom-4 left-12 w-60 rounded-2xl bg-gradient-to-br from-[#003865] to-[#001E3C] backdrop-blur-md border border-[#00C7FD]/30 p-5 shadow-2xl transition-all duration-500 group-hover/methodology:opacity-40 group-hover/methodology:scale-95 group-hover/methodology:-z-10"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-[#00C7FD]/20 border border-[#00C7FD]/40 flex items-center justify-center">

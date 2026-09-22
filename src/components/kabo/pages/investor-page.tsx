@@ -294,19 +294,21 @@ function InvestorForm() {
         <Mail className="h-4 w-4 text-[#0071C5] shrink-0 mt-0.5" strokeWidth={1.5} />
         <span>This enquiry will be routed directly to the KABO executive team and treated in strict confidence. You will receive a personal response within two business days.</span>
       </div>
-      <button type="submit" disabled={submitting} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
-        {submitting ? (
-          <>
-            <div className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
-            Submitting…
-          </>
-        ) : (
-          <>
-            Submit Request
-            <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
-          </>
-        )}
-      </button>
+      <div className="flex flex-wrap items-center gap-3">
+        <button type="submit" disabled={submitting} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
+          {submitting ? (
+            <>
+              <div className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+              Submitting…
+            </>
+          ) : (
+            <>
+              Submit Request
+              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
+            </>
+          )}
+        </button>
+      </div>
     </form>
   );
 }

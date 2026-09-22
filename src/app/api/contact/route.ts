@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendMail } from "@/lib/email";
+import { deliverFormSubmission, sendMail } from "@/lib/email";
 
 /**
  * POST /api/contact
@@ -90,15 +90,30 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
-      to: "info@kaboitgroup.co.za",
-      replyTo: email,
-      subject: `[Enquiry] ${enquiryType} — ${firstName} ${lastName}`,
-      text: teamText,
-      html: teamHtml,
-    });
+    await deliverFormSubmission(
+      {
+        to: "info@kaboitgroup.co.za",
+        replyTo: email,
+        subject: `[Enquiry] ${enquiryType} — ${firstName} ${lastName}`,
+        text: teamText,
+        html: teamHtml,
+      },
+      {
+        kind: "General Enquiry",
+        headline: `${enquiryType} — ${firstName} ${lastName}`,
+        fields: [
+          { label: "Email", value: email },
+          { label: "Phone", value: phone || "—" },
+          { label: "Organisation", value: organisation || "—" },
+          { label: "Enquiry type", value: enquiryType },
+          { label: "Routed to", value: "info@kaboitgroup.co.za" },
+          { label: "Logged", value: now.toISOString() },
+        ],
+        body: message,
+      }
+    );
 
-    // ---- Email auto-reply to the customer ----
+    // ---- Email auto-reply to the customer (SMTP only — customer doesn't have WhatsApp to KABO) ----
     const customerText = [
       `KABO IT Group — Enquiry Acknowledgement`,
       ``,
@@ -148,6 +163,11 @@ export async function POST(req: NextRequest) {
 
     await sendMail({
       to: email,
+      // Reply-To routes customer replies to a monitored inbox (info@) instead
+      // of bouncing off the noreply@ sender. This is critical because the
+      // auto-reply comes FROM noreply@kaboitgroup.co.za — without Reply-To,
+      // a customer who hits "Reply" to the auto-reply would get a bounce.
+      replyTo: "info@kaboitgroup.co.za",
       subject: `[KABO] We've received your enquiry`,
       text: customerText,
       html: customerHtml,
