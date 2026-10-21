@@ -7,7 +7,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-poppins);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-outfit);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -59,10 +59,10 @@
 @layer base {
   * { border-color: var(--border); }
   body { background-color: var(--background); color: var(--foreground); font-family: var(--font-poppins), sans-serif; }
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-space-grotesk), sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-outfit), sans-serif; }
 }
 
-.font-display { font-family: var(--font-space-grotesk), sans-serif; }
+.font-display { font-family: var(--font-outfit), sans-serif; }
 .font-mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
 
 /* =========================================================================
@@ -78,7 +78,7 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   /* keep the gradient crisp — no fade filter */
-  font-weight: 700;
+  font-weight: inherit;
   letter-spacing: -0.01em;
 }
 
@@ -333,4 +333,11 @@ html { scroll-padding-top: 84px; }
     right: calc(24px + env(safe-area-inset-right, 0px));
     bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   }
+}
+
+/* Typeface review: KABO's logo stays custom artwork. Outfit 500/600 is used
+   for display and semantic bold emphasis, avoiding the previous heavy 700s.
+   Smaller body paragraphs remain in familiar Poppins for readability. */
+@layer utilities {
+  .font-bold { font-family: var(--font-outfit), sans-serif; font-weight: 600; }
 }

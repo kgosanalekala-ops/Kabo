@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Space_Grotesk } from "next/font/google";
+import { Poppins, Space_Grotesk, Outfit, Urbanist, Sora } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -16,6 +16,10 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
+
+const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], display: "swap" });
+const urbanist = Urbanist({ variable: "--font-urbanist", subsets: ["latin"], display: "swap" });
+const sora = Sora({ variable: "--font-sora", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kaboitgroup.co.za"),
@@ -34,7 +38,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} ${spaceGrotesk.variable} antialiased bg-white text-[#001E3C]`}>
+      <body className={`${poppins.variable} ${spaceGrotesk.variable} ${outfit.variable} ${urbanist.variable} ${sora.variable} antialiased bg-white text-[#001E3C]`}>
         {children}
         <Toaster position="top-center" richColors closeButton />
       </body>
