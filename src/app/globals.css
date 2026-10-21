@@ -314,3 +314,15 @@ section[class*="bg-[#003865]"] .intel-text-gradient {
 }
 html { scroll-padding-top: 84px; }
 :where(button, a, input, textarea, select):focus-visible { outline: 3px solid #00a8e8; outline-offset: 3px; }
+
+/* Landing hero: a quiet visual timer for the three editorial scenes. */
+@keyframes kabo-hero-slide-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.kabo-hero-slide-progress {
+  animation: kabo-hero-slide-progress 8s linear both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kabo-hero-slide-progress { animation: none; }
+}
