@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight, ShieldCheck, Cpu } from "lucide-react";
 import { usePage } from "./page-context";
 import { FloatingDots } from "./floating-dots";
-import { AnimatedCounter } from "./animated-counter";
 
 const STATS = [
   { text: "ICT", label: "Equipment Supply", sub: "Infrastructure and workplace" },
@@ -213,7 +212,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ============ ANIMATED STAT STRIP (below the fold — one scroll down) ============ */}
+      {/* ============ ANIMATED CAPABILITY STRIP (below the fold) ============ */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -221,7 +220,7 @@ export function Hero() {
         transition={{ duration: 0.7 }}
         className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-24 w-full"
       >
-        {/* Counter bar — animated count-up when scrolled into view */}
+        {/* Capability labels — reveal on scroll without presenting invented metrics */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-5xl">
           {STATS.map((s, i) => (
             <motion.div
@@ -233,12 +232,7 @@ export function Hero() {
               className="border-l-2 border-[#00C7FD]/40 pl-3 sm:pl-4 lg:pl-5"
             >
               <div className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display bg-gradient-to-br from-[#5FE5FF] via-[#00C7FD] to-[#0071C5] bg-clip-text text-transparent">
-                <AnimatedCounter
-                  value={"value" in s ? s.value : 0}
-                  text={"text" in s ? s.text : undefined}
-                  duration={2000}
-                  delay={i * 150}
-                />
+                {s.text}
               </div>
               <div className="mt-1 text-[11px] sm:text-xs lg:text-sm font-medium text-white uppercase tracking-wider">
                 {s.label}
