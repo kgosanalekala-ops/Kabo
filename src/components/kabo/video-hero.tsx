@@ -13,15 +13,15 @@ interface VideoHeroProps {
   title: ReactNode;
   subtitle: string;
   children?: ReactNode;
-  /** Use a full first-screen hero below the fixed 74px navigation. */
+  /** Legacy flag retained for page compatibility; full-height alignment now applies to desktop only. */
   fullViewport?: boolean;
 }
 
 export function VideoHero({ variant = "abstract", tag, title, subtitle, children }: VideoHeroProps) {
   return (
-    // All VideoHero pages begin below the fixed 74px header and fill the remaining
-    // first screen. min-height lets the content grow on short phones or large text.
-    <section className="relative mt-[74px] flex min-h-[calc(100svh-74px)] items-center overflow-hidden bg-[#001E3C]">
+    // All pages clear the fixed header. Mobile/tablet height is driven by
+    // actual content; desktop uses a full first-screen minimum.
+    <section className="relative mt-[74px] flex min-h-0 items-center overflow-hidden bg-[#001E3C] lg:min-h-[calc(100svh-74px)]">
       <div className="absolute inset-0 z-0">
         <Image
           src={HERO_VARIANT_IMAGE[variant]}
