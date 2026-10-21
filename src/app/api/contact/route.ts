@@ -28,17 +28,26 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Defensive validation: avoid oversized payloads and malformed addresses.
+    const fields = [firstName, lastName, email, organisation, phone, enquiryType, message];
+    if (fields.some(v => v !== undefined && (typeof v !== "string" || v.length > 8000)) ||
+        String(firstName).length > 150 || String(lastName).length > 150 ||
+        String(email).length > 254 || String(enquiryType).length > 150 ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email))) {
+      return NextResponse.json({ ok: false, error: "Please check your contact details and message length." }, { status: 400 });
+    }
+
     const now = new Date();
 
     const autoReply = {
       routeTo: "info@kaboitgroup.co.za",
       enquiryType,
       acknowledgement:
-        "Your enquiry has been routed to the KABO general enquiries desk at info@kaboitgroup.co.za. The right specialist will respond within one business day. For urgent technical escalations, please raise a support ticket on the Support page instead — that path is SLA-backed.",
+        "Your enquiry has been routed to the KABO general enquiries desk at info@kaboitgroup.co.za. A KABO representative can follow up using your supplied contact details. For urgent support enquiries, contact support@kaboitgroup.co.za.",
       nextSteps: [
-        `Your message has been logged under enquiry type: ${enquiryType}.`,
-        "A KABO specialist will respond within one business day.",
-        "For urgent production-impacting issues, raise a ticket on the Support page for SLA-backed response.",
+        `Your enquiry category: ${enquiryType}.`,
+        "A representative will review the enquiry and contact you where appropriate.",
+        "For urgent technical issues, contact support@kaboitgroup.co.za.",
         "To follow up, reply to the acknowledgement email or email info@kaboitgroup.co.za.",
       ],
       contact: {
@@ -66,8 +75,7 @@ export async function POST(req: NextRequest) {
       ``,
       `--- META ---`,
       `Source:        KABO website contact page`,
-      `Customer IP:   ${req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown"}`,
-      `User-Agent:    ${req.headers.get("user-agent") || "unknown"}`,
+
     ].join("\n");
 
     const teamHtml = `
@@ -90,7 +98,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await deliverFormSubmission(
+    const delivery = await deliverFormSubmission(
       {
         to: "info@kaboitgroup.co.za",
         replyTo: email,
@@ -112,6 +120,14 @@ export async function POST(req: NextRequest) {
         body: message,
       }
     );
+
+    // Only acknowledge a request accepted by at least one transport.
+    if (!delivery.accepted) {
+      return NextResponse.json(
+        { ok: false, error: "Your message was not sent. Please email info@kaboitgroup.co.za directly." },
+        { status: 503 }
+      );
+    }
 
     // ---- Email auto-reply to the customer (SMTP only — customer doesn't have WhatsApp to KABO) ----
     const customerText = [
@@ -161,7 +177,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
+    if (delivery.email.sent) await sendMail({
       to: email,
       // Reply-To routes customer replies to a monitored inbox (info@) instead
       // of bouncing off the noreply@ sender. This is critical because the
@@ -173,7 +189,7 @@ export async function POST(req: NextRequest) {
       html: customerHtml,
     });
 
-    return NextResponse.json({ ok: true, enquiry: autoReply });
+    return NextResponse.json({ ok: true, enquiry: autoReply, deliveryChannel: delivery.channel });
   } catch (err) {
     console.error("[POST /api/contact] error:", err);
     return NextResponse.json(

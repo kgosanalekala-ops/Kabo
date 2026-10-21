@@ -8,9 +8,9 @@ interface WhyItem { icon: LucideIcon; num: string; title: string; desc: string; 
 const ITEMS: WhyItem[] = [
   { icon: Target, num: "01", title: "Outcome-Led", desc: "Architecture starts at the business outcome and ends at the SLA — not at the SKU. Every engagement begins with the workload, the SLA and the commercial outcome the client is buying." },
   { icon: Users, num: "02", title: "Same Team End-to-End", desc: "The same engineers who integrate carry the operational accountability post go-live. No hand-off. No diffusion of accountability. The team owns the outcome from workshop to QBR." },
-  { icon: Cpu, num: "03", title: "15 Strategic Partners", desc: "Vendor-neutral selection across fifteen strategic alliances — HPE, Dell, Microsoft, Veeam, Fortinet, Sophos, Palo Alto, Pure, Commvault, Juniper, Schneider, Huawei, ManageEngine, H3C and Hikvision." },
-  { icon: Shield, num: "04", title: "24/7 SOC + NOC", desc: "Continuous monitoring, response and reporting against contractual SLAs. Every workload we manage runs under a single operational model — unified runbooks, unified accountability, unified escalation." },
-  { icon: Award, num: "05", title: "Level 1 · 135%", desc: "Maximum B-BBEE procurement recognition — and Gauteng-established. Every engagement contributes directly to your supplier development scorecard." },
+  { icon: Cpu, num: "03", title: "Technology Sourcing", desc: "Technology selection based on specification, sourcing eligibility and required solution architecture." },
+  { icon: Shield, num: "04", title: "Project Fit & Support", desc: "Design, delivery and support responsibilities are defined with the customer for each approved project." },
+  { icon: Award, num: "05", title: "Level 1 · 135%", desc: "Maximum B-BBEE procurement recognition — and Gauteng-established. Evidence and recognition are confirmed against the current documents and buyer rules." },
   { icon: Zap, num: "06", title: "AI-Ready", desc: "GPU compute, low-latency fabric and high-throughput storage — engineered for the AI era. From single-node inference appliances to liquid-cooled HGX clusters with InfiniBand fabrics." },
 ];
 

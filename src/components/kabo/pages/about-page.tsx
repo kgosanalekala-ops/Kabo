@@ -7,15 +7,15 @@ import { usePage } from "../page-context";
 
 const VALUES = [
   { icon: Target, title: "Accountability", desc: "One owner, end to end. No finger pointing, no orphaned outcomes." },
-  { icon: Eye, title: "Transparency", desc: "Audit-ready evidence. POPIA-aligned, BBB-EE compliant, regulator-ready." },
+  { icon: Eye, title: "Transparency", desc: "Clear technical recommendations, sourcing information and commercial documentation when required." },
   { icon: Heart, title: "African Reality", desc: "Engineered for load-shedding, copper theft and fibre cuts at 3am." },
-  { icon: Users, title: "Black Ownership", desc: "100% Black-owned. BBB-EE Level 1. Procurement advantage, not window dressing." },
+  { icon: Users, title: "Procurement clarity", desc: "Supplier credentials and compliance documents can be provided during commercial qualification." },
 ];
 
 const TIMELINE = [
   { year: "2016", title: "KABO IT Group Founded", desc: "Established in Gauteng with a mission to engineer intelligent infrastructure for African enterprise." },
-  { year: "Growth", title: "15 Strategic Alliances", desc: "Curated fifteen technology partners across compute, data, networking, security, AI, cloud, workplace and physical security." },
-  { year: "Today", title: "12 Domains, 9 Provinces", desc: "Nationwide footprint across all nine South African provinces, 24/7 NOC and SOC from Gauteng, twelve interlocking solution domains, nine industry verticals." },
+  { year: "Portfolio", title: "Technology ecosystem", desc: "Technology sourcing across enterprise hardware, networking, storage, workplace and integrated systems." },
+  { year: "Today", title: "Infrastructure and supply", desc: "ICT procurement and solution planning across data centre, networks, AI and workplace technology." },
   { year: "Tomorrow", title: "African Expansion", desc: "Extending KABO's ecosystem orchestration model into SADC and the broader African continent — carrying the same architecture, partnerships and operational discipline that work in South Africa." },
 ];
 
@@ -23,15 +23,15 @@ export function AboutPage() {
   const { navigate } = usePage();
   return (
     <>
-      <VideoHero variant="abstract" tag="About KABO" title={<>{<>Intelligent infrastructure,</>}<br /><span className="intel-text-gradient">engineered</span> for the AI era.</>} subtitle="KABO IT Group is a Gauteng-established systems integrator — 100% Black-owned, B-BBEE Level 1 with 135% procurement recognition. Founded in 2016. Fifteen strategic alliances, twelve interlocking domains, a unified architecture — engineered end-to-end. Nationwide footprint today, expanding into the broader African continent." />
+      <VideoHero variant="abstract" tag="About KABO" title={<>{<>Intelligent infrastructure,</>}<br /><span className="intel-text-gradient">engineered</span> for the AI era.</>} subtitle="KABO IT Group is a Pretoria-based ICT supplier and technology solutions business. We help organisations source equipment and explore practical infrastructure architectures, including networking, data centres, security and AI." />
       <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }}>
               <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">Our Mission</span>
               <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-[#001E3C] font-display leading-tight">One owner for every layer of African enterprise ICT.</h2>
-              <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">KABO IT Group exists to remove the friction, finger-pointing and accountability gaps that plague multi-vendor ICT estates. We orchestrate fifteen strategic alliances into twelve interlocking solution domains under a single architecture, a single contract and a single escalation path.</p>
-              <p className="mt-4 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">From compute, data and networking through security, AI infrastructure, cloud, digital workplace, physical security, analytics/BI, continuity and IoT/edge — KABO owns the outcome. End to end, across all nine South African provinces today, expanding into the broader African continent, 24/7.</p>
+              <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">KABO IT Group exists to remove the friction, finger-pointing and accountability gaps that plague multi-vendor ICT estates. We connect relevant technology portfolios with specific business and engineering requirements.</p>
+              <p className="mt-4 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">From compute, data and networking to AI infrastructure, digital workplace and electronic security, our focus is a coherent technical scope and sourcing route for each project.</p>
               <button onClick={() => navigate("contact")} className="mt-8 group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
                 Engage KABO
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
@@ -39,10 +39,10 @@ export function AboutPage() {
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: 0.1 }} className="grid grid-cols-2 gap-4">
               {[
-                { icon: Award, value: "Level 1", label: "B-BBEE · 135%" },
-                { icon: Users, value: "100%", label: "Black-Owned" },
-                { icon: Zap, value: "12", label: "Solution Domains" },
-                { icon: MapPin, value: "9", label: "Provinces Covered" },
+                { icon: Award, value: "ICT", label: "Equipment supply" },
+                { icon: Users, value: "B2B", label: "Business procurement" },
+                { icon: Zap, value: "AI", label: "Infrastructure options" },
+                { icon: MapPin, value: "ZA", label: "Pretoria-based" },
               ].map((s, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="rounded-2xl border border-[#DCE6EF] bg-[#F5F9FC] p-6 text-center">
                   <s.icon className="h-7 w-7 text-[#0071C5] mx-auto mb-3" strokeWidth={1.5} />

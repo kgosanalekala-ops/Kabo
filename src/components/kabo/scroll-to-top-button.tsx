@@ -20,7 +20,7 @@ export function ScrollToTopButton() {
   }, []);
 
   const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   };
 
   return (
@@ -32,7 +32,7 @@ export function ScrollToTopButton() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
           onClick={scrollTop}
-          className="fixed right-4 sm:right-6 bottom-6 z-40 hidden sm:inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#0071C5] to-[#00C7FD] text-white shadow-xl shadow-[#0071C5]/40 hover:shadow-2xl hover:shadow-[#00C7FD]/40 hover:scale-110 transition-all"
+          className="fixed right-4 sm:right-6 bottom-20 sm:bottom-24 z-40 inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#0071C5] to-[#00C7FD] text-white shadow-xl shadow-[#0071C5]/40 hover:shadow-2xl hover:shadow-[#00C7FD]/40 hover:scale-110 transition-all"
           aria-label="Move to top"
           title="Move to top"
         >

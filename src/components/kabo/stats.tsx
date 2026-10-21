@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 const STATS = [
   { value: "Level 1", label: "B-BBEE Rating · 135%" },
-  { value: "15", label: "Strategic Alliances" },
+  { value: "7", label: "Core OEM Portfolios" },
   { value: "12", label: "Solution Domains" },
   { value: "9", label: "Industries Served" },
   { value: "9", label: "Provinces Covered" },
-  { value: "24/7", label: "NOC + SOC Operations" },
+  { value: "ICT", label: "Managed-Service Options" },
 ];
 
 export function Stats() {

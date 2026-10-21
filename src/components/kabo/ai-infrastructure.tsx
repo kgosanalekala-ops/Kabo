@@ -18,7 +18,7 @@ const AI_CHAPTERS: { id: number; title: string; caption: string; accent: string;
   { id: 2, title: "InfiniBand Fabric", caption: "Lossless, low-latency 400G interconnects between GPU nodes. Distributed training across multi-node clusters with the bandwidth and determinism AI workloads demand.", accent: "#0071C5", stat: { value: "400G", label: "InfiniBand interconnect" }, icon: Network },
   { id: 3, title: "High-Bandwidth Storage", caption: "All-flash storage tiers tuned to GPU pipelines. GPUDirect integration eliminates storage bottlenecks in AI training — feeding data to the GPU at the speed it can consume.", accent: "#0071C5", stat: { value: "10 GB/s", label: "Read throughput per node" }, icon: Database },
   { id: 4, title: "Hybrid AI Cloud", caption: "Train on-premises with H100 clusters. Burst to Azure or HPE GreenLake when capacity demands. Keep sensitive data sovereign across a hybrid AI fabric.", accent: "#00C7FD", stat: { value: "Hybrid", label: "deployment model" }, icon: Cloud },
-  { id: 5, title: "AI Security & Governance", caption: "Model governance, data lineage and secure MLOps. AI workloads protected by the KABO SOC with 24/7 monitoring — accountable from dataset to deployment.", accent: "#0071C5", stat: { value: "24/7", label: "SOC monitored" }, icon: Lock },
+  { id: 5, title: "AI Security & Governance", caption: "Model governance, data lineage and secure MLOps. Security controls and operational monitoring options are assessed against the proposed deployment.", accent: "#0071C5", stat: { value: "Risk", label: "governance" }, icon: Lock },
 ];
 
 // ============================================================================
@@ -30,7 +30,7 @@ const AI_CAPABILITIES: { icon: LucideIcon; title: string; desc: string; stat: st
   { icon: Database, title: "High-Bandwidth Storage", desc: "All-flash storage tiers tuned to GPU pipelines. GPUDirect eliminates storage bottlenecks in training workloads.", stat: "10 GB/s", statLabel: "read throughput" },
   { icon: Cloud, title: "Hybrid AI Cloud", desc: "GreenLake and Azure integration for elastic AI compute. Burst to cloud when on-prem capacity is exhausted.", stat: "Hybrid", statLabel: "deployment" },
   { icon: Network, title: "InfiniBand Fabric", desc: "Lossless, low-latency interconnects between GPU nodes. 400G InfiniBand for distributed training across multi-node clusters.", stat: "400G", statLabel: "interconnect" },
-  { icon: Lock, title: "AI Security & Governance", desc: "Model governance, data lineage and secure MLOps. AI workloads protected by the KABO SOC with 24/7 monitoring.", stat: "24/7", statLabel: "SOC monitored" },
+  { icon: Lock, title: "AI Security & Governance", desc: "Model governance, data lineage and secure MLOps. Security and governance planning for the relevant AI deployment.", stat: "Risk", statLabel: "governance" },
 ];
 
 // ============================================================================
@@ -195,7 +195,7 @@ export function AIInfrastructure() {
             { value: "H100/H200", label: "NVIDIA GPU Platforms" },
             { value: "400G", label: "InfiniBand Interconnect" },
             { value: "10 GB/s", label: "Storage Throughput" },
-            { value: "24/7", label: "SOC Monitoring" },
+            { value: "Policy", label: "Security Governance" },
           ].map((m, i) => (
             <div key={i} className="text-center p-6 rounded-2xl intel-glass">
               <div className="text-2xl md:text-3xl font-bold text-[#00C7FD] mb-2 font-display">{m.value}</div>

@@ -10,7 +10,9 @@ import { cn } from "@/lib/utils";
 const NAV_ITEMS: { label: string; page: Page }[] = [
   { label: "About", page: "about" },
   { label: "Solutions", page: "solutions" },
+  { label: "Configure", page: "configure" },
   { label: "Products", page: "products" },
+  { label: "Procurement", page: "procurement" },
   { label: "Industries", page: "industries" },
   { label: "Services", page: "services" },
   { label: "Support", page: "support" },
@@ -27,6 +29,15 @@ export function Navbar() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close the mobile menu on Escape and when navigation changes.
+  useEffect(() => { setMobileOpen(false); }, [currentPage]);
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setMobileOpen(false); };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [mobileOpen]);
 
   // Lock body scroll when mobile menu is open.
   useEffect(() => {
@@ -70,7 +81,7 @@ export function Navbar() {
         <button onClick={() => go("home")} className="flex items-center gap-3 group" aria-label="KABO IT Group — home">
           <Image src="/logos/kabo-logo-white.png" alt="KABO IT Group" width={140} height={36} className="h-8 sm:h-9 w-auto transition-transform group-hover:scale-105" priority />
         </button>
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
             const isActive = currentPage === item.page || (item.page === "solutions" && currentPage === "solution-detail") || (item.page === "products" && currentPage === "product-detail") || (item.page === "industries" && currentPage === "industry-detail") || (item.page === "partners" && currentPage === "partner-detail");
             return (
@@ -81,26 +92,26 @@ export function Navbar() {
             );
           })}
         </div>
-        <div className="hidden lg:block">
-          <button onClick={() => go("contact")} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
-            Get in Touch
+        <div className="hidden xl:block">
+          <button onClick={() => go("rfq")} className="kabo-depth-button group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
+            Request a Quote
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
           </button>
         </div>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg text-white hover:bg-white/10" aria-label="Toggle menu" aria-expanded={mobileOpen}>
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="xl:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg text-white hover:bg-white/10" aria-label={mobileOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileOpen} aria-controls="kabo-mobile-navigation">
           {mobileOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
         </button>
       </nav>
       {mobileOpen && (
-        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="lg:hidden bg-[#001E3C]/98 backdrop-blur-md border-t border-white/10">
+        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} id="kabo-mobile-navigation" role="region" aria-label="Mobile navigation" className="xl:hidden max-h-[calc(100dvh-74px)] overflow-y-auto overscroll-contain bg-[#001E3C]/98 backdrop-blur-md border-t border-white/10">
           <div className="px-4 py-4 space-y-1">
             {NAV_ITEMS.map((item) => (
-              <button key={item.page} onClick={() => go(item.page)} className="block w-full text-left px-4 py-3 text-base font-medium text-white/90 hover:bg-white/5 hover:text-[#00C7FD] rounded-lg transition-colors font-display">
+              <button key={item.page} onClick={() => go(item.page)} className="block w-full text-left px-4 py-3.5 text-base font-medium text-white/90 hover:bg-white/5 hover:text-[#00C7FD] rounded-lg transition-colors font-display focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00c7fd]">
                 {item.label}
               </button>
             ))}
-            <button onClick={() => go("contact")} className="block w-full text-center mt-3 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-5 py-3 text-sm font-semibold text-white">
-              Get in Touch
+            <button onClick={() => go("rfq")} className="block w-full text-center mt-3 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-5 py-3 text-sm font-semibold text-white">
+              Request a Quote
             </button>
           </div>
         </motion.div>

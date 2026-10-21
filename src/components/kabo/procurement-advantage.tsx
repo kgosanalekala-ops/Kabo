@@ -5,9 +5,9 @@ import { Award, TrendingUp, Shield, ArrowRight } from "lucide-react";
 import { usePage } from "./page-context";
 
 const ADVANTAGES = [
-  { icon: Award, title: "BBB-EE Level 1 Procurement", desc: "Level 1 contributor with maximum procurement recognition. Every KABO engagement contributes directly to your supplier development scorecard — no pass-through, no fronting, no procurement gymnastics." },
-  { icon: TrendingUp, title: "Procurement Requirement Advantage", desc: "Treasury-compliant documentation pack, B-BBEE certificates, and procurement-ready proposals that streamline your procurement requirement response." },
-  { icon: Shield, title: "POPIA-Aligned Sovereign Hosting", desc: "Regulated workloads stay on African soil. Sovereign cloud zones and air-gapped repositories keep POPIA-regulated data resident and recoverable." },
+  { icon: Award, title: "BBB-EE Level 1 Procurement", desc: "B-BBEE status and supporting documents are made available through the appropriate tender or quotation process; procurement recognition depends on current evidence and buyer requirements." },
+  { icon: TrendingUp, title: "Procurement Requirement Advantage", desc: "Tender and procurement documentation is prepared against the specific buyer requirements, with relevant statutory and OEM evidence supplied through private channels." },
+  { icon: Shield, title: "POPIA-Aligned Sovereign Hosting", desc: "Data residency, privacy, backup and recovery controls must be designed for each workload and verified against the applicable requirements." },
 ];
 
 export function ProcurementAdvantage() {
@@ -19,10 +19,10 @@ export function ProcurementAdvantage() {
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="lg:col-span-5">
             <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">The KABO Commercial Advantage</span>
             <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-[#001E3C] font-display leading-tight">
-              Your procurement requirement, <span className="intel-text-gradient">won</span>.
+              Your procurement strategy, <span className="intel-text-gradient">supported</span>.
             </h2>
             <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-              KABO isn&rsquo;t just a technology partner. We&rsquo;re a procurement advantage. Every engagement is engineered to score high on your B-BBEE scorecard, comply with Treasury regulations and keep regulated data sovereign. One partner that wins the procurement requirement and delivers the outcome.
+              KABO connects technical specifications, suitable equipment, sourcing channels and commercial documentation. Tender compliance, delivery arrangements and any statutory evidence are assessed for each opportunity—not assumed.
             </p>
             <button onClick={() => navigate("contact")} className="mt-8 group inline-flex items-center gap-2 rounded-full bg-[#001E3C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0071C5] transition-colors">
               Engage KABO for Your Next RFP

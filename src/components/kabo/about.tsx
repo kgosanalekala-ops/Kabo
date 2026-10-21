@@ -28,17 +28,17 @@ export function About() {
               Technology <span className="intel-text-gradient">follows</span>.
             </h2>
             <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-              KABO IT Group is a Gauteng-established systems integrator &mdash; B-BBEE Level 1 with 135% procurement recognition. Since 2016 we have curated fifteen strategic alliances into twelve interlocking solution domains, underpinned by a single reference architecture, a single contract and a single escalation path. The result: no finger pointing between vendors, no orphan SKUs, no accountability gaps when something breaks at 3am.
+              KABO IT Group is a Pretoria-based ICT supplier and technology solutions business. We combine equipment sourcing with infrastructure architecture and project-specific integration planning for organisations across the region.
             </p>
             <p className="mt-4 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-              From compute, data and networking through security, AI infrastructure, cloud, digital workplace, physical security, analytics/BI, continuity and IoT/edge &mdash; KABO owns the outcome end to end. Nationwide footprint across all nine South African provinces today, expanding into the broader African continent.
+              Our portfolio connects compute, storage, networking, security, AI infrastructure, connectivity, digital workplace and procurement into coherent technical and commercial proposals.
             </p>
 
             {/* Promise tiles — small icon-driven list */}
             <div className="mt-7 grid sm:grid-cols-3 gap-3">
               {[
                 { icon: Layers, title: "Unified contract", desc: "Every layer, one agreement." },
-                { icon: Headset, title: "Single escalation path", desc: "One number, 24/7." },
+                { icon: Headset, title: "Single escalation path", desc: "Clear point of contact for each agreed project." },
                 { icon: ShieldCheck, title: "Same engineering team", desc: "Integrate → operate." },
               ].map((p, i) => (
                 <motion.div
@@ -76,7 +76,7 @@ export function About() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#001E3C]/15 aspect-[4/3]">
               <Image
                 src="/images/sol_noc.jpg"
-                alt="KABO 24/7 Network Operations Centre"
+                alt="Illustrative enterprise technology operations environment"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -85,7 +85,7 @@ export function About() {
               <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                 <div>
                   <div className="text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display font-semibold mb-1">Gauteng SOC</div>
-                  <div className="text-lg font-bold text-white font-display leading-tight">24/7 NOC + SOC<br />operations</div>
+                  <div className="text-lg font-bold text-white font-display leading-tight">Integrated technology<br />solutions</div>
                 </div>
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-3 py-1 border border-white/20">
                   <span className="relative flex h-2 w-2">

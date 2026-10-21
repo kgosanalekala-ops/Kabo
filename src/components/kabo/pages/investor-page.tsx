@@ -8,22 +8,22 @@ import { usePage } from "../page-context";
 import { toast } from "sonner";
 
 const PILLARS = [
-  { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is positioned for sustained growth across South Africa's enterprise ICT market — driven by AI infrastructure demand, B-BBEE procurement acceleration and sovereign cloud adoption. The structural shift from capex to SLA-based consumption models plays directly to our integrated architecture and 24/7 operations capability." },
-  { icon: PieChart, title: "Diversified Revenue", desc: "Revenue across twelve solution domains, fifteen strategic alliances and nine industry verticals. No single point of dependency. Hardware supply, solutions procurement, managed services and asset recovery under one roof — with recurring managed-services revenue growing as a proportion of total." },
-  { icon: Globe, title: "Expansion Vision", desc: "Nationwide footprint across all nine South African provinces today. Strategic roadmap extends KABO's ecosystem orchestration model into SADC and the broader African continent — carrying the same architecture, the same partnerships and the same operational discipline that work in South Africa." },
+  { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is positioned for sustained growth across South Africa's enterprise ICT market — driven by AI infrastructure demand, B-BBEE procurement acceleration and sovereign cloud adoption. Projects are assessed individually for ownership, service-level commitments and sustainable support arrangements." },
+  { icon: PieChart, title: "Diversified Revenue", desc: "A commercial offering spanning ICT hardware, workplace products, integrated infrastructure and project services. Revenue composition and financial forecasts require verified reporting." },
+  { icon: Globe, title: "Expansion Vision", desc: "KABO is based in Pretoria and aims to pursue additional opportunities as delivery resources, customer demand and channel arrangements permit." },
 ];
 
 const INVESTMENT_HIGHLIGHTS = [
-  { value: "15", label: "Strategic Alliances", desc: "HPE, Dell, Microsoft, NVIDIA, Hikvision and more — vendor-neutral selection across the full stack." },
+  { value: "7", label: "Core OEM Portfolios", desc: "HPE, Dell, Lenovo, HP, H3C, Huawei and Veeam, with project-specific sourcing of other technologies." },
   { value: "12", label: "Solution Domains", desc: "From compute and AI infrastructure to managed services — a complete portfolio across the infrastructure lifecycle." },
-  { value: "9", label: "Industries Served", desc: "Public sector, financial services, mining, healthcare, education, telecoms, manufacturing, retail and smart infrastructure." },
+  { value: "16", label: "Industry Scenarios", desc: "Reference requirements across public and private sector environments. Sector scenarios are illustrative, not client references." },
   { value: "L1", label: "B-BBEE · 135%", desc: "Level 1 contributor with maximum procurement recognition — a structural advantage in the South African market." },
 ];
 
 const THESIS = [
-  { num: "01", title: "AI changes the physics of the room", desc: "Density, power and cooling envelopes will re-architect the data centre — not just refresh it. KABO is positioned at the intersection of GPU infrastructure, sovereign cloud and 24/7 operations, capturing the spend that follows this shift." },
-  { num: "02", title: "Security is the architecture", desc: "Zero-Trust will move from a capability to a precondition; the SOC becomes the system of record. KABO's converged cyber + physical security practice, anchored by Hikvision and a 24/7 Gauteng SOC, turns this regulatory shift into recurring managed-services revenue." },
-  { num: "03", title: "Operations is the product", desc: "Infrastructure value will be measured in SLA performance, not in capex. Integrators who can't operate won't survive. KABO's model — the same engineers integrate and operate — is structurally designed for the SLA economy." },
+  { num: "01", title: "AI changes the physics of the room", desc: "AI workloads increase power, cooling, interconnect and storage requirements. Project scoping should validate the workload before selecting accelerators and facility capacity." },
+  { num: "02", title: "Security is the architecture", desc: "Identity, segmentation, cyber monitoring, video surveillance and electronic access control require integrated security design. Operational monitoring is established only where expressly contracted." },
+  { num: "03", title: "Operations is the product", desc: "Infrastructure value will be measured in SLA performance, not in capex. Integrators who can't operate won't survive. KABO can propose lifecycle support requirements and appropriate service arrangements for each infrastructure engagement." },
 ];
 
 export function InvestorPage() {

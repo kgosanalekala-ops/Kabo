@@ -53,10 +53,10 @@ export function ThoughtLeadership() {
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="lg:col-span-5">
             <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">Competitive Positioning</span>
             <h3 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold text-[#001E3C] font-display leading-tight">
-              A national integrator with <span className="intel-text-gradient">enterprise depth</span>.
+              An infrastructure partner with <span className="intel-text-gradient">technical focus</span>.
             </h3>
             <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-              KABO occupies a distinct position in the South African infrastructure market — the engineering depth of an enterprise integrator, the partnership credibility of a Tier-1 reseller and the B-BBEE profile of a Level 1 contributor with maximum procurement recognition.
+              KABO combines enterprise infrastructure supply with architecture-led project discovery. Technology selection, OEM authorisation, procurement evidence and service commitments are confirmed for each engagement.
             </p>
             <p className="mt-4 text-base text-[#5A6B7C] leading-relaxed italic">
               &ldquo;What distinguishes KABO is not any single capability — it is the integration of all of them under one corporate identity, one governance framework and one escalation path.&rdquo;

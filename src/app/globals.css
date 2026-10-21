@@ -271,3 +271,46 @@ section[class*="bg-[#003865]"] .intel-text-gradient {
 
 .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* KABO flagship interaction system. Interactive polish is progressive:
+   pointer hover on desktops, perceptible press feedback on touch devices,
+   and a complete reduced-motion escape hatch. */
+.kabo-depth-button {
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+  box-shadow: 0 6px 0 rgba(0, 30, 60, .18), 0 17px 30px -15px rgba(0, 113, 197, .43), inset 0 1px 0 rgba(255, 255, 255, .34);
+  transition: transform .35s cubic-bezier(.2,.75,.25,1), box-shadow .35s ease, filter .35s ease;
+  will-change: auto;
+}
+.kabo-depth-button:active { transform: translateY(2px) scale(.985); box-shadow: 0 2px 0 rgba(0,30,60,.22), 0 6px 15px -7px rgba(0,113,197,.25); }
+.kabo-depth-button:focus-visible { outline: 3px solid #00c7fd; outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .kabo-depth-button:hover { transform: translateY(-4px) perspective(900px) rotateX(3deg); box-shadow: 0 11px 0 rgba(0,30,60,.13), 0 24px 46px -18px rgba(0,113,197,.55), inset 0 1px 0 rgba(255,255,255,.4); filter: saturate(1.12); }
+  .kabo-card:focus-within,
+  .card-hover:focus-within { transform: translateY(-5px); box-shadow: 0 20px 50px -18px rgba(0,30,60,.26); }
+  .kabo-card:focus-within .kabo-card-overlay { transform: translateY(0%); }
+  .kabo-card:focus-within .kabo-card-accent { width: 100%; }
+}
+@media (hover: none) {
+  /* Essential descriptions must not remain hidden on tablets or phones. */
+  .kabo-card-overlay { position: relative; transform: none; max-height: none; overflow: visible; background: #001e3c; }
+  .kabo-card:active, .card-hover:active { transform: scale(.99); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .kabo-svg-motion { display: none; }
+  .kabo-depth-button:hover, .kabo-depth-button:active, .kabo-card:hover, .card-hover:hover { transform: none; }
+}
+
+/* Copyright notice for browser printing/PDF export. Copy resistance is never DRM. */
+@media print {
+  body::before { content: "KABO IT GROUP — © 2026. Content and diagrams are proprietary. For authorised technical documents contact info@kaboitgroup.co.za."; display: block !important; position: fixed; top: 30%; left: 10%; right: 10%; padding: 3rem; border: 2px solid #001e3c; font: bold 18pt/1.5 Arial,sans-serif; text-align: center; color: #001e3c; z-index: 99999; }
+  body > * { visibility: hidden !important; }
+  body::before { visibility: visible !important; }
+}
+@media (hover: none) {
+  .group .opacity-0.group-hover\:opacity-100 { opacity: 1; }
+}
+html { scroll-padding-top: 84px; }
+:where(button, a, input, textarea, select):focus-visible { outline: 3px solid #00a8e8; outline-offset: 3px; }

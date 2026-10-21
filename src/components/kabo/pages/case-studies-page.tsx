@@ -1,68 +1,14 @@
 "use client";
-
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { VideoHero } from "../video-hero";
-import { CASE_STUDIES } from "../data";
 import { usePage } from "../page-context";
-
-export function CaseStudiesPage() {
-  const { navigate } = usePage();
-  return (
-    <>
-      <VideoHero variant="abstract" tag="Case Studies" title={<>{<>Evidence, not</>}<br /><span className="intel-text-gradient">just claims</span>.</>} subtitle="Selected KABO engagements across AI infrastructure, data centre, SD-WAN and integrated security. Each delivered under a unified contract, a single escalation path, and the same engineering team from workshop to QBR." />
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            {CASE_STUDIES.map((cs, i) => {
-              const isDark = i % 2 === 1;
-              return (
-                <motion.div key={cs.slug} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: 0.05 }} className={isDark ? "relative rounded-3xl bg-[#001E3C] overflow-hidden" : "relative rounded-3xl border border-[#DCE6EF] bg-[#F5F9FC] overflow-hidden"}>
-                  {isDark && (
-                    <>
-                      <div className="absolute inset-0 grid-pattern-dark opacity-30" />
-                      <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-[#00C7FD]/15 blur-3xl" />
-                    </>
-                  )}
-                  <div className="relative p-6 sm:p-8 lg:p-10">
-                    <div className="flex items-start justify-between mb-4 flex-wrap gap-3">
-                      <div>
-                        <div className={isDark ? "text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display mb-1" : "text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display mb-1"}>{cs.sector} &middot; {cs.client}</div>
-                        <h3 className={isDark ? "text-xl sm:text-2xl font-bold text-white font-display leading-tight" : "text-xl sm:text-2xl font-bold text-[#001E3C] font-display leading-tight"}>{cs.title}</h3>
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {cs.stack.slice(0, 3).map((s) => (
-                          <span key={s} className={isDark ? "inline-flex items-center rounded-md bg-white/10 px-2 py-1 text-xs font-medium text-white/80" : "inline-flex items-center rounded-md bg-[#F1F6FB] px-2 py-1 text-xs font-medium text-[#003865]"}>{s}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="grid lg:grid-cols-3 gap-6 mt-5">
-                      <div>
-                        <div className={isDark ? "text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display mb-2" : "text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display mb-2"}>Challenge</div>
-                        <p className={isDark ? "text-sm text-white/75 leading-relaxed" : "text-sm text-[#5A6B7C] leading-relaxed"}>{cs.challenge}</p>
-                      </div>
-                      <div>
-                        <div className={isDark ? "text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display mb-2" : "text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display mb-2"}>Solution</div>
-                        <p className={isDark ? "text-sm text-white/75 leading-relaxed" : "text-sm text-[#5A6B7C] leading-relaxed"}>{cs.solution}</p>
-                      </div>
-                      <div>
-                        <div className={isDark ? "text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display mb-2" : "text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display mb-2"}>Outcome</div>
-                        <p className={isDark ? "text-sm text-white/75 leading-relaxed" : "text-sm text-[#5A6B7C] leading-relaxed"}>{cs.outcome}</p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-          <div className="mt-14 text-center">
-            <button onClick={() => navigate("contact")} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all">
-              Become Our Next Case Study
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
-            </button>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+const scenarios=[
+ { slug:"sd-wan", title:"Distributed branch WAN", detail:"Reference design for multi-site branch connectivity, encrypted overlays and application-aware traffic routing." },
+ { slug:"campus-network", title:"Connected campus", detail:"Reference design for wired access, enterprise Wi-Fi, segmentation and campus switching." },
+ { slug:"data-centre", title:"Resilient data centre", detail:"Concept architecture for compute, storage, networking, power and data protection." },
+ { slug:"surveillance", title:"Surveillance and access control", detail:"Electronic security reference architecture for video, access events, recording and control rooms." },
+ { slug:"ai-infrastructure", title:"AI-ready infrastructure", detail:"Compute, network fabric, storage, cooling and data governance for AI workloads." },
+ { slug:"continuity", title:"Resilient recovery", detail:"Backup policies, immutable repositories and tested recovery targets." },
+ { slug:"cybersecurity", title:"Layered cybersecurity", detail:"Identity, segmentation, endpoints, visibility and incident readiness." },
+ { slug:"hybrid-cloud", title:"Connected hybrid cloud", detail:"Secure paths from branch and data centre to cloud landing zones." }
+];
+export function CaseStudiesPage(){const {navigate}=usePage();return <><section className="pt-36 pb-20 bg-[#001e3c] text-white"><div className="max-w-7xl mx-auto px-5 sm:px-8"><p className="uppercase text-xs tracking-widest text-cyan-300">Illustrative engineering scenarios</p><h1 className="mt-4 text-5xl font-display font-bold">Reference architectures</h1><p className="mt-5 text-lg text-slate-300 max-w-3xl">These are technical examples, not claims of completed customer projects. Verified case studies can be published separately once authorised.</p></div></section><section className="bg-[#f3f8fb] py-20"><div className="max-w-7xl mx-auto px-5 sm:px-8 grid sm:grid-cols-2 xl:grid-cols-4 gap-6">{scenarios.map(x=><button onClick={()=>navigate("architecture",x.slug)} key={x.slug} className="p-8 bg-white border border-slate-200 rounded-3xl text-left hover:shadow-lg"><h2 className="text-2xl font-bold text-[#001e3c]">{x.title}</h2><p className="mt-4 text-slate-600">{x.detail}</p><span className="mt-6 font-semibold text-[#0071c5] inline-flex gap-2 items-center">Explore concept <ArrowRight size={17}/></span></button>)}</div></section></>}

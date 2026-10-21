@@ -21,7 +21,7 @@ export function Contact() {
             <div className="mt-8 space-y-4">
               {[
                 { icon: MapPin, label: "Registered Address", value: "12886 Masemola Street, Mamelodi East, Pretoria, 0122" },
-                { icon: Clock, label: "Engineering & NOC", value: "24/7 operations from Gauteng SOC" },
+                { icon: Clock, label: "Engineering & NOC", value: "Support and escalation by arrangement" },
                 { icon: Mail, label: "Engage", value: "info@kaboitgroup.co.za  ·  +27 612 85 4418" },
               ].map((c, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="flex items-start gap-3">
@@ -53,7 +53,7 @@ export function Contact() {
                     "No vendor sprawl — every layer under a single agreement",
                     "No finger pointing — a single accountable owner, end to end",
                     "No orphan SKUs — every product integrated into the reference architecture",
-                    "No procurement gymnastics — B-BBEE Level 1, Treasury-ready",
+                    "Documentation for commercial qualification on request",
                   ].map((item, i) => (
                     <motion.li key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="flex items-start gap-3 text-white/85">
                       <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#00C7FD]/20 text-[#00C7FD] text-xs font-bold shrink-0 mt-0.5">&radic;</span>

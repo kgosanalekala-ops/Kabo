@@ -5,9 +5,9 @@ import { FileText, Download, ArrowRight, BookOpen } from "lucide-react";
 import { usePage } from "./page-context";
 
 const RESOURCES = [
-  { icon: FileText, title: "Africa-Grade Infrastructure White Paper", desc: "A white paper on Africa-grade infrastructure — how KABO engineers for power instability, connectivity variance and sovereign data residency across all nine provinces.", type: "White Paper" },
-  { icon: BookOpen, title: "AI Infrastructure Reference Architecture", desc: "Reference architecture for NVIDIA HGX H100/H200 clusters, InfiniBand 400G fabrics, Pure Storage FlashBlade tiers and MLOps pipelines — engineered for African enterprise.", type: "Reference Architecture" },
-  { icon: Download, title: "Procurement-Ready Capability Statement", desc: "B-BBEE Level 1, 135% procurement recognition, 15 strategic alliances, 10 solution domains, nationwide footprint. Everything your procurement team needs to score KABO on the next RFP.", type: "Capability Statement" },
+  { icon: BookOpen, title: "SD-WAN Reference Brief", desc: "Conceptual network topology, secure overlays, implementation considerations and design inputs for distributed connectivity.", type: "Technical Brief", url: "/briefs/kabo-sd-wan-reference.md" },
+  { icon: FileText, title: "Campus Networking Reference Brief", desc: "Core, distribution, wired access, wireless and security layers for multi-building campus network planning.", type: "Technical Brief", url: "/briefs/kabo-campus-network-reference.md" },
+  { icon: Download, title: "Data Centre Infrastructure Brief", desc: "Planning considerations for servers, storage fabrics, backup, resilience, power and cooling.", type: "Technical Brief", url: "/briefs/kabo-data-centre-reference.md" },
 ];
 
 export function Resources() {
@@ -19,7 +19,7 @@ export function Resources() {
           <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">Technical Resources</span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-[#001E3C] font-display leading-tight">Evidence, not just claims.</h2>
           <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-            White papers, reference architectures and capability statements — downloadable, audit-ready and engineered for procurement teams.
+            Original reference briefs for infrastructure discussions. Conceptual material only; final design, compatibility and pricing follow a site-specific assessment.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
@@ -33,10 +33,10 @@ export function Resources() {
               </div>
               <h3 className="text-lg font-bold text-[#001E3C] font-display mb-2 leading-tight">{r.title}</h3>
               <p className="text-sm text-[#5A6B7C] leading-relaxed mb-5">{r.desc}</p>
-              <button onClick={() => navigate("contact")} className="group/btn inline-flex items-center gap-1.5 text-sm font-semibold text-[#0071C5] hover:text-[#00C7FD] transition-colors">
-                Request Resource
+              <a href={r.url} download className="group/btn inline-flex items-center gap-1.5 text-sm font-semibold text-[#0071C5] hover:text-[#00C7FD] transition-colors">
+                Download brief
                 <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" strokeWidth={1.5} />
-              </button>
+              </a>
             </motion.div>
           ))}
         </div>

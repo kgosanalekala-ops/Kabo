@@ -8,10 +8,10 @@ import { FloatingDots } from "./floating-dots";
 import { AnimatedCounter } from "./animated-counter";
 
 const STATS = [
-  { value: 15, label: "Strategic Alliances", sub: "HPE · Dell · NVIDIA · Microsoft" },
-  { value: 12, label: "Solution Domains", sub: "Compute → Managed Services" },
-  { value: 9, label: "Provinces Covered", sub: "Nationwide engineering" },
-  { text: "24/7", label: "NOC + SOC", sub: "Gauteng operations" },
+  { text: "ICT", label: "Equipment Supply", sub: "Infrastructure and workplace" },
+  { text: "AI", label: "Infrastructure", sub: "Compute and integration" },
+  { text: "SD", label: "Networking", sub: "Campus · WAN · wireless" },
+  { text: "RFQ", label: "Procurement", sub: "Solutions · hardware" },
 ] as const;
 
 export function Hero() {
@@ -65,7 +65,7 @@ export function Hero() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00C7FD]" />
                 </span>
                 <span className="text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#00C7FD] font-display font-semibold">
-                  National Systems Integrator &middot; Gauteng &middot; Est. 2016
+                  Pretoria, South Africa &middot; Enterprise Technology
                 </span>
               </motion.div>
 
@@ -83,7 +83,7 @@ export function Hero() {
                 transition={{ duration: 0.5, delay: 0.25 }}
                 className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-white/75 leading-relaxed max-w-2xl"
               >
-                We design, build and operate the enterprise infrastructure that runs modern Africa &mdash; from GPU-grade AI platforms and sovereign cloud to zero-trust networks and 24/7 security operations. Fifteen strategic alliances. Twelve interlocking domains. A single accountable partner across the full stack.
+                From enterprise hardware supply and workplace procurement to campus networking, data centres and AI-ready infrastructure, KABO connects technology sourcing with integrated solution design.
               </motion.p>
 
               {/* CTAs */}
@@ -117,12 +117,12 @@ export function Hero() {
               >
                 <span className="inline-flex items-center gap-1.5">
                   <ShieldCheck className="h-3.5 w-3.5 text-[#00C7FD]" strokeWidth={1.5} />
-                  B-BBEE Level 1 &middot; 135%
+                  ICT and workplace supply
                 </span>
                 <span className="hidden sm:inline text-white/20">|</span>
                 <span className="inline-flex items-center gap-1.5">
                   <Cpu className="h-3.5 w-3.5 text-[#00C7FD]" strokeWidth={1.5} />
-                  NVIDIA HGX H100/H200
+                  Data centre and AI platforms
                 </span>
                 <span className="hidden sm:inline text-white/20">|</span>
                 <span className="inline-flex items-center gap-1.5">
@@ -130,7 +130,7 @@ export function Hero() {
                     <span className="absolute inline-flex h-full w-full rounded-full bg-[#00C7FD] opacity-60 animate-ping" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#00C7FD]" />
                   </span>
-                  24/7 NOC + SOC
+                  Project-specific solutions
                 </span>
               </motion.div>
             </motion.div>
@@ -180,10 +180,10 @@ export function Hero() {
                     </div>
                     <div>
                       <div className="text-xs text-[#00C7FD] font-display uppercase tracking-wider">B-BBEE</div>
-                      <div className="text-sm font-bold text-white font-display">Level 1 · 135%</div>
+                      <div className="text-sm font-bold text-white font-display">Procurement</div>
                     </div>
                   </div>
-                  <div className="text-[11px] text-white/60 leading-relaxed">B-BBEE Level 1 contributor. Maximum procurement recognition for public- and private-sector clients.</div>
+                  <div className="text-[11px] text-white/60 leading-relaxed">Commercial documentation and relevant compliance details are available during qualification.</div>
                 </motion.div>
 
                 <motion.div
@@ -200,7 +200,7 @@ export function Hero() {
                       <div className="text-sm font-bold text-white font-display">NVIDIA HGX</div>
                     </div>
                   </div>
-                  <div className="mt-3 text-[11px] text-white/60 leading-relaxed">H100/H200 GPU clusters, InfiniBand 400G, FlashBlade tiers, MLOps &amp; 24/7 SOC governance.</div>
+                  <div className="mt-3 text-[11px] text-white/60 leading-relaxed">AI compute options, high-speed networking, storage and operations planning based on workload requirements.</div>
                   <div className="mt-3 flex gap-1.5">
                     {["H100", "H200", "L40S"].map((g) => (
                       <span key={g} className="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-[#00C7FD] border border-white/10">{g}</span>

@@ -6,8 +6,8 @@ import { usePage } from "./page-context";
 
 const PILLARS = [
   { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is positioned for sustained growth across South Africa's enterprise ICT market — driven by AI infrastructure demand, B-BBEE procurement acceleration and sovereign cloud adoption." },
-  { icon: PieChart, title: "Diversified Revenue", desc: "Revenue across twelve solution domains, fifteen strategic alliances and nine industry verticals. No single point of dependency. Hardware supply, solutions procurement, managed services and asset recovery under one roof." },
-  { icon: Globe, title: "Expansion Vision", desc: "Nationwide footprint across all nine South African provinces today. Strategic roadmap extends KABO's ecosystem orchestration model into SADC and the broader African continent." },
+  { icon: PieChart, title: "Diversified Revenue", desc: "A portfolio spanning ICT equipment, workplace procurement, enterprise infrastructure and project-led services, with commercial terms scoped to each engagement." },
+  { icon: Globe, title: "Expansion Vision", desc: "Based in Pretoria, KABO is focused on growing its project delivery capability in South Africa and exploring regional opportunities as capacity allows." },
 ];
 
 export function Investor() {

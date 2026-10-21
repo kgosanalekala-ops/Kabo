@@ -27,9 +27,8 @@ import nodemailer, { type Transporter } from "nodemailer";
  *   WHATSAPP_TO_NUMBER       — destination MSISDN, e.g. 27612854418
  *                              (defaults to 27612854418 = KABO mobile)
  *
- * If a channel is not configured, it silently no-ops (logged to server
- * console). The site still works — the form just doesn't actually deliver
- * until at least one channel is configured.
+ * If neither channel is configured or accepts the message, the API must reject
+ * the submission. Never represent a failed request as a received lead.
  */
 
 let cachedTransport: Transporter | null = null;
@@ -78,14 +77,7 @@ export async function sendMail(input: SendMailInput): Promise<SendMailResult> {
   // user-facing experience is unaffected. The email just doesn't actually
   // get delivered until SMTP env vars are set.
   if (!transport) {
-    console.log(
-      "\n[email] SMTP not configured — would have sent:\n" +
-        `  To: ${input.to}\n` +
-        (input.cc ? `  Cc: ${input.cc}\n` : "") +
-        (input.replyTo ? `  Reply-To: ${input.replyTo}\n` : "") +
-        `  Subject: ${input.subject}\n` +
-        `  ---\n${input.text.slice(0, 500)}\n  ---\n`
-    );
+    console.warn("[email] SMTP is not configured; no email was sent.");
     return { sent: false, preview: "logged-to-console" };
   }
 
@@ -162,13 +154,7 @@ export async function sendWhatsAppNotification(
   const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
 
   if (!token || !phoneNumberId) {
-    console.log(
-      `[whatsapp] Not configured — would have sent:\n` +
-        `  Kind: ${input.kind}\n` +
-        `  Headline: ${input.headline}\n` +
-        `  Fields: ${input.fields.map((f) => `${f.label}=${f.value}`).join(", ")}\n` +
-        (input.body ? `  Body: ${input.body.slice(0, 200)}\n` : "")
-    );
+    console.warn("[whatsapp] WhatsApp Cloud API is not configured; no notification was sent.");
     return { sent: false };
   }
 
@@ -232,40 +218,24 @@ export async function sendWhatsAppNotification(
   }
 }
 
-/**
- * Convenience wrapper: attempts both SMTP and WhatsApp in parallel.
- * Returns the SMTP result (the customer-facing channel). WhatsApp is
- * fire-and-forget — its result is logged but does not affect the HTTP
- * response, so the visitor never sees whether WhatsApp was used.
- *
- * This is the function the API routes should call.
- */
+/** Acceptance by an outbound transport, not proof of inbox delivery. */
+export interface DeliveryResult {
+  accepted: boolean;
+  email: SendMailResult;
+  whatsapp: SendWhatsAppResult;
+  channel: "email" | "whatsapp" | "both" | "none";
+}
+
+/** Do not treat an unconfigured transport as success. */
 export async function deliverFormSubmission(
   mail: SendMailInput,
   whatsapp: SendWhatsAppInput
-): Promise<SendMailResult> {
-  // Fire both in parallel — neither blocks the other.
-  const [mailResult, waResult] = await Promise.all([
+): Promise<DeliveryResult> {
+  const [email, wa] = await Promise.all([
     sendMail(mail),
     sendWhatsAppNotification(whatsapp),
   ]);
-
-  if (!mailResult.sent && !waResult.sent) {
-    console.warn(
-      "[delivery] Both SMTP and WhatsApp failed to deliver. " +
-        "At least one channel must be configured (SMTP_* or WHATSAPP_*)."
-    );
-  } else if (!mailResult.sent && waResult.sent) {
-    console.log(
-      "[delivery] SMTP not configured — submission delivered via WhatsApp only."
-    );
-  } else if (mailResult.sent && !waResult.sent) {
-    console.log("[delivery] Submission delivered via email; WhatsApp not configured.");
-  } else {
-    console.log("[delivery] Submission delivered via both email and WhatsApp.");
-  }
-
-  // The HTTP response always reflects the SMTP/email channel — that's the
-  // customer-facing one. The WhatsApp send is invisible to the visitor.
-  return mailResult;
+  const channel = email.sent && wa.sent ? "both" : email.sent ? "email" : wa.sent ? "whatsapp" : "none";
+  if (channel === "none") console.error("[delivery] No outbound transport accepted the submission");
+  return { accepted: channel !== "none", email, whatsapp: wa, channel };
 }

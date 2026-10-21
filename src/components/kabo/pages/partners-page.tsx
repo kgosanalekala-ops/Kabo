@@ -1,49 +1,20 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { VideoHero } from "../video-hero";
-import { PARTNERS } from "../data";
+import { ArrowRight, Boxes, Network, CheckCircle2 } from "lucide-react";
 import { usePage } from "../page-context";
 
-export function PartnersPage() {
-  const { navigate } = usePage();
-  return (
-    <>
-      <VideoHero variant="abstract" tag="Partner Ecosystem" title={<>{<>Fifteen strategic alliances,</>}<br /><span className="intel-text-gradient">one architecture</span>.</>} subtitle="HPE, Dell, Microsoft, Veeam, Fortinet, Sophos, Palo Alto, Pure Storage, Commvault, Juniper, Schneider, Huawei, ManageEngine, H3C and Hikvision — engineered into one architecture under one contract. No vendor sprawl, no orphan SKUs.">
-        <button onClick={() => navigate("contact")} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
-          Engage KABO
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
-        </button>
-      </VideoHero>
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">Leading OEM Partners</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-[#001E3C] font-display leading-tight">A curated ecosystem, a single accountable owner</h2>
-            <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">Each partner below is integrated into KABO solutions under a unified contract. Click a partner to see their portfolio, relationship and integration points.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {PARTNERS.map((partner, i) => (
-              <motion.button key={partner.slug} onClick={() => navigate("partner-detail", partner.slug)} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: (i % 3) * 0.08 }} className="group relative rounded-2xl border border-[#DCE6EF] bg-white p-6 sm:p-7 text-left card-hover overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: partner.colour }} />
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold font-display mb-1" style={{ color: partner.colour }}>{partner.name}</h3>
-                    <div className="text-xs text-[#5A6B7C] uppercase tracking-wider">{partner.category}</div>
-                  </div>
-                  <div className="text-3xl font-bold text-[#DCE6EF] font-display">{String(i + 1).padStart(2, "0")}</div>
-                </div>
-                <p className="text-sm text-[#5A6B7C] leading-relaxed mb-5">{partner.tagline}</p>
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0071C5] opacity-0 group-hover:opacity-100 transition-opacity">
-                  Explore partner
-                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
-                </div>
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+const core = [
+  { name:"HPE", domain:"Enterprise compute · storage · hybrid infrastructure", note:"Server, storage and edge-to-cloud platforms, with enterprise architecture sizing." },
+  { name:"Dell Technologies", domain:"Compute · storage · data protection", note:"Data centre hardware, workstations, storage and infrastructure platforms." },
+  { name:"Lenovo", domain:"Servers · endpoints · workplace", note:"ThinkSystem, enterprise systems and commercial workplace devices." },
+  { name:"HP", domain:"Commercial PCs · printing · workplace", note:"Business laptops, desktops, monitors, print and document supplies." },
+  { name:"H3C", domain:"Campus networking · compute · storage", note:"Switching, routing, wireless and data centre technology ecosystems." },
+  { name:"Huawei", domain:"Networking · data centre · connectivity", note:"Enterprise connectivity, network infrastructure and integrated technology platforms." },
+  { name:"Veeam", domain:"Backup · recovery · cyber resilience", note:"Data protection, replication and recovery architecture options." },
+];
+const systems = ["Campus switching & enterprise wireless", "SD-WAN and secure branch connectivity", "Data centre compute, storage and fabrics", "Backup and disaster recovery", "AI-ready infrastructure and GPU platforms", "IP surveillance and electronic access control", "Office computing, print and consumables"];
+export function PartnersPage(){ const {navigate}=usePage();return <>
+  <section className="bg-[#001e3c] relative overflow-hidden text-white pt-36 pb-20"><div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_75%_0%,#006cb9,transparent_45%)]"/><div className="relative max-w-7xl mx-auto px-5 sm:px-8"><p className="text-[#8ce8ff] font-semibold text-xs tracking-[.22em] uppercase">Technology ecosystem</p><h1 className="mt-4 max-w-4xl font-display text-4xl sm:text-6xl font-bold leading-[1.09]">The right technology.<br/><span className="text-[#75def8]">Designed into the right solution.</span></h1><p className="mt-6 max-w-3xl text-lg text-slate-200 leading-relaxed">KABO works across enterprise technology portfolios to source infrastructure and develop integrated solution architectures. Product choice starts with your requirements—not a generic vendor list.</p><button className="mt-8 rounded-full px-6 py-3 bg-[#0071c5] font-semibold inline-flex gap-2 items-center" onClick={()=>navigate("rfq", "technology-ecosystem")}>Discuss your requirements <ArrowRight size={18}/></button></div></section>
+  <section className="py-16 sm:py-20 bg-[#f4f8fb]"><div className="max-w-7xl mx-auto px-5 sm:px-8"><div className="max-w-3xl"><p className="uppercase text-xs font-semibold text-[#0071c5] tracking-[.2em]">KABO technology partners</p><h2 className="text-3xl font-display font-bold text-[#001e3c] mt-2">Core technology portfolios</h2><p className="mt-4 text-[#506a7d] leading-relaxed">The brands below have been identified by KABO as core technology relationships. They are not a guarantee of every SKU, local stock level, accreditation or immediate commercial eligibility. OEM authorisation and distribution routes are handled privately for each opportunity.</p></div><div className="flex flex-wrap justify-center gap-5 mt-9">{core.map((x,i)=><motion.div key={x.name} initial={{opacity:0,y:15}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.04}} className="w-full sm:w-[calc(50%-10px)] xl:w-[calc(25%-15px)] bg-white rounded-3xl border border-[#d5e6f0] p-7 hover:shadow-lg transition-shadow"><div className="inline-flex items-center justify-center rounded-xl bg-[#e4f6fd] p-3"><Boxes className="text-[#0071c5]" size={21}/></div><h3 className="mt-6 font-display text-2xl font-bold text-[#001e3c]">{x.name}</h3><p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[#0071c5]">{x.domain}</p><p className="text-[#50677a] mt-4 leading-relaxed text-sm">{x.note}</p><button onClick={()=>navigate("rfq",x.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"))} className="text-sm font-semibold text-[#0071c5] mt-6 inline-flex gap-2 items-center">Request product sourcing <ArrowRight size={16}/></button></motion.div>)}</div></div></section>
+  <section className="py-16 sm:py-20 bg-white"><div className="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12"><div><p className="uppercase text-xs font-semibold text-[#0071c5] tracking-[.2em]">Solution ecosystems</p><h2 className="mt-3 font-display text-3xl font-bold text-[#001e3c]">Architectures, not logo collections</h2><p className="text-[#50677a] mt-4 leading-relaxed">A solution may combine multiple technology domains. Each deployment is engineered and sourced for the specific commercial and technical requirement.</p><button className="mt-6 bg-[#001e3c] text-white rounded-full px-6 py-3 font-semibold inline-flex items-center gap-2" onClick={()=>navigate("architecture","campus-network")}>Explore reference architecture <ArrowRight size={18}/></button></div><ul className="grid sm:grid-cols-2 gap-3">{systems.map((x,i)=><li key={x} className={`flex gap-3 bg-[#f3f8fb] rounded-2xl px-4 py-4 text-[#001e3c] font-medium ${i===systems.length-1 ? "sm:col-span-2" : ""}`}><CheckCircle2 size={18} className="text-[#0071c5] shrink-0 mt-0.5"/>{x}</li>)}</ul></div></section>
+</>}

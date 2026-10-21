@@ -64,7 +64,7 @@ export function ContactPage() {
       }
       setConfirmation(data.enquiry);
       form.reset();
-      toast.success("Enquiry submitted to info@kaboitgroup.co.za");
+      toast.success("Enquiry accepted for delivery to KABO.");
     } catch (err) {
       console.error(err);
       toast.error("Network error. Please try again or email info@kaboitgroup.co.za.");
@@ -83,7 +83,7 @@ export function ContactPage() {
               <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">Start a Conversation</span>
               <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-[#001E3C] font-display leading-tight">Tell us what you&rsquo;re building</h2>
               <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-                Whether you&rsquo;re scoping an AI infrastructure deployment, responding to a procurement requirement, or consolidating your ICT supply chain &mdash; we&rsquo;ll route your enquiry to the right KABO specialist. All general enquiries are delivered to <span className="font-semibold text-[#0071C5]">info@kaboitgroup.co.za</span> and acknowledged within one business day.
+                Whether you&rsquo;re scoping an AI infrastructure deployment, responding to a procurement requirement, or consolidating your ICT supply chain &mdash; we&rsquo;ll route your enquiry to the right KABO specialist. Enquiries are directed to <span className="font-semibold text-[#0071C5]">info@kaboitgroup.co.za</span> when delivery is available.
               </p>
 
               {confirmation ? (
@@ -92,11 +92,11 @@ export function ContactPage() {
                     <CheckCircle2 className="h-8 w-8 text-[#00C7FD] shrink-0 mt-0.5" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-xl font-bold text-[#001E3C] font-display">Enquiry received</h3>
-                      <p className="text-sm text-[#5A6B7C] mt-1">Your message has been routed to <span className="font-semibold text-[#0071C5]">{confirmation.routeTo}</span> under enquiry type <span className="font-semibold">{confirmation.enquiryType}</span>.</p>
+                      <p className="text-sm text-[#5A6B7C] mt-1">Your message was accepted for delivery to <span className="font-semibold text-[#0071C5]">{confirmation.routeTo}</span> under enquiry type <span className="font-semibold">{confirmation.enquiryType}</span>.</p>
                     </div>
                   </div>
                   <div className="rounded-xl bg-white border border-[#DCE6EF] p-4 mb-4">
-                    <div className="text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display font-semibold mb-2">Auto-reply from KABO</div>
+                    <div className="text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display font-semibold mb-2">Confirmation summary</div>
                     <p className="text-sm text-[#003865] leading-relaxed">{confirmation.acknowledgement}</p>
                   </div>
                   <ol className="space-y-2 mb-4">
@@ -161,7 +161,7 @@ export function ContactPage() {
                   </div>
                   <div className="rounded-xl border border-[#DCE6EF] bg-[#F5F9FC] p-3 text-xs text-[#5A6B7C] flex items-start gap-2">
                     <Mail className="h-4 w-4 text-[#0071C5] shrink-0 mt-0.5" strokeWidth={1.5} />
-                    <span>This enquiry will be routed to <span className="font-semibold text-[#0071C5]">info@kaboitgroup.co.za</span>. For investor enquiries use the <span className="font-semibold">Investors</span> page; for support tickets use the <span className="font-semibold">Support</span> page (SLA-backed).</span>
+                    <span>This enquiry will be routed to <span className="font-semibold text-[#0071C5]">info@kaboitgroup.co.za</span>. For investor enquiries use the <span className="font-semibold">Investors</span> page; for support tickets use the <span className="font-semibold">Support</span> page.</span>
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
                     <button type="submit" disabled={submitting} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
@@ -193,7 +193,7 @@ export function ContactPage() {
                       "No vendor sprawl — every layer under a single agreement",
                       "No finger pointing — a single accountable owner, end to end",
                       "No orphan SKUs — every product integrated into the reference architecture",
-                      "No procurement gymnastics — B-BBEE Level 1, Treasury-ready",
+                      "Commercial compliance documentation on request",
                     ].map((item, i) => (
                       <motion.li key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="flex items-start gap-3 text-white/85">
                         <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#00C7FD]/20 text-[#00C7FD] text-xs font-bold shrink-0 mt-0.5">&radic;</span>
@@ -204,8 +204,8 @@ export function ContactPage() {
                   <div className="mt-8 pt-6 border-t border-white/10 space-y-4">
                     <ContactLine icon={MapPin} label="Registered Address" lines={["12886 Masemola Street", "Mamelodi East, Pretoria, 0122", "South Africa"]} />
                     <ContactLine icon={Mail} label="General Enquiries" lines={["info@kaboitgroup.co.za"]} />
-                    <ContactLine icon={ShieldCheck} label="Support (SLA-backed)" lines={["support@kaboitgroup.co.za", "via KABO portal or email"]} />
-                    <ContactLine icon={Clock} label="Engineering & NOC" lines={["24/7 operations from", "Gauteng SOC"]} />
+                    <ContactLine icon={ShieldCheck} label="Support" lines={["support@kaboitgroup.co.za", "via KABO portal or email"]} />
+                    <ContactLine icon={Clock} label="Engineering & NOC" lines={["Project-specific support", "and escalation"]} />
                     <ContactLine icon={Phone} label="Voice" lines={["+27 612 85 4418"]} />
                     {/* WhatsApp click-to-chat — direct engagement channel */}
                     <a

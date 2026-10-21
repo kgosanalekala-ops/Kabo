@@ -58,7 +58,7 @@ export function SolutionDetailPage({ detail }: SolutionDetailPageProps) {
                   ))}
                 </div>
               </div>
-              <button onClick={() => navigate("contact")} className="mt-8 group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
+              <button onClick={() => navigate("rfq", solution.slug)} className="mt-8 group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
                 Discuss This Solution
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
               </button>
@@ -108,9 +108,9 @@ export function SolutionDetailPage({ detail }: SolutionDetailPageProps) {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-[#00C7FD]/30 bg-[#00C7FD]/10 px-3 py-1 mb-4">
                 <Building2 className="h-3.5 w-3.5 text-[#00C7FD]" strokeWidth={1.5} />
-                <span className="text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display">Partners on this solution</span>
+                <span className="text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display">Confirmed core portfolios</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight">Unified under one contract</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white font-display leading-tight">Relevant technology portfolios</h3>
               <div className="mt-7 grid grid-cols-2 gap-3">
                 {partnersOnSolution.map((p) => (
                   <button key={p.slug} onClick={() => navigate("partner-detail", p.slug)} className="rounded-xl intel-glass p-4 text-left card-hover">
@@ -128,7 +128,7 @@ export function SolutionDetailPage({ detail }: SolutionDetailPageProps) {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#001E3C] font-display leading-tight">Ready to engineer this for your estate?</h2>
           <p className="mt-4 text-base sm:text-lg text-[#5A6B7C] max-w-2xl mx-auto">One conversation replaces a queue of vendors. Let&rsquo;s talk about your {solution.shortTitle.toLowerCase()} workload.</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <button onClick={() => navigate("contact")} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all">
+            <button onClick={() => navigate("rfq", solution.slug)} className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-[#0071C5]/30 hover:shadow-2xl hover:scale-[1.03] transition-all">
               Discuss This Solution
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
             </button>

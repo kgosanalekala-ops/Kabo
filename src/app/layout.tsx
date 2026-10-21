@@ -18,22 +18,16 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "KABO IT Group — Intelligent Infrastructure, Engineered to Perform",
-  description:
-    "KABO IT Group is a Gauteng-established systems integrator — B-BBEE Level 1 with 135% procurement recognition. Fifteen strategic alliances. Twelve interlocking solution domains. A unified architecture, a single contract, a single escalation path, a single engineering team. Nationwide footprint today, expanding into the broader African continent.",
-  keywords: ["KABO IT Group", "intelligent infrastructure", "AI infrastructure", "GPU compute", "data centre", "B-BBEE Level 1", "South Africa", "Gauteng", "HPE", "Dell", "NVIDIA", "Hikvision", "Pure Storage", "Fortinet", "Juniper", "Palo Alto", "Veeam", "Schneider", "Commvault", "ManageEngine", "H3C", "Huawei", "Microsoft", "Sophos"],
+  metadataBase: new URL("https://www.kaboitgroup.co.za"),
+  title: "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
+  description: "KABO IT Group supplies ICT equipment and workplace products and helps organisations plan integrated networking, data centre, AI infrastructure and security solutions in South Africa.",
+  keywords: ["KABO IT Group", "ICT supplies", "enterprise networking", "SD-WAN", "data centre", "AI infrastructure", "South Africa", "Pretoria", "HPE", "Dell", "Lenovo", "HP", "H3C", "Huawei", "Veeam"],
   authors: [{ name: "KABO IT Group" }],
-  icons: {
-    icon: [
-      { url: "/favicon.png", type: "image/png" },
-    ],
-    apple: [{ url: "/icon.png", type: "image/png" }],
-  },
+  icons: { icon: [{ url: "/favicon.png", type: "image/png" }], apple: [{ url: "/icon.png", type: "image/png" }] },
   openGraph: {
-    title: "KABO IT Group — Intelligent Infrastructure, Engineered to Perform",
-    description: "Fifteen strategic alliances. Twelve interlocking domains. A unified architecture — engineered end-to-end. Nationwide footprint today, expanding into the broader African continent.",
-    siteName: "KABO IT Group",
-    type: "website",
+    title: "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
+    description: "Infrastructure supply. Intelligent systems. Integrated solutions.",
+    siteName: "KABO IT Group", type: "website",
   },
 };
 

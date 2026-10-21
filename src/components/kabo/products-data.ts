@@ -63,14 +63,14 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     slug: "cyber-security",
-    name: "Cybersecurity & 24/7 SOC",
+    name: "Cybersecurity & contract-defined security monitoring",
     icon: "Shield",
-    tagline: "Fortinet FortiGate, Sophos Intercept X, Palo Alto Strata, Prisma SASE, Cortex XDR/XSIAM — wrapped in a 24/7 SOC.",
-    overview: "KABO engineers defence-in-depth across network, endpoint, identity and email — anchored by Fortinet, Sophos and Palo Alto Networks, wrapped in a 24/7 SOC for detection, response and governance. Security is engineered into every layer, not bolted on after deployment.",
+    tagline: "Fortinet FortiGate, Sophos Intercept X, Palo Alto Strata, Prisma SASE, Cortex XDR/XSIAM — wrapped in a contract-defined security monitoring.",
+    overview: "KABO engineers defence-in-depth across network, endpoint, identity and email — anchored by Fortinet, Sophos and Palo Alto Networks, wrapped in a contract-defined security monitoring for detection, response and governance. Security is engineered into every layer, not bolted on after deployment.",
     capabilities: [
       { name: "NGFW & Secure Web Gateway", desc: "Fortinet FortiGate, Palo Alto Strata NGFWs and FortiSandbox for the network edge" },
       { name: "SASE & ZTNA", desc: "Palo Alto Prisma SASE and identity-aware access policies across users, devices and workloads" },
-      { name: "EDR/XDR & SOC", desc: "Cortex XDR/XSIAM and Sophos Intercept X with 24/7 SOC monitoring and IR runbooks" },
+      { name: "EDR/XDR & SOC", desc: "Cortex XDR/XSIAM and Sophos Intercept X with security monitoring options agreed by contract and IR runbooks" },
       { name: "Email Security & DLP", desc: "Anti-phishing, DLP and continuous compliance reporting" },
     ],
     technologies: ["Fortinet FortiGate", "FortiAnalyzer", "FortiSandbox", "Sophos Intercept X", "Sophos Firewall", "Palo Alto Strata", "Prisma SASE", "Prisma Cloud", "Cortex XDR", "XSIAM"],
@@ -100,7 +100,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     tagline: "Microsoft Azure, HPE GreenLake, sovereign zones, migration factory, FinOps governance.",
     overview: "KABO engineers multi-cloud and hybrid platforms that extend on-prem architecture into a coherent operating model — Azure-first landing zones, HPE GreenLake consumption, hybrid connectivity, migration factories and FinOps governance. One operations plane across on-prem, edge and cloud.",
     capabilities: [
-      { name: "Azure Landing Zones", desc: "POPIA-aligned sovereign cloud zones with hub-and-spoke topology and identity integration" },
+      { name: "Azure Landing Zones", desc: "privacy-conscious cloud landing zones with hub-and-spoke topology and identity integration" },
       { name: "Hybrid Connectivity", desc: "ExpressRoute, SD-WAN and zero-trust access across on-prem and cloud" },
       { name: "Migration Factory", desc: "Workload assessment, migration sequencing, landing-zone design and cutover runbooks" },
       { name: "FinOps Governance", desc: "Cloud consumption monitoring, right-sizing and chargeback across subscriptions" },
@@ -111,10 +111,10 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     slug: "physical-security",
-    name: "Physical Security & AI Video",
+    name: "Electronic Security & AI Video",
     icon: "Shield",
     tagline: "Hikvision DeepinView, ColorVu, AcuSense, ANPR, HikCentral VMS — integrated into the SOC.",
-    overview: "KABO architects the full physical-security stack — cameras, NVR/VMS, AI analytics, access control and SOC integration — powered by Hikvision. DeepinView AI cameras deliver edge inference, ColorVu captures full-colour detail in near-darkness, and AcuSense drops false alarms by up to 95%.",
+    overview: "KABO architects the full surveillance and electronic access-control stack — cameras, NVR/VMS, AI analytics, access control and SOC integration — powered by Hikvision. DeepinView AI cameras deliver edge inference, ColorVu captures full-colour detail in near-darkness, and AcuSense drops false alarms by up to 95%.",
     capabilities: [
       { name: "AI Video Analytics", desc: "Hikvision DeepinView edge inference for target classification, behaviour analysis and metadata" },
       { name: "Low-Light Imaging", desc: "ColorVu full-colour imaging at 0.0005 lux with F1.0 optics and dual-illuminator (LED + IR)" },

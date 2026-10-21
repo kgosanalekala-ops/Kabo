@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await deliverFormSubmission(
+    const delivery = await deliverFormSubmission(
       {
         to: "kenny@kaboitgroup.co.za",
         cc: "info@kaboitgroup.co.za",
@@ -125,6 +125,14 @@ export async function POST(req: NextRequest) {
         body: message,
       }
     );
+
+    // Only acknowledge a request accepted by at least one transport.
+    if (!delivery.accepted) {
+      return NextResponse.json(
+        { ok: false, error: "Your message was not sent. Please email info@kaboitgroup.co.za directly." },
+        { status: 503 }
+      );
+    }
 
     // ---- Email auto-reply to the investor (SMTP only — customer-facing) ----
     const customerText = [
@@ -173,7 +181,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
+    if (delivery.email.sent) await sendMail({
       to: email,
       // Reply-To routes customer replies to a monitored inbox (info@) instead
       // of bouncing off the noreply@ sender. The auto-reply comes FROM
@@ -185,7 +193,7 @@ export async function POST(req: NextRequest) {
       html: customerHtml,
     });
 
-    return NextResponse.json({ ok: true, enquiry: autoReply });
+    return NextResponse.json({ ok: true, enquiry: autoReply, deliveryChannel: delivery.channel });
   } catch (err) {
     console.error("[POST /api/investor] error:", err);
     return NextResponse.json(
