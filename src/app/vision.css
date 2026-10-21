@@ -45,3 +45,37 @@
 .vf-company-contact-whatsapp:hover{background:#087FB8}
 .vf-company-contact-whatsapp svg:last-child{margin-left:12px}
 @media(max-width:640px){.vf-company-contact{margin-top:29px}.vf-company-contact-item{gap:12px;padding:15px 0}.vf-whatsapp{border-radius:50%}}
+
+/* KABO Future / cinematic motion: opacity and transforms only, no layout jumps. */
+.vf-reading-track{position:fixed;left:0;right:0;top:77px;height:2px;pointer-events:none;z-index:81;overflow:hidden}
+.vf-reading-track>span{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#006197,#67CAFA)}
+@media(max-width:640px){.vf-reading-track{top:67px}}
+@media(prefers-reduced-motion:no-preference){
+.vf-app [data-vf-reveal="pending"]{opacity:0;transform:translate3d(0,26px,0)}
+.vf-app [data-vf-reveal="visible"]{opacity:1;transform:translate3d(0,0,0);transition:opacity .84s ease-out,transform .92s cubic-bezier(.22,1,.36,1);transition-delay:var(--vf-reveal-delay,0ms)}
+.vf-app .vf-domain-card[data-vf-reveal="visible"]:hover,.vf-app .vf-domain-card[data-vf-reveal="visible"]:focus-visible{transform:translateY(-7px)}
+.vf-app .vf-industry-tile[data-vf-reveal="visible"]:hover,.vf-app .vf-industry-tile[data-vf-reveal="visible"]:focus-visible{transform:translateY(-5px)}
+.vf-app .vf-procurement-grid button[data-vf-reveal="visible"]:hover,.vf-app .vf-procurement-grid button[data-vf-reveal="visible"]:focus-visible{transform:translateY(-5px)}
+.vf-home-hero .vf-hero-light{animation:vf-ambient-light 16s ease-in-out infinite alternate}
+.vf-home-hero .vf-hero-datacenter{transform-origin:65% 50%;animation:vf-pan-image 26s ease-in-out infinite alternate}
+.vf-interior-image{transform-origin:70% 50%;animation:vf-pan-image 24s ease-in-out infinite alternate}
+.vf-interior-pattern{animation:vf-pattern-slide 28s linear infinite}
+.vf-app .vf-domain-meta svg,.vf-app .vf-industry-tile>svg,.vf-app .vf-oem-grid button svg,.vf-app .vf-procurement-grid button svg{transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.vf-app .vf-domain-card:hover .vf-domain-meta svg,.vf-app .vf-industry-tile:hover>svg,.vf-app .vf-oem-grid button:hover svg,.vf-app .vf-procurement-grid button:hover svg{transform:translate(4px,-4px)}
+.vf-app .vf-oem-grid button{transition:transform .36s cubic-bezier(.22,1,.36,1),background .25s,border-color .25s}
+.vf-app .vf-oem-grid button:hover,.vf-app .vf-oem-grid button:focus-visible{transform:translateY(-5px);border-color:#78BCD9}
+.vf-app .vf-topology-node{transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s,background .3s}
+.vf-app .vf-topology-node:hover,.vf-app .vf-topology-node:focus-visible{transform:translate(-50%,-50%) scale(1.045)}
+.vf-app .vf-process-track span{animation:vf-process-beacon 3.4s ease-in-out infinite}
+.vf-app .vf-process-step:nth-child(2) .vf-process-track span{animation-delay:.35s}
+.vf-app .vf-process-step:nth-child(3) .vf-process-track span{animation-delay:.7s}
+.vf-app .vf-process-step:nth-child(4) .vf-process-track span{animation-delay:1.05s}
+@keyframes vf-ambient-light{from{opacity:.62;transform:translate(-2%,0) scale(1)}to{opacity:1;transform:translate(3%,2%) scale(1.08)}}
+@keyframes vf-pan-image{from{transform:scale(1.015) translate(0,0)}to{transform:scale(1.075) translate(-1.3%,.5%)}}
+@keyframes vf-pattern-slide{to{background-position:124px 0}}
+@keyframes vf-process-beacon{0%,100%{box-shadow:0 0 0 0 rgba(21,152,212,.08)}50%{box-shadow:0 0 0 6px rgba(21,152,212,.15)}}
+}
+@media(prefers-reduced-motion:reduce){
+.vf-app [data-vf-reveal="pending"],.vf-app [data-vf-reveal="visible"]{opacity:1!important;transform:none!important}
+.vf-home-hero .vf-hero-light,.vf-home-hero .vf-hero-datacenter,.vf-interior-image,.vf-interior-pattern{animation:none!important;transform:none!important}
+}
