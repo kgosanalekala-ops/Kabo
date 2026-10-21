@@ -31,7 +31,7 @@ function Building({ x, y, w, d, h, color = "#2D829C", windows = 4 }: { x:number;
   </g>
 }
 
-function SmallServer({x,y}:{x:number;y:number}) {return <g><path d={`M${x-42} ${y}l42 -22 52 26 -44 23z`} fill="#17465C" stroke="#5DC5D7" strokeOpacity=".45"/><path d={`M${x-42} ${y}v-68 l42 -22 v68z`} fill="#29677B"/><path d={`M${x} ${y-22}v-68 l52 26 v68z`} fill="#164158"/><path d={`M${x-33} ${y-57}l30 -16M${x-33} ${y-41}l30 -16M${x-33} ${y-25}l30 -16`} stroke="#75DEDF" strokeWidth="3" strokeOpacity=".6"/><circle cx={x+12} cy={y-57} r="3" fill="#67EFBD"/></g>}
+function SmallServer({x,y}:{x:number;y:number}) {return <g><path d={`M${x-42} ${y}l42 -22 52 26 -44 23z`} fill="#17465C" stroke="#5DC5D7" strokeOpacity=".45"/><path d={`M${x-42} ${y}v-68 l42 -22 v68z`} fill="#29677B"/><path d={`M${x} ${y-22}v-68 l52 26 v68z`} fill="#164158"/><path d={`M${x-33} ${y-57}l30 -16M${x-33} ${y-41}l30 -16M${x-33} ${y-25}l30 -16`} stroke="#75DEDF" strokeWidth="3" strokeOpacity=".6"/><circle cx={x+12} cy={y-57} r="3" fill="#6CBAEA"/></g>}
 
 export function NetworkScene({ compact=false, initial="campus", onPick }: {compact?:boolean;initial?:SceneKey;onPick?:(key:SceneKey)=>void}) {
   const [selected,setSelected]=useState<SceneKey>(initial);
@@ -65,8 +65,8 @@ export function NetworkScene({ compact=false, initial="campus", onPick }: {compa
       <SmallServer x={505} y={441}/>
       {SITES.map((s,i)=><g key={s.key} tabIndex={0} role="button" aria-label={`Inspect ${s.name}`} aria-pressed={selected===s.key} className={`vf-node ${selected===s.key?"vf-node--active":""}`} onClick={()=>choose(s.key)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();choose(s.key)}}} style={{cursor:"pointer"}}>
         <circle cx={s.x} cy={s.y} r="24" fill="#031A2A" fillOpacity=".8" stroke="#8DF4EE" strokeOpacity=".32" strokeWidth="1"/>
-        {selected===s.key&&<circle cx={s.x} cy={s.y} r="32" className="vf-node-ring" fill="none" stroke="#8EF7DA" strokeWidth="1"/>}
-        <circle cx={s.x} cy={s.y} r="11" fill={selected===s.key?"#A0F6E5":"#0E5063"} stroke="#9CF1EE" strokeWidth="1.5"/><text x={s.x} y={s.y+4} fontSize="11" fontWeight="700" textAnchor="middle" fill={selected===s.key?"#08273A":"#B3F8F0"}>{i+1}</text>
+        {selected===s.key&&<circle cx={s.x} cy={s.y} r="32" className="vf-node-ring" fill="none" stroke="#92CEF3" strokeWidth="1"/>}
+        <circle cx={s.x} cy={s.y} r="11" fill={selected===s.key?"#A3D4F3":"#0E5063"} stroke="#9CF1EE" strokeWidth="1.5"/><text x={s.x} y={s.y+4} fontSize="11" fontWeight="700" textAnchor="middle" fill={selected===s.key?"#08273A":"#B6DDF5"}>{i+1}</text>
       </g>)}
       <g className="vf-map-annotation"><text x="54" y="90" fontSize="12" letterSpacing="3" fill="#84CDD6">ENTERPRISE SYSTEMS / FIELD VIEW</text><text x="54" y="113" fontSize="11" fill="#7091A3">Schematic · Not to scale</text><path d="M55 124 h115" stroke="#56C6CC" strokeOpacity=".5"/></g>
       <g opacity=".6"><path d="M880 95 v55 m-12-43 l12-12 12 12" stroke="#66D5DB" fill="none" strokeWidth="1.5"/><text x="871" y="80" fill="#83C2D0" fontSize="11">N</text></g>

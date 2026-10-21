@@ -56,9 +56,9 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
      {type==="campus"?<div className="vf-main-campus"><NetworkScene compact initial="campus" onPick={key=>{const index=view.zones.findIndex(v=>v.id===key);if(index>=0)setZone(index)}}/></div>:
       <div className="vf-topology" aria-label={view.name+" selectable architecture diagram"}>
        <SceneArt type={type} />
-       <svg className="vf-topology-lines" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="route-grad" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#C7F56F"/><stop offset="1" stopColor="#97A7B4"/></linearGradient></defs>
+       <svg className="vf-topology-lines" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="route-grad" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#67CAFA"/><stop offset="1" stopColor="#97A7B4"/></linearGradient></defs>
         <path d="M180 205C270 205 280 122 395 140 S610 245 795 208" fill="none" stroke="url(#route-grad)" strokeWidth="2" strokeOpacity=".53" strokeDasharray="7 9" className="vf-studio-path" />
-        <path d="M180 205C280 275 350 275 395 140 M620 240 Q700 300 795 208" fill="none" stroke="#D6FF76" strokeOpacity=".18" strokeWidth="1.5" />
+        <path d="M180 205C280 275 350 275 395 140 M620 240 Q700 300 795 208" fill="none" stroke="#67CAFA" strokeOpacity=".18" strokeWidth="1.5" />
        </svg>
        <div className="vf-topo-stars" aria-hidden="true"/>
        {view.zones.map((z,i)=><button key={z.id} className={`vf-topology-node ${zone===i?"active":""}`} style={{left:z.left+"%",top:z.top+"%"}} aria-pressed={zone===i} onClick={()=>setZone(i)}><span className="vf-topo-number">{z.number}</span><span className="vf-topo-label"><strong>{z.name}</strong><small>{z.caption}</small></span></button>)}
