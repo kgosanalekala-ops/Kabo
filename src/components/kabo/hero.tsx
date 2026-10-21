@@ -157,7 +157,7 @@ export function Hero() {
                     {slide.description}
                   </p>
 
-                  <div className="grid w-full max-w-[610px] grid-cols-[minmax(0,1fr)_42px] items-center gap-x-4 gap-y-3 self-start sm:flex sm:min-h-[50px] sm:flex-wrap sm:gap-x-7 sm:gap-y-3">
+                  <div className="grid w-full max-w-[610px] grid-cols-[160px_42px] items-center gap-x-4 gap-y-3 self-start sm:flex sm:min-h-[50px] sm:flex-nowrap sm:gap-x-7 sm:gap-y-3">
                     <button
                       type="button"
                       onClick={() => navigate(slide.primary.page)}
@@ -171,7 +171,7 @@ export function Hero() {
                       type="button"
                       onClick={() => navigate(slide.secondary.page)}
                       tabIndex={isActive ? 0 : -1}
-                      className="group inline-flex min-h-12 w-fit items-center gap-2 border-b border-white/50 py-2 text-[13px] font-medium text-white transition-colors hover:border-[#71DFFF] hover:text-[#71DFFF] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-[14px]"
+                      className="group inline-flex min-h-12 w-fit min-w-[160px] items-center gap-2 border-b border-white/50 py-2 text-[13px] font-medium text-white transition-colors hover:border-[#71DFFF] hover:text-[#71DFFF] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:min-w-[190px] sm:text-[14px]"
                     >
                       {slide.secondary.label}
                       <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" strokeWidth={1.6} aria-hidden="true" />
