@@ -21,8 +21,8 @@ export function VideoHero({ variant = "abstract", tag, title, subtitle, children
   return (
     // All pages clear the fixed header. Mobile/tablet height is driven by
     // actual content; wide desktop uses a full first-screen minimum; tablet landscape stays content-sized.
-    <section className="relative mt-[74px] flex min-h-0 items-center overflow-hidden bg-[#001E3C] xl:min-h-[calc(100svh-74px)]">
-      <div className="absolute inset-0 z-0">
+    <section className="relative isolate mt-[74px] flex min-h-[min(640px,calc(100svh-74px))] items-center overflow-hidden bg-[#001E3C] sm:min-h-[min(760px,calc(92svh-74px))] xl:min-h-[calc(100svh-74px)]">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <Image
           src={HERO_VARIANT_IMAGE[variant]}
           alt=""
@@ -41,7 +41,7 @@ export function VideoHero({ variant = "abstract", tag, title, subtitle, children
         {/* Floating dots traveling ALONG the geometric paths — matches the variant */}
         <FloatingDots variant={variant} idSuffix={`-${variant}`} />
 
-        <div className="scan-line" />
+        <div className="scan-line motion-reduce:hidden" />
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#001E3C] to-transparent" />
       </div>
 

@@ -1,4 +1,5 @@
 "use client";
+import { VideoHero } from "../video-hero";
 
 import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -32,13 +33,7 @@ export function ConfiguratorPage() {
   };
 
   return <>
-    <section className="bg-[#001e3c] text-white pt-36 pb-16 sm:pb-24 relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 intel-gradient-mesh" />
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8"><p className="text-[#78e1ff] font-semibold text-xs uppercase tracking-[.24em]">KABO / Solution discovery</p>
-        <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight max-w-4xl mt-4 leading-[1.08]">Your next infrastructure decision <span className="intel-text-gradient-bright">starts with clarity.</span></h1>
-        <p className="text-slate-200 max-w-3xl text-lg leading-relaxed mt-6">Explore an initial solution direction, capture your project priorities and pass a structured brief directly into the quotation process. This is discovery assistance—not an automated engineering approval or price guarantee.</p>
-      </div>
-    </section>
+    <VideoHero variant="network" tag="KABO / Solution discovery" title={<>Your next infrastructure decision <span className="intel-text-gradient">starts with clarity.</span></>} subtitle={"Explore an initial solution direction, capture your project priorities and pass a structured brief directly into the quotation process. This is discovery assistance—not an automated engineering approval or price guarantee."}></VideoHero>
     <section className="bg-[#f3f8fb] py-12 sm:py-20"><div className="max-w-7xl mx-auto px-5 sm:px-8">
       <div className="grid gap-7 lg:grid-cols-[1.5fr_1fr] items-start">
         <div className="space-y-7">
