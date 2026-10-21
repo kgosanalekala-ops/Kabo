@@ -102,7 +102,7 @@ export function Footer() {
             </button>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div id="kabo-footer-legal" className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-xs text-white/50">&copy; {new Date().getFullYear()} KABO IT Group. All rights reserved.</p>
           <button type="button" onClick={()=>setPrivacyOpen(true)} className="text-xs text-white/70 hover:text-[#00c7fd] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-[#00c7fd]">Privacy &amp; content rights</button>
         </div>
