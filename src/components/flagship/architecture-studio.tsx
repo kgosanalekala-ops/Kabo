@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Cpu, Layers3, MoveUpRight, Router, ShieldCheck, Waypoints, X } from "lucide-react";
 import { NetworkScene, type SceneKey } from "./network-scene";
+import { SceneArt } from "./scene-art";
 import type { Domain } from "./vision-data";
 
 export type ViewType = "campus"|"compute"|"security"|"workplace"|"widearea";
@@ -54,6 +55,7 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
      <div className="vf-arch-context"><p>SCENE / {String(VIEWS.indexOf(view)+1).padStart(2,"0")}</p><h3>{view.name}</h3><span>{view.intro}</span></div>
      {type==="campus"?<div className="vf-main-campus"><NetworkScene compact initial="campus" onPick={key=>{const index=view.zones.findIndex(v=>v.id===key);if(index>=0)setZone(index)}}/></div>:
       <div className="vf-topology" aria-label={view.name+" selectable architecture diagram"}>
+       <SceneArt type={type} />
        <svg className="vf-topology-lines" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="route-grad" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#C7F56F"/><stop offset="1" stopColor="#97A7B4"/></linearGradient></defs>
         <path d="M180 205C270 205 280 122 395 140 S610 245 795 208" fill="none" stroke="url(#route-grad)" strokeWidth="2" strokeOpacity=".53" strokeDasharray="7 9" className="vf-studio-path" />
         <path d="M180 205C280 275 350 275 395 140 M620 240 Q700 300 795 208" fill="none" stroke="#D6FF76" strokeOpacity=".18" strokeWidth="1.5" />
