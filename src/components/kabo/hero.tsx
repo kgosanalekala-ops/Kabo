@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { usePage } from "./page-context";
+import { FloatingDots } from "./floating-dots";
 
 /**
  * KABO flagship opening: an editorial statement and a real-world infrastructure
@@ -50,6 +51,11 @@ export function Hero() {
           <div className="absolute inset-0 bg-[#03223D]/[0.08] mix-blend-multiply" />
         </motion.div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#03182C_0%,rgba(3,24,44,0.98)_27%,rgba(3,24,44,0.86)_47%,rgba(3,24,44,0.30)_75%,rgba(3,24,44,0.04)_100%)] max-lg:bg-[linear-gradient(180deg,rgba(3,24,44,0.68)_0%,rgba(3,24,44,0.65)_24%,rgba(3,24,44,0.91)_62%,#03182C_100%)]" />
+        {/* Reuse the animated path lines and travelling dots from the other KABO hero sections.
+            Keep the overlay over the photograph and behind all hero copy; respect reduced motion. */}
+        <div className="absolute inset-0 overflow-hidden opacity-50 motion-reduce:hidden lg:left-[38%] lg:opacity-90">
+          <FloatingDots variant="datacenter" idSuffix="-landing" />
+        </div>
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#03182C] to-transparent" />
       </div>
 
