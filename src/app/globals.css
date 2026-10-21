@@ -326,3 +326,11 @@ html { scroll-padding-top: 84px; }
 @media (prefers-reduced-motion: reduce) {
   .kabo-hero-slide-progress { animation: none; }
 }
+/* Pin the single global WhatsApp shortcut to the same viewport corner on phones
+   and tablets. Preserve the already-approved desktop positioning and styling. */
+@media (max-width: 1023.98px) {
+  .kabo-whatsapp-float {
+    right: calc(24px + env(safe-area-inset-right, 0px));
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -33,11 +33,11 @@ export function WhatsAppButton() {
       aria-hidden={legalLinksVisible}
       tabIndex={legalLinksVisible ? -1 : 0}
       className={
-        "fixed bottom-5 right-5 z-40 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full " +
+        "kabo-whatsapp-float fixed bottom-5 right-6 z-40 inline-flex h-[52px] w-[52px] items-center justify-center rounded-full " +
         "bg-[#075e54] text-white shadow-xl transition-[opacity,transform,background-color] duration-200 " +
         "hover:bg-[#064e46] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#40D5F4] " +
-        "motion-reduce:transition-none sm:right-6 " +
-        (legalLinksVisible ? "pointer-events-none scale-90 opacity-0" : "scale-100 opacity-100")
+        "motion-reduce:transition-none " +
+        (legalLinksVisible ? "pointer-events-none opacity-0 lg:scale-90" : "scale-100 opacity-100")
       }
     >
       <MessageCircle size={23} strokeWidth={1.9} aria-hidden="true" />
