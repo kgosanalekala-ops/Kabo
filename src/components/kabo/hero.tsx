@@ -119,14 +119,14 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#03182C] to-transparent" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col px-5 pb-7 pt-28 sm:px-9 sm:pb-9 sm:pt-32 lg:px-14 lg:pt-32 xl:px-20">
+      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col px-5 pb-5 pt-24 sm:px-9 sm:pb-8 sm:pt-28 md:pt-32 lg:px-14 lg:pt-32 xl:px-20">
         {/* All three scenes occupy the same grid tracks. Subgrid shares each
             row height across slides, so the eyebrow, headline, description and
             CTAs always keep their exact vertical positions as copy changes.
             Inactive slides remain in layout for intrinsic sizing, but are
             invisible, unfocusable, and inaccessible to assistive technology. */}
-        <div className="relative flex w-full flex-1 items-center py-7 sm:py-9">
-          <div className="grid w-full max-w-[790px] grid-cols-1 grid-rows-[auto_auto_auto_auto] gap-y-5 sm:gap-y-6">
+        <div className="relative flex w-full flex-1 items-center py-4 sm:py-6 lg:py-9">
+          <div className="grid w-full max-w-[790px] grid-cols-1 grid-rows-[auto_auto_auto_auto] gap-y-3 sm:gap-y-5 lg:gap-y-6">
             {SLIDES.map((slide, index) => {
               const isActive = index === active;
               return (
@@ -137,7 +137,7 @@ export function Hero() {
                   aria-label={`Story ${index + 1} of ${SLIDES.length}: ${slide.shortLabel}`}
                   aria-hidden={!isActive}
                   inert={!isActive}
-                  className={`col-start-1 row-start-1 row-span-4 grid min-w-0 grid-rows-subgrid transition-[opacity,visibility] duration-[850ms] ease-in-out motion-reduce:transition-none ${isActive ? "visible z-10 opacity-100" : "invisible z-0 opacity-0"}`}
+                  className={`col-start-1 row-start-1 row-span-4 grid min-w-0 grid-rows-subgrid transition-[opacity,visibility] duration-[850ms] ease-in-out motion-reduce:transition-none ${isActive ? "visible pointer-events-auto z-10 opacity-100" : "invisible pointer-events-none z-0 opacity-0"}`}
                 >
                   <div className="flex min-h-5 items-center gap-3 sm:min-h-6">
                     <span className="h-[2px] w-8 shrink-0 bg-[#49D8F4]" aria-hidden="true" />
@@ -146,14 +146,14 @@ export function Hero() {
                     </p>
                   </div>
 
-                  <h1 className="max-w-[790px] self-start font-display text-[clamp(2.25rem,5.35vw,4.5rem)] font-medium leading-[1.105] tracking-[-0.045em] text-[#FCFFFF]">
+                  <h1 className="max-w-[790px] self-start font-display text-[clamp(1.875rem,7.2vw,2.25rem)] font-medium leading-[1.15] tracking-[-0.045em] text-[#FCFFFF] sm:text-[clamp(2.25rem,5.35vw,4.5rem)] sm:leading-[1.105]">
                     <span className="block">{slide.title}</span>
                     <span className="block bg-gradient-to-r from-[#80E8FD] via-[#34D2F7] to-[#63B8F6] bg-clip-text text-transparent">
                       {slide.highlight}
                     </span>
                   </h1>
 
-                  <p className="max-w-[36rem] self-start text-[14px] leading-[1.75] text-[#CDDFEB] sm:text-[16px] sm:leading-[1.8]">
+                  <p className="max-w-[36rem] self-start text-[13px] leading-[1.65] text-[#CDDFEB] sm:text-[15px] sm:leading-[1.75] lg:text-[16px] lg:leading-[1.8]">
                     {slide.description}
                   </p>
 
