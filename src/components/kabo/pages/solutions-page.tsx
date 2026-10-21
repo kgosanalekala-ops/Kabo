@@ -11,8 +11,8 @@ export function SolutionsPage() {
   const { navigate } = usePage();
   return (
     <>
-      <VideoHero variant="network" tag="Solutions" title={<>{<>Solutions engineered</>}<br />for <span className="intel-text-gradient">Africa&rsquo;s reality</span>.</>} subtitle="Twelve interlocking solution domains — from compute and AI infrastructure to campus networks and secure connectivity — mapped to your requirements. Click a card to see the technology stack.">
-        <button onClick={() => navigate("partners")} className="group inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur hover:bg-white/10 hover:border-[#00C7FD]/50 transition-all">
+      <VideoHero fullViewport variant="network" tag="Solutions" title={<>{<>Solutions engineered</>}<br />for <span className="intel-text-gradient">Africa&rsquo;s reality</span>.</>} subtitle="Twelve interlocking solution domains — from compute and AI infrastructure to campus networks and secure connectivity — mapped to your requirements. Click a card to see the technology stack.">
+        <button onClick={() => navigate("partners")} className="group inline-flex min-h-12 items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-[13px] font-medium text-white backdrop-blur transition-[background-color,border-color] hover:border-[#00C7FD]/50 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#70E0F7] sm:text-[14px]">
           Meet our partners
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
         </button>

@@ -13,6 +13,8 @@ interface VideoHeroProps {
   title: ReactNode;
   subtitle: string;
   children?: ReactNode;
+  /** Use a full first-screen hero below the fixed 74px navigation. */
+  fullViewport?: boolean;
 }
 
 const VARIANT_IMAGE: Record<HeroVariant, string> = {
@@ -23,9 +25,9 @@ const VARIANT_IMAGE: Record<HeroVariant, string> = {
   abstract: "/images/sol_noc.jpg",
 };
 
-export function VideoHero({ variant = "abstract", tag, title, subtitle, children }: VideoHeroProps) {
+export function VideoHero({ variant = "abstract", tag, title, subtitle, children, fullViewport = false }: VideoHeroProps) {
   return (
-    <section className="relative min-h-[78vh] sm:min-h-[80vh] flex items-center overflow-hidden bg-[#001E3C]">
+    <section className={fullViewport ? "relative mt-[74px] flex min-h-[calc(100svh-74px)] items-center overflow-hidden bg-[#001E3C]" : "relative flex min-h-[78vh] items-center overflow-hidden bg-[#001E3C] sm:min-h-[80vh]"}>
       <div className="absolute inset-0 z-0">
         <Image
           src={VARIANT_IMAGE[variant]}
@@ -49,8 +51,8 @@ export function VideoHero({ variant = "abstract", tag, title, subtitle, children
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#001E3C] to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28 w-full">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="max-w-4xl">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 py-10 sm:px-9 sm:py-14 lg:px-14 lg:py-16 xl:px-20">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="max-w-[790px]">
           <div className="inline-flex items-center gap-2.5 rounded-full border border-[#00C7FD]/30 bg-[#00C7FD]/10 backdrop-blur px-3 sm:px-4 py-1.5 mb-5 sm:mb-7">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#00C7FD] opacity-60 animate-ping" />
@@ -58,10 +60,10 @@ export function VideoHero({ variant = "abstract", tag, title, subtitle, children
             </span>
             <span className="text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#00C7FD] font-display font-semibold">{tag}</span>
           </div>
-          <h1 className="text-[2rem] sm:text-5xl lg:text-7xl font-bold text-white font-display leading-[1.04] tracking-tight">{title}</h1>
-          <p className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-xl text-white/75 leading-relaxed max-w-2xl">{subtitle}</p>
+          <h1 className="max-w-[790px] font-display text-[clamp(1.875rem,7.2vw,2.25rem)] font-medium leading-[1.15] tracking-[-0.045em] text-white sm:text-[clamp(2.25rem,5.35vw,4.5rem)] sm:leading-[1.105]">{title}</h1>
+          <p className="mt-5 max-w-[36rem] text-[13px] leading-[1.65] text-[#CDDFEB] sm:mt-6 sm:text-[15px] sm:leading-[1.75] lg:text-[16px] lg:leading-[1.8]">{subtitle}</p>
           {children && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-7 flex flex-wrap items-center gap-3 sm:mt-8">
               {children}
             </motion.div>
           )}

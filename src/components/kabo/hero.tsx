@@ -88,7 +88,7 @@ export function Hero() {
   return (
     <section
       aria-label="KABO technology solutions — featured stories"
-      className="relative isolate flex min-h-[100svh] overflow-hidden bg-[#03182C] text-white"
+      className="relative isolate mt-[74px] flex min-h-[calc(100svh-74px)] overflow-hidden bg-[#03182C] text-white"
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={handleBlur}
     >
@@ -119,13 +119,13 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#03182C] to-transparent" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col px-5 pb-5 pt-24 sm:px-9 sm:pb-8 sm:pt-28 md:pt-32 lg:px-14 lg:pt-32 xl:px-20">
+      <div className="relative mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-[1440px] flex-col px-5 pb-5 pt-7 sm:px-9 sm:pb-7 sm:pt-9 lg:px-14 lg:pt-10 xl:px-20">
         {/* All three scenes occupy the same grid tracks. Subgrid shares each
             row height across slides, so the eyebrow, headline, description and
             CTAs always keep their exact vertical positions as copy changes.
             Inactive slides remain in layout for intrinsic sizing, but are
             invisible, unfocusable, and inaccessible to assistive technology. */}
-        <div className="relative flex w-full flex-1 items-center py-4 sm:py-6 lg:py-9">
+        <div className="relative flex w-full flex-1 items-center py-3 sm:py-5 lg:py-7">
           <div className="grid w-full max-w-[790px] grid-cols-1 grid-rows-[auto_auto_auto_auto] gap-y-3 sm:gap-y-5 lg:gap-y-6">
             {SLIDES.map((slide, index) => {
               const isActive = index === active;
@@ -197,7 +197,7 @@ export function Hero() {
 
         {/* Navigation sits on a separate, stable baseline. The playback control
             lives beside the existing hero actions instead of floating here. */}
-        <div className="relative z-20 mt-3 w-full border-t border-white/20 pt-4 sm:pt-5">
+        <div className="relative z-20 mt-2 w-full border-t border-white/20 pt-2 sm:mt-3 sm:pt-3">
           <div
             className="flex w-full max-w-[555px] items-start gap-3 sm:gap-6"
             aria-label="Choose featured story"
