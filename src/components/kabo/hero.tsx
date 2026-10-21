@@ -148,7 +148,7 @@ export function Hero() {
 
                   <h1 className="max-w-[790px] self-start font-display text-[clamp(1.875rem,7.2vw,2.25rem)] font-medium leading-[1.15] tracking-[-0.045em] text-[#FCFFFF] sm:text-[clamp(2.25rem,5.35vw,4.5rem)] sm:leading-[1.105]">
                     <span className="block">{slide.title}</span>
-                    <span className="block bg-gradient-to-r from-[#80E8FD] via-[#34D2F7] to-[#63B8F6] bg-clip-text text-transparent">
+                    <span className="block intel-text-gradient-bright">
                       {slide.highlight}
                     </span>
                   </h1>

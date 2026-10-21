@@ -89,8 +89,8 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transform-gpu transition-[background-color,border-color] duration-300",
         scrolled || mobileOpen || moreOpen
-          ? "border-b border-white/10 bg-[#03182D]/96 backdrop-blur-xl"
-          : "border-b border-white/10 bg-[#03182D]/65 backdrop-blur-lg"
+          ? "border-b border-white/10 bg-[#03182D] backdrop-blur-xl"
+          : "border-b border-white/10 bg-[#03182D] backdrop-blur-lg"
       )}
     >
       <nav aria-label="Main navigation" className="mx-auto flex h-[74px] max-w-[1440px] items-center justify-between gap-5 px-5 sm:px-9 lg:px-14 xl:px-20">
