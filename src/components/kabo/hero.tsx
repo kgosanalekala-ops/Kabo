@@ -2,95 +2,108 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { usePage } from "./page-context";
 
 /**
- * KABO flagship entrance: one message, one strong photograph, no floating cards.
- * The photographic background is an illustrative infrastructure image, not a
- * claim that KABO owns the facility pictured.
+ * KABO flagship opening: an editorial statement and a real-world infrastructure
+ * visual, not simulated UI or unsupported performance claims. The photograph
+ * illustrates a data-centre environment; it is not presented as a KABO facility.
  */
 export function Hero() {
   const { navigate } = usePage();
-  const reduceMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion();
 
-  const reveal = (delay: number) => ({
-    initial: reduceMotion ? false : { opacity: 0, y: 22 },
+  const entrance = (delay: number) => ({
+    initial: reducedMotion ? false : { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: reduceMotion ? 0 : 0.8, delay: reduceMotion ? 0 : delay, ease: "easeOut" as const },
+    transition: {
+      duration: reducedMotion ? 0 : 0.85,
+      delay: reducedMotion ? 0 : delay,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
   });
 
   return (
     <section
-      aria-labelledby="kabo-hero-title"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#04182e] text-white"
+      aria-labelledby="kabo-hero-heading"
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#03182C] text-white"
     >
-      {/* Let the architecture speak. The image is part of the composition,
-          not a canvas for floating interface cards or animated overlays. */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <Image
-          src="/images/sol_datacenter.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[57%_center] opacity-85 lg:object-center"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,18,35,0.98)_0%,rgba(3,18,35,0.95)_25%,rgba(3,18,35,0.78)_48%,rgba(3,18,35,0.20)_100%)] max-lg:bg-[linear-gradient(90deg,rgba(3,18,35,0.97)_0%,rgba(3,18,35,0.85)_62%,rgba(3,18,35,0.43)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#04182e]/85 via-transparent to-[#04182e]/40" />
+      {/* An intentionally asymmetric composition. On desktop, the image is a
+          clear architectural vista; on mobile, it becomes a cinematic backdrop. */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="absolute inset-0 bg-[#03182C]" />
+        <motion.div
+          initial={reducedMotion ? false : { opacity: 0.35, scale: 1.065 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: reducedMotion ? 0 : 1.6, ease: "easeOut" }}
+          className="absolute inset-0 lg:left-[38%]"
+        >
+          <Image
+            src="/images/sol_datacenter.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1024px) 65vw, 100vw"
+            className="object-cover object-[50%_center] saturate-[0.86] contrast-[1.08]"
+          />
+          <div className="absolute inset-0 bg-[#03223D]/[0.08] mix-blend-multiply" />
+        </motion.div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#03182C_0%,rgba(3,24,44,0.98)_27%,rgba(3,24,44,0.86)_47%,rgba(3,24,44,0.30)_75%,rgba(3,24,44,0.04)_100%)] max-lg:bg-[linear-gradient(180deg,rgba(3,24,44,0.68)_0%,rgba(3,24,44,0.65)_24%,rgba(3,24,44,0.91)_62%,#03182C_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#03182C] to-transparent" />
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-5 pb-24 pt-36 sm:px-8 sm:pb-28 sm:pt-40 lg:px-10 lg:pb-36 lg:pt-44">
-        <div className="max-w-[58rem]">
-          <motion.div {...reveal(0.08)} className="mb-7 flex items-center gap-3 sm:mb-10">
-            <span className="h-px w-9 bg-[#40D5F4]" aria-hidden="true" />
-            <span className="text-[10px] font-medium uppercase tracking-[0.26em] text-[#A9C2D6] sm:text-xs">
-              KABO IT GROUP&nbsp; / &nbsp;SOUTH AFRICA
-            </span>
+      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col justify-center px-5 pb-28 pt-32 sm:px-9 sm:pb-32 sm:pt-36 lg:px-14 lg:pb-28 xl:px-20">
+        <div className="max-w-[940px]">
+          <motion.div {...entrance(0.08)} className="mb-7 flex items-center gap-3.5 sm:mb-9">
+            <span className="h-[2px] w-8 shrink-0 bg-[#49D8F4]" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#B9D7E5] sm:text-[11px] sm:tracking-[0.26em]">
+              KABO IT GROUP <span className="mx-2 text-white/30">/</span> Technology foundations
+            </p>
           </motion.div>
 
           <motion.h1
-            {...reveal(0.16)}
-            id="kabo-hero-title"
-            className="max-w-[58rem] font-display text-[clamp(3.35rem,7.4vw,7.8rem)] font-semibold leading-[0.99] tracking-[-0.055em] text-white"
+            id="kabo-hero-heading"
+            {...entrance(0.16)}
+            className="max-w-[940px] font-display text-[clamp(2.62rem,8.6vw,5rem)] font-semibold leading-[1.045] tracking-[-0.062em] text-[#FCFFFF] sm:text-[clamp(4.6rem,6.5vw,7.35rem)] sm:leading-[1.015]"
           >
-            Building the <br className="hidden sm:block" />
-            backbone of <br className="hidden sm:block" />
-            <span className="text-[#5BDCF7]">what&rsquo;s next.</span>
+            Intelligence<br />
+            begins with<br />
+            <span className="text-[#71DFFF]">infrastructure.</span>
           </motion.h1>
 
           <motion.p
-            {...reveal(0.32)}
-            className="mt-8 max-w-[34rem] text-[15px] leading-[1.8] text-[#B8C8D7] sm:mt-10 sm:text-[17px]"
+            {...entrance(0.29)}
+            className="mt-7 max-w-[31.5rem] text-[14px] leading-[1.85] text-[#CDDFEB] sm:mt-9 sm:text-[17px]"
           >
-            Enterprise technology, intelligent infrastructure and procurement —
-            brought together with clarity, precision and purpose.
+            From data centres and networks to AI-ready computing and secure
+            environments, KABO brings the technology foundations together.
           </motion.p>
 
-          <motion.div {...reveal(0.45)} className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-5 sm:mt-12">
+          <motion.div {...entrance(0.41)} className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-5 sm:mt-11">
             <button
+              type="button"
               onClick={() => navigate("solutions")}
-              className="group inline-flex min-h-12 items-center justify-center gap-4 rounded-sm bg-[#40D5F4] px-6 py-3.5 text-[13px] font-semibold tracking-[0.01em] text-[#001E3C] shadow-[0_16px_55px_rgba(0,199,253,0.16)] transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#86E9FB] hover:shadow-[0_20px_55px_rgba(0,199,253,0.26)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transform-none sm:text-sm"
+              className="group inline-flex min-h-[52px] items-center justify-center gap-7 bg-[#54D9F7] px-6 py-3.5 text-[13px] font-semibold tracking-[0.005em] text-[#03182C] transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#A0EDFF] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transform-none sm:px-7 sm:text-[14px]"
             >
               Explore solutions
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" strokeWidth={1.7} />
+              <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" strokeWidth={1.8} aria-hidden="true" />
             </button>
             <button
+              type="button"
               onClick={() => navigate("rfq")}
-              className="group inline-flex min-h-12 items-center gap-2 border-b border-white/45 py-2 text-[13px] font-medium tracking-[0.01em] text-white transition-colors hover:border-[#5BDCF7] hover:text-[#5BDCF7] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-sm"
+              className="group inline-flex min-h-12 items-center gap-2 border-b border-white/50 py-2 text-[13px] font-medium text-white transition-colors hover:border-[#71DFFF] hover:text-[#71DFFF] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-[14px]"
             >
-              Request a quote
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" strokeWidth={1.7} />
+              Start a project
+              <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" strokeWidth={1.6} aria-hidden="true" />
             </button>
           </motion.div>
         </div>
-      </div>
 
-      {/* A quiet scroll cue, not another information panel. */}
-      <div className="pointer-events-none absolute bottom-6 left-5 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/55 sm:bottom-9 sm:left-8 lg:left-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))]">
-        <ArrowDownRight className="h-4 w-4 text-[#5BDCF7]" strokeWidth={1.5} aria-hidden="true" />
-        Explore KABO
+        <div className="pointer-events-none absolute bottom-7 left-5 right-5 flex items-center justify-between border-t border-white/20 pt-5 sm:bottom-9 sm:left-9 sm:right-9 lg:left-14 lg:right-14 xl:left-20 xl:right-20">
+          <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#B4CADA]/85 sm:text-[11px]">Design <span className="mx-1.5 text-[#71DFFF]/70">·</span> Supply <span className="mx-1.5 text-[#71DFFF]/70">·</span> Integrate</span>
+          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/55 sm:text-[11px]">South Africa</span>
+        </div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { usePage, type Page } from "./page-context";
 import { cn } from "@/lib/utils";
 
-/** The header is deliberately concise. Every prior destination remains accessible. */
+/** An editorial, restrained header: easy to scan, with complete secondary navigation. */
 const PRIMARY: { label: string; page: Page }[] = [
   { label: "Solutions", page: "solutions" },
   { label: "Products", page: "products" },
@@ -89,21 +89,21 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transform-gpu transition-[background-color,border-color] duration-300",
         scrolled || mobileOpen || moreOpen
-          ? "border-b border-white/10 bg-[#03182D]/95 backdrop-blur-xl"
-          : "border-b border-white/10 bg-[#04182e]/55 backdrop-blur-md"
+          ? "border-b border-white/10 bg-[#03182D]/96 backdrop-blur-xl"
+          : "border-b border-white/10 bg-[#03182D]/65 backdrop-blur-lg"
       )}
     >
-      <nav aria-label="Main navigation" className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:px-10">
+      <nav aria-label="Main navigation" className="mx-auto flex h-[74px] max-w-[1440px] items-center justify-between gap-5 px-5 sm:px-9 lg:px-14 xl:px-20">
         <button
           type="button"
           onClick={() => go("home")}
           className="flex shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7]"
           aria-label="KABO IT Group — home"
         >
-          <Image src="/logos/kabo-logo-white.png" alt="KABO IT Group" width={140} height={36} priority className="h-[30px] w-auto sm:h-[34px]" />
+          <Image src="/logos/kabo-logo-white.png" alt="KABO IT Group" width={140} height={36} priority className="h-[28px] w-auto sm:h-[32px]" />
         </button>
 
-        <div className="ml-auto hidden items-center gap-7 lg:flex xl:gap-9">
+        <div className="ml-auto hidden items-center gap-7 lg:flex xl:gap-10">
           {PRIMARY.map((item) => (
             <button
               key={item.page}
@@ -111,7 +111,7 @@ export function Navbar() {
               onClick={() => go(item.page)}
               aria-current={active(item.page) ? "page" : undefined}
               className={cn(
-                "border-b border-transparent py-2 text-[13px] font-normal tracking-[0.005em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7]",
+                "border-b border-transparent py-2 text-[12px] font-medium tracking-[0.015em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7] xl:text-[13px]",
                 active(item.page) ? "border-[#5BDCF7] text-white" : "text-white/70 hover:text-white"
               )}
             >
@@ -127,11 +127,11 @@ export function Navbar() {
               aria-controls="kabo-more-navigation"
               aria-haspopup="true"
               className={cn(
-                "inline-flex items-center gap-1.5 py-2 text-[13px] font-normal transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7]",
+                "inline-flex items-center gap-1.5 py-2 text-[12px] font-medium tracking-[0.015em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7] xl:text-[13px]",
                 moreOpen ? "text-white" : "text-white/70 hover:text-white"
               )}
             >
-              More
+              Explore
               <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", moreOpen && "rotate-180")} strokeWidth={1.6} />
             </button>
             {moreOpen && (
@@ -165,9 +165,9 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => go("rfq")}
-          className="ml-1 hidden shrink-0 items-center gap-2 border border-[#5BDCF7]/60 px-4 py-2.5 text-[12px] font-medium text-white transition-[background-color,border-color] hover:border-[#5BDCF7] hover:bg-[#5BDCF7]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7] sm:inline-flex"
+          className="ml-1 hidden shrink-0 items-center gap-3 border border-[#5BDCF7]/55 px-4 py-2.5 text-[12px] font-medium text-white/95 transition-[background-color,border-color] hover:border-[#5BDCF7] hover:bg-[#5BDCF7]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7] sm:inline-flex"
         >
-          Get a quote <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.6} />
+          Request a quote <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.6} />
         </button>
 
         <button
@@ -186,7 +186,7 @@ export function Navbar() {
         <div
           id="kabo-mobile-navigation"
           aria-label="Mobile navigation"
-          className="max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#03182D] px-5 pb-8 pt-5 sm:px-8 lg:hidden"
+          className="max-h-[calc(100dvh-74px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#03182D] px-5 pb-8 pt-5 sm:px-8 lg:hidden"
         >
           <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#5BDCF7]">Explore</p>
           {PRIMARY.map((item) => (
@@ -221,7 +221,7 @@ export function Navbar() {
             onClick={() => go("rfq")}
             className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 bg-[#40D5F4] px-5 py-3 text-sm font-semibold text-[#04182e] sm:hidden"
           >
-            Get a quote <ArrowUpRight className="h-4 w-4" />
+            Request a quote <ArrowUpRight className="h-4 w-4" />
           </button>
         </div>
       )}
