@@ -119,14 +119,14 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#03182C] to-transparent" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-[1440px] flex-col px-5 pb-5 pt-7 sm:px-9 sm:pb-7 sm:pt-9 lg:px-14 lg:pt-10 xl:px-20">
+      <div className="relative mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-[1440px] flex-col px-5 pb-3 pt-4 sm:px-9 sm:pb-6 sm:pt-7 lg:px-14 lg:pt-8 xl:px-20">
         {/* All three scenes occupy the same grid tracks. Subgrid shares each
             row height across slides, so the eyebrow, headline, description and
             CTAs always keep their exact vertical positions as copy changes.
             Inactive slides remain in layout for intrinsic sizing, but are
             invisible, unfocusable, and inaccessible to assistive technology. */}
-        <div className="relative flex w-full flex-1 items-center py-3 sm:py-5 lg:py-7">
-          <div className="grid w-full max-w-[790px] grid-cols-1 grid-rows-[auto_auto_auto_auto] gap-y-3 sm:gap-y-5 lg:gap-y-6">
+        <div className="relative flex w-full flex-1 items-center py-2 sm:py-3 lg:py-4">
+          <div className="grid w-full max-w-[790px] grid-cols-1 grid-rows-[auto_auto_auto_auto] gap-y-2 sm:gap-y-3 lg:gap-y-4">
             {SLIDES.map((slide, index) => {
               const isActive = index === active;
               return (
@@ -146,7 +146,7 @@ export function Hero() {
                     </p>
                   </div>
 
-                  <h1 className="max-w-[790px] self-start font-display text-[clamp(1.875rem,7.2vw,2.25rem)] font-medium leading-[1.15] tracking-[-0.045em] text-[#FCFFFF] sm:text-[clamp(2.25rem,5.35vw,4.5rem)] sm:leading-[1.105]">
+                  <h1 className="max-w-[790px] self-start font-display text-[clamp(1.875rem,7.2vw,2.25rem)] font-medium leading-[1.15] tracking-[-0.045em] text-[#FCFFFF] sm:text-[clamp(2.125rem,4.2vw,3.625rem)] sm:leading-[1.105]">
                     <span className="block">{slide.title}</span>
                     <span className="block intel-text-gradient-bright">
                       {slide.highlight}
@@ -157,7 +157,7 @@ export function Hero() {
                     {slide.description}
                   </p>
 
-                  <div className="grid w-full max-w-[610px] grid-cols-[160px_42px] items-center gap-x-4 gap-y-3 self-start sm:flex sm:min-h-[50px] sm:flex-nowrap sm:gap-x-7 sm:gap-y-3">
+                  <div className="grid w-full max-w-[610px] grid-cols-[160px_42px] items-center gap-x-4 gap-y-2 self-start sm:flex sm:min-h-[50px] sm:flex-nowrap sm:gap-x-7 sm:gap-y-3">
                     <button
                       type="button"
                       onClick={() => navigate(slide.primary.page)}
@@ -197,7 +197,7 @@ export function Hero() {
 
         {/* Navigation sits on a separate, stable baseline. The playback control
             lives beside the existing hero actions instead of floating here. */}
-        <div className="relative z-20 mt-2 w-full border-t border-white/20 pt-2 sm:mt-3 sm:pt-3">
+        <div className="relative z-20 mt-1 w-full border-t border-white/20 pt-1 sm:mt-2 sm:pt-2">
           <div
             className="flex w-full max-w-[555px] items-start gap-3 sm:gap-6"
             aria-label="Choose featured story"
