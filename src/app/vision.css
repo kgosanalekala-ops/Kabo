@@ -28,7 +28,7 @@
 .vf-app .vf-section-lead--invert em,.vf-app .vf-invitation em,.vf-app .vf-interior-content h1 em,.vf-app .vf-home-copy h1 .vf-highlight{color:var(--vf-accent)}
 .vf-app .vf-intro .vf-eyebrow-line,.vf-app .vf-section--light .vf-eyebrow-line{background:var(--vf-logo-blue)}
 
-/* KABO public company-information system; responsive and shared with the footer. */
+/* Company information displayed on Contact only. */
 .vf-company-contact{margin-top:42px;border-top:1px solid #D4E1E8;padding-top:25px}
 .vf-company-contact-kicker{display:flex;align-items:center;gap:10px;color:var(--vf-logo-blue);font-size:11px;letter-spacing:.15em;font-weight:650}
 .vf-company-contact h3{font-size:clamp(20px,2.1vw,29px);line-height:1.2;letter-spacing:-.025em;font-weight:580;margin-top:19px!important;color:#142B3B}
@@ -44,14 +44,4 @@
 .vf-company-contact-whatsapp{display:inline-flex;align-items:center;gap:11px;padding:14px 17px;background:var(--vf-logo-blue);color:#fff;font-size:12px;font-weight:650;margin-top:9px;transition:background .2s}
 .vf-company-contact-whatsapp:hover{background:#087FB8}
 .vf-company-contact-whatsapp svg:last-child{margin-left:12px}
-.vf-company-footer{display:grid;grid-template-columns:1.15fr 1.1fr 1.2fr 1fr;gap:28px;border-top:1px solid #34434B;padding:35px 0 39px}
-.vf-company-footer-cell{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:8px}
-.vf-company-footer-cell .vf-company-detail-label{color:#80CFF0;margin-bottom:7px}
-.vf-company-footer-cell strong{font-size:13px;font-weight:580;color:#F2F8FC;line-height:1.55;overflow-wrap:anywhere}
-.vf-company-footer-cell small{font-size:12px;color:#AFC1CC;line-height:1.5}
-.vf-company-footer-cell address{font-style:normal;font-size:13px;line-height:1.7;color:#C1D0DA}
-.vf-company-footer-cell a{font-size:13px;line-height:1.6;display:inline-flex;align-items:center;gap:7px;color:#C1D0DA;overflow-wrap:anywhere;transition:color .2s}
-.vf-company-footer-cell a:hover{color:#80CFF0}
-@media(max-width:1023px){.vf-company-footer{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:27px}}
-@media(max-width:640px){.vf-company-contact{margin-top:29px}.vf-company-contact-item{gap:12px;padding:15px 0}.vf-company-footer{grid-template-columns:1fr 1fr;gap:27px 18px;padding:29px 0}.vf-company-footer-cell a,.vf-company-footer-cell address{font-size:12px}}
-@media(max-width:390px){.vf-company-footer{grid-template-columns:1fr}}
+@media(max-width:640px){.vf-company-contact{margin-top:29px}.vf-company-contact-item{gap:12px;padding:15px 0}.vf-whatsapp{border-radius:50%}}
