@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { FloatingDots } from "./floating-dots";
-
-export type HeroVariant = "datacenter" | "network" | "security" | "smartcity" | "abstract";
+import { HERO_VARIANT_IMAGE, type HeroVariant } from "@/lib/hero-visuals";
+export type { HeroVariant } from "@/lib/hero-visuals";
 
 interface VideoHeroProps {
   variant?: HeroVariant;
@@ -17,20 +17,14 @@ interface VideoHeroProps {
   fullViewport?: boolean;
 }
 
-const VARIANT_IMAGE: Record<HeroVariant, string> = {
-  datacenter: "/images/sol_datacenter.jpg",
-  network: "/images/sol_campus.jpg",
-  security: "/images/sol_government.jpg",
-  smartcity: "/images/sol_smartcity.jpg",
-  abstract: "/images/sol_noc.jpg",
-};
-
-export function VideoHero({ variant = "abstract", tag, title, subtitle, children, fullViewport = false }: VideoHeroProps) {
+export function VideoHero({ variant = "abstract", tag, title, subtitle, children }: VideoHeroProps) {
   return (
-    <section className={fullViewport ? "relative mt-[74px] flex min-h-[calc(100svh-74px)] items-center overflow-hidden bg-[#001E3C]" : "relative flex min-h-[78vh] items-center overflow-hidden bg-[#001E3C] sm:min-h-[80vh]"}>
+    // All VideoHero pages begin below the fixed 74px header and fill the remaining
+    // first screen. min-height lets the content grow on short phones or large text.
+    <section className="relative mt-[74px] flex min-h-[calc(100svh-74px)] items-center overflow-hidden bg-[#001E3C]">
       <div className="absolute inset-0 z-0">
         <Image
-          src={VARIANT_IMAGE[variant]}
+          src={HERO_VARIANT_IMAGE[variant]}
           alt=""
           fill
           priority

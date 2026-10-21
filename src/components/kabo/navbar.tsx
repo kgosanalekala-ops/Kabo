@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { usePage, type Page } from "./page-context";
 import { cn } from "@/lib/utils";
+import { getHeaderHeroImage } from "@/lib/hero-visuals";
 
 /** An editorial, restrained header: easy to scan, with complete secondary navigation. */
 const PRIMARY: { label: string; page: Page }[] = [
@@ -35,7 +36,7 @@ const GROUPS: { title: string; links: { label: string; page: Page; description?:
 ];
 
 export function Navbar() {
-  const { currentPage, navigate } = usePage();
+  const { currentPage, selectedDetail, navigate } = usePage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -78,6 +79,9 @@ export function Navbar() {
     setMoreOpen(false);
   };
 
+  const solidHeader = scrolled || mobileOpen || moreOpen;
+  const headerImage = getHeaderHeroImage(currentPage, selectedDetail);
+
   const active = (page: Page) =>
     currentPage === page ||
     (page === "solutions" && ["solution-detail", "architecture", "configure"].includes(currentPage)) ||
@@ -85,15 +89,20 @@ export function Navbar() {
     (page === "industries" && currentPage === "industry-detail");
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transform-gpu transition-[background-color,border-color] duration-300",
-        scrolled || mobileOpen || moreOpen
-          ? "border-b border-white/10 bg-[#03182D] backdrop-blur-xl"
-          : "border-b border-white/10 bg-[#03182D] backdrop-blur-lg"
-      )}
-    >
-      <nav aria-label="Main navigation" className="mx-auto flex h-[74px] max-w-[1440px] items-center justify-between gap-5 px-5 sm:px-9 lg:px-14 xl:px-20">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#03182D]">
+      {/* Initial-state glass texture uses the SAME source photo as the page hero.
+          It fades away entirely after scrolling or when a navigation menu opens. */}
+      <div
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-500 motion-reduce:transition-none",
+          solidHeader ? "opacity-0" : "opacity-100"
+        )}
+      >
+        <Image src={headerImage} alt="" fill sizes="100vw" className="object-cover object-center opacity-50" />
+        <div className="absolute inset-0 bg-[#03182D]/55 backdrop-blur-md" />
+      </div>
+      <nav aria-label="Main navigation" className="relative z-10 mx-auto flex h-[74px] max-w-[1440px] items-center justify-between gap-5 px-5 sm:px-9 lg:px-14 xl:px-20">
         <button
           type="button"
           onClick={() => go("home")}
