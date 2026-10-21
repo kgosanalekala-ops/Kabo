@@ -1,120 +1,229 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { usePage, type Page } from "./page-context";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS: { label: string; page: Page }[] = [
-  { label: "About", page: "about" },
+/** The header is deliberately concise. Every prior destination remains accessible. */
+const PRIMARY: { label: string; page: Page }[] = [
   { label: "Solutions", page: "solutions" },
-  { label: "Configure", page: "configure" },
   { label: "Products", page: "products" },
-  { label: "Procurement", page: "procurement" },
   { label: "Industries", page: "industries" },
-  { label: "Services", page: "services" },
-  { label: "Support", page: "support" },
+];
+
+const GROUPS: { title: string; links: { label: string; page: Page; description?: string }[] }[] = [
+  {
+    title: "Plan & source",
+    links: [
+      { label: "Services", page: "services", description: "What we deliver" },
+      { label: "Procurement", page: "procurement", description: "Hardware & supply" },
+      { label: "Solution configurator", page: "configure", description: "Shape your requirement" },
+    ],
+  },
+  {
+    title: "Discover KABO",
+    links: [
+      { label: "About", page: "about", description: "Our company" },
+      { label: "Partners", page: "partners", description: "Technology portfolios" },
+      { label: "Case studies", page: "case-studies", description: "Reference scenarios" },
+      { label: "Support", page: "support", description: "Get assistance" },
+      { label: "Contact", page: "contact", description: "Talk to us" },
+    ],
+  },
 ];
 
 export function Navbar() {
   const { currentPage, navigate } = usePage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the mobile menu on Escape and when navigation changes.
-  useEffect(() => { setMobileOpen(false); }, [currentPage]);
+  useEffect(() => { setMobileOpen(false); setMoreOpen(false); }, [currentPage]);
+
+  useEffect(() => {
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setMoreOpen(false); setMobileOpen(false); }
+    };
+    const onOutside = (event: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) setMoreOpen(false);
+    };
+    window.addEventListener("keydown", onEscape);
+    document.addEventListener("pointerdown", onOutside);
+    return () => {
+      window.removeEventListener("keydown", onEscape);
+      document.removeEventListener("pointerdown", onOutside);
+    };
+  }, []);
+
   useEffect(() => {
     if (!mobileOpen) return;
-    const onEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setMobileOpen(false); };
-    window.addEventListener("keydown", onEscape);
-    return () => window.removeEventListener("keydown", onEscape);
-  }, [mobileOpen]);
-
-  // Lock body scroll when mobile menu is open.
-  useEffect(() => {
-    if (mobileOpen) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
-    }
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
   }, [mobileOpen]);
 
   const go = (page: Page) => {
     navigate(page);
     setMobileOpen(false);
+    setMoreOpen(false);
   };
+
+  const active = (page: Page) =>
+    currentPage === page ||
+    (page === "solutions" && ["solution-detail", "architecture", "configure"].includes(currentPage)) ||
+    (page === "products" && ["product-detail", "procurement"].includes(currentPage)) ||
+    (page === "industries" && currentPage === "industry-detail");
 
   return (
     <header
       className={cn(
-        // `fixed top-0` keeps the design where the hero goes under the
-        // transparent navbar (intentional on desktop and mobile).
-        //
-        // Mobile-drift fix:
-        //  - `transform-gpu` + `will-change-transform` forces the header
-        //    onto its own GPU-composited layer. On iOS Safari and Chrome
-        //    Android, `position: fixed` elements otherwise repaint on
-        //    every scroll tick and drift visibly when the URL bar
-        //    collapses. Promoting to a composited layer eliminates the
-        //    drift — the layer moves with the page without repainting.
-        //  - `transition-colors` (instead of `transition-all`) so the
-        //    padding change between scrolled/not-scrolled doesn't
-        //    animate the navbar's height mid-scroll, which on mobile
-        //    read as "navbar not staying in place".
-        "fixed top-0 inset-x-0 z-50 transform-gpu will-change-transform",
-        "transition-colors duration-300",
-        scrolled
-          ? "bg-[#001E3C]/95 backdrop-blur-md border-b border-white/10 py-3"
-          : "bg-transparent py-4 sm:py-5"
+        "fixed inset-x-0 top-0 z-50 transform-gpu transition-[background-color,border-color] duration-300",
+        scrolled || mobileOpen || moreOpen
+          ? "border-b border-white/10 bg-[#03182D]/95 backdrop-blur-xl"
+          : "border-b border-white/10 bg-[#04182e]/55 backdrop-blur-md"
       )}
     >
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <button onClick={() => go("home")} className="flex items-center gap-3 group" aria-label="KABO IT Group — home">
-          <Image src="/logos/kabo-logo-white.png" alt="KABO IT Group" width={140} height={36} className="h-8 sm:h-9 w-auto transition-transform group-hover:scale-105" priority />
+      <nav aria-label="Main navigation" className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:px-10">
+        <button
+          type="button"
+          onClick={() => go("home")}
+          className="flex shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7]"
+          aria-label="KABO IT Group — home"
+        >
+          <Image src="/logos/kabo-logo-white.png" alt="KABO IT Group" width={140} height={36} priority className="h-[30px] w-auto sm:h-[34px]" />
         </button>
-        <div className="hidden xl:flex items-center gap-1">
-          {NAV_ITEMS.map((item) => {
-            const isActive = currentPage === item.page || (item.page === "solutions" && currentPage === "solution-detail") || (item.page === "products" && currentPage === "product-detail") || (item.page === "industries" && currentPage === "industry-detail") || (item.page === "partners" && currentPage === "partner-detail");
-            return (
-              <button key={item.page} onClick={() => go(item.page)} className={cn("px-4 py-2 text-sm font-medium font-display transition-colors relative", isActive ? "text-[#00C7FD]" : "text-white/80 hover:text-white")}>
-                {item.label}
-                {isActive && <motion.span layoutId="nav-underline" className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#00C7FD] rounded-full" />}
-              </button>
-            );
-          })}
+
+        <div className="ml-auto hidden items-center gap-7 lg:flex xl:gap-9">
+          {PRIMARY.map((item) => (
+            <button
+              key={item.page}
+              type="button"
+              onClick={() => go(item.page)}
+              aria-current={active(item.page) ? "page" : undefined}
+              className={cn(
+                "border-b border-transparent py-2 text-[13px] font-normal tracking-[0.005em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7]",
+                active(item.page) ? "border-[#5BDCF7] text-white" : "text-white/70 hover:text-white"
+              )}
+            >
+              {item.label}
+            </button>
+          ))}
+
+          <div className="relative" ref={moreRef}>
+            <button
+              type="button"
+              onClick={() => setMoreOpen((previous) => !previous)}
+              aria-expanded={moreOpen}
+              aria-controls="kabo-more-navigation"
+              aria-haspopup="true"
+              className={cn(
+                "inline-flex items-center gap-1.5 py-2 text-[13px] font-normal transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7]",
+                moreOpen ? "text-white" : "text-white/70 hover:text-white"
+              )}
+            >
+              More
+              <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", moreOpen && "rotate-180")} strokeWidth={1.6} />
+            </button>
+            {moreOpen && (
+              <div
+                id="kabo-more-navigation"
+                className="absolute right-0 top-[calc(100%+18px)] grid w-[435px] grid-cols-2 gap-6 rounded-xl border border-white/15 bg-[#061e36]/98 p-6 shadow-[0_22px_65px_rgba(0,0,0,0.40)] backdrop-blur-xl"
+              >
+                {GROUPS.map((group) => (
+                  <div key={group.title}>
+                    <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.19em] text-[#6BCFEA]">{group.title}</p>
+                    <div className="space-y-0.5">
+                      {group.links.map((link) => (
+                        <button
+                          type="button"
+                          key={link.page}
+                          onClick={() => go(link.page)}
+                          className="group block w-full rounded-md px-2 py-2.5 text-left transition-colors hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-[#5BDCF7]"
+                        >
+                          <span className="block text-[13px] font-medium text-white/90 group-hover:text-[#5BDCF7]">{link.label}</span>
+                          {link.description && <span className="mt-0.5 block text-[11px] text-white/45">{link.description}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-        <div className="hidden xl:block">
-          <button onClick={() => go("rfq")} className="kabo-depth-button group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0071C5]/20 hover:shadow-xl hover:scale-[1.03] transition-all">
-            Request a Quote
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
-          </button>
-        </div>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="xl:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg text-white hover:bg-white/10" aria-label={mobileOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileOpen} aria-controls="kabo-mobile-navigation">
-          {mobileOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
+
+        <button
+          type="button"
+          onClick={() => go("rfq")}
+          className="ml-1 hidden shrink-0 items-center gap-2 border border-[#5BDCF7]/60 px-4 py-2.5 text-[12px] font-medium text-white transition-[background-color,border-color] hover:border-[#5BDCF7] hover:bg-[#5BDCF7]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5BDCF7] sm:inline-flex"
+        >
+          Get a quote <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.6} />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen((previous) => !previous)}
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-[#5BDCF7] lg:hidden"
+          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={mobileOpen}
+          aria-controls="kabo-mobile-navigation"
+        >
+          {mobileOpen ? <X className="h-5 w-5" strokeWidth={1.8} /> : <Menu className="h-5 w-5" strokeWidth={1.8} />}
         </button>
       </nav>
+
       {mobileOpen && (
-        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} id="kabo-mobile-navigation" role="region" aria-label="Mobile navigation" className="xl:hidden max-h-[calc(100dvh-74px)] overflow-y-auto overscroll-contain bg-[#001E3C]/98 backdrop-blur-md border-t border-white/10">
-          <div className="px-4 py-4 space-y-1">
-            {NAV_ITEMS.map((item) => (
-              <button key={item.page} onClick={() => go(item.page)} className="block w-full text-left px-4 py-3.5 text-base font-medium text-white/90 hover:bg-white/5 hover:text-[#00C7FD] rounded-lg transition-colors font-display focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00c7fd]">
-                {item.label}
-              </button>
-            ))}
-            <button onClick={() => go("rfq")} className="block w-full text-center mt-3 rounded-full bg-gradient-to-r from-[#0071C5] to-[#00C7FD] px-5 py-3 text-sm font-semibold text-white">
-              Request a Quote
+        <div
+          id="kabo-mobile-navigation"
+          aria-label="Mobile navigation"
+          className="max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#03182D] px-5 pb-8 pt-5 sm:px-8 lg:hidden"
+        >
+          <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#5BDCF7]">Explore</p>
+          {PRIMARY.map((item) => (
+            <button
+              type="button"
+              key={item.page}
+              onClick={() => go(item.page)}
+              className="block w-full border-b border-white/10 py-3.5 text-left text-[16px] font-medium text-white/90 focus-visible:outline-2 focus-visible:outline-[#5BDCF7]"
+            >
+              {item.label}
             </button>
+          ))}
+          <div className="grid grid-cols-1 gap-5 pt-6 sm:grid-cols-2">
+            {GROUPS.map((group) => (
+              <div key={group.title}>
+                <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#5BDCF7]">{group.title}</p>
+                {group.links.map((link) => (
+                  <button
+                    type="button"
+                    key={link.page}
+                    onClick={() => go(link.page)}
+                    className="block w-full py-2.5 text-left text-[14px] font-normal text-white/75 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-[#5BDCF7]"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            ))}
           </div>
-        </motion.div>
+          <button
+            type="button"
+            onClick={() => go("rfq")}
+            className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 bg-[#40D5F4] px-5 py-3 text-sm font-semibold text-[#04182e] sm:hidden"
+          >
+            Get a quote <ArrowUpRight className="h-4 w-4" />
+          </button>
+        </div>
       )}
     </header>
   );
