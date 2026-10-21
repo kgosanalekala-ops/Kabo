@@ -20,8 +20,8 @@ interface VideoHeroProps {
 export function VideoHero({ variant = "abstract", tag, title, subtitle, children }: VideoHeroProps) {
   return (
     // All pages clear the fixed header. Mobile/tablet height is driven by
-    // actual content; desktop uses a full first-screen minimum.
-    <section className="relative mt-[74px] flex min-h-0 items-center overflow-hidden bg-[#001E3C] lg:min-h-[calc(100svh-74px)]">
+    // actual content; wide desktop uses a full first-screen minimum; tablet landscape stays content-sized.
+    <section className="relative mt-[74px] flex min-h-0 items-center overflow-hidden bg-[#001E3C] xl:min-h-[calc(100svh-74px)]">
       <div className="absolute inset-0 z-0">
         <Image
           src={HERO_VARIANT_IMAGE[variant]}
