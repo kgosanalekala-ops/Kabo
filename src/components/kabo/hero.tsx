@@ -3,7 +3,7 @@
 import { useEffect, useState, type FocusEvent } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Pause, Play } from "lucide-react";
 import { usePage, type Page } from "./page-context";
 import { FloatingDots } from "./floating-dots";
 
@@ -63,9 +63,10 @@ export function Hero() {
   const [active, setActive] = useState(0);
   const [interaction, setInteraction] = useState(0);
   const [hovered, setHovered] = useState(false);
+  const [manuallyPaused, setManuallyPaused] = useState(false);
   const [focused, setFocused] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const paused = hovered || focused || hidden;
+  const paused = manuallyPaused || hovered || focused || hidden;
   const slide = SLIDES[active];
 
   // Do not advance a hidden tab, a hovered/focused hero, or a reduced-motion UI.
@@ -89,8 +90,6 @@ export function Hero() {
     <section
       aria-label="KABO technology solutions — featured stories"
       className="relative isolate flex min-h-[780px] items-center overflow-hidden bg-[#03182C] text-white sm:min-h-[760px] lg:min-h-[100svh]"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={handleBlur}
     >
@@ -180,7 +179,12 @@ export function Hero() {
         {/* Minimal cinematic scene selector. Live slide transitions never steal screen-reader focus. */}
         <div className="absolute bottom-7 left-5 right-5 border-t border-white/20 pt-5 sm:bottom-9 sm:left-9 sm:right-9 lg:left-14 lg:right-14 xl:left-20">
           <div className="flex items-end justify-between gap-5">
-            <div className="flex w-full max-w-[555px] items-start gap-3 sm:gap-6" aria-label="Choose featured story">
+            <div
+              className="flex w-full max-w-[555px] items-start gap-3 sm:gap-6"
+              aria-label="Choose featured story"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
               {SLIDES.map((item, index) => (
                 <button
                   key={item.shortLabel}
@@ -212,7 +216,15 @@ export function Hero() {
                 </button>
               ))}
             </div>
-            <span className="hidden pb-3 text-[10px] font-medium uppercase tracking-[0.2em] text-white/55 md:block">South Africa</span>
+            <button
+              type="button"
+              onClick={() => setManuallyPaused((value) => !value)}
+              aria-label={manuallyPaused ? "Play automatic hero slides" : "Pause automatic hero slides"}
+              aria-pressed={manuallyPaused}
+              className="mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#70E0F7] hover:text-[#70E0F7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#70E0F7] motion-reduce:hidden"
+            >
+              {manuallyPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+            </button>
           </div>
         </div>
       </div>
