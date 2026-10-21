@@ -218,7 +218,10 @@ export function Hero() {
             </div>
             <button
               type="button"
-              onClick={() => setManuallyPaused((value) => !value)}
+              onClick={() => {
+                setManuallyPaused((value) => !value);
+                setFocused(false); // Explicit Play resumes even if the control retains keyboard focus.
+              }}
               aria-label={manuallyPaused ? "Play automatic hero slides" : "Pause automatic hero slides"}
               aria-pressed={manuallyPaused}
               className="mb-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#70E0F7] hover:text-[#70E0F7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#70E0F7] motion-reduce:hidden"
