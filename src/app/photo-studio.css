@@ -134,3 +134,97 @@
 @media(prefers-reduced-motion:reduce){
  .vf-app .kp-hero-world-photo,.vf-app .kp-hero-oem-product{transition:none!important;animation:none!important}
 }
+
+/* KABO navigation refinement: same visual identity and destinations, less height.
+   The opened site index uses a responsive grid instead of a tall one-column list. */
+.vf-app .vf-header{height:clamp(60px,5vw,68px)}
+.vf-app .vf-header-inner{width:min(calc(100% - 48px),1450px);gap:clamp(10px,1.4vw,20px)}
+.vf-app .vf-brand-mark{width:clamp(103px,9.7vw,124px);height:auto}
+.vf-app .vf-mainnav{gap:clamp(12px,1.7vw,26px)}
+.vf-app .vf-mainnav button{position:relative;white-space:nowrap}
+.vf-app .vf-mainnav button::after{content:"";position:absolute;bottom:-9px;left:0;right:100%;height:2px;background:#63c6f8;transition:right .27s cubic-bezier(.22,1,.36,1)}
+.vf-app .vf-mainnav button:hover::after,.vf-app .vf-mainnav button:focus-visible::after,.vf-app .vf-mainnav button.active::after{right:0}
+.vf-app .vf-header-quote{white-space:nowrap}
+.vf-app .vf-icon-control{flex:0 0 auto;transition:transform .25s ease,background .25s ease,border-color .25s ease}
+.vf-app .vf-icon-control:hover{transform:translateY(-2px);border-color:rgba(123,213,255,.65)}
+.vf-app .vf-navigation-cover{top:clamp(60px,5vw,68px);bottom:0;max-height:calc(100dvh - clamp(60px,5vw,68px));overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.vf-app .vf-navigation-panel{width:min(calc(100% - 48px),1000px);padding:clamp(13px,2.1vh,22px) 0 24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(22px,4vw,70px)}
+.vf-app .vf-overlay-top{grid-column:1/-1;padding-bottom:12px;margin-bottom:7px}
+.vf-app .vf-nav-large{min-height:66px;padding:10px 0;grid-template-columns:25px minmax(0,1fr) 22px;gap:9px;border-bottom:1px solid rgba(128,170,195,.18);transition:background .25s,padding-left .25s}
+.vf-app .vf-nav-large strong{font-size:clamp(17px,2vw,25px);line-height:1.12}
+.vf-app .vf-nav-large small{display:none}
+.vf-app .vf-nav-large:hover{padding-left:7px;background:linear-gradient(90deg,rgba(33,133,186,.10),transparent)}
+.vf-app .vf-nav-large svg{width:17px;height:17px;transition:transform .25s}
+.vf-app .vf-nav-large:hover svg{transform:translate(3px,-3px)}
+@media(min-width:1024px) and (max-width:1160px){
+ .vf-app .vf-header-inner{width:calc(100% - 32px)}
+ .vf-app .vf-mainnav{gap:11px}
+ .vf-app .vf-header-actions{gap:6px}
+ .vf-app .vf-header-quote{padding-inline:12px}
+}
+@media(max-width:1023px){
+ .vf-app .vf-header{height:62px}
+ .vf-app .vf-header-inner{width:calc(100% - 32px)}
+ .vf-app .vf-navigation-cover{top:62px;max-height:calc(100dvh - 62px)}
+ .vf-app .vf-navigation-panel{width:calc(100% - 36px);column-gap:22px}
+ .vf-app .vf-nav-large{min-height:60px}
+}
+@media(max-width:640px){
+ .vf-app .vf-header{height:58px}
+ .vf-app .vf-header-inner{width:calc(100% - 28px);gap:9px}
+ .vf-app .vf-brand-mark{width:99px}
+ .vf-app .vf-navigation-cover{top:58px;max-height:calc(100dvh - 58px)}
+ .vf-app .vf-navigation-panel{width:calc(100% - 28px);column-gap:13px;padding-top:12px}
+ .vf-app .vf-nav-large{min-height:57px;grid-template-columns:17px minmax(0,1fr) 14px;gap:5px;padding:8px 0}
+ .vf-app .vf-nav-large strong{font-size:clamp(13px,3.75vw,17px);line-height:1.16;overflow-wrap:break-word}
+ .vf-app .vf-nav-large>span{font-size:10px}
+ .vf-app .vf-nav-large svg{width:13px;height:13px}
+ .vf-app .vf-overlay-top{font-size:9px}
+}
+@media(max-width:340px){
+ .vf-app .vf-brand-tag{display:none}
+ .vf-app .vf-navigation-panel{grid-template-columns:1fr}
+ .vf-app .vf-nav-large{min-height:42px;grid-template-columns:23px 1fr 17px}
+ .vf-app .vf-nav-large strong{font-size:15px}
+}
+@media(max-height:520px) and (min-width:641px){
+ .vf-app .vf-navigation-panel{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vf-app .vf-nav-large{min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){
+ .vf-app .vf-mainnav button::after,.vf-app .vf-nav-large,.vf-app .vf-nav-large svg,.vf-app .vf-icon-control{transition:none!important;transform:none!important}
+}
+
+/* Integrated equipment exhibition: photographs of actual supplied product
+   types, arranged with CSS perspective. This is not represented as a GLB/360 model. */
+.kp-hero-equipment-stage{position:absolute;z-index:2;inset:0;perspective:1100px;transform-style:preserve-3d;pointer-events:none}
+.kp-hero-stage-glow{position:absolute;left:13%;right:8%;top:17%;height:53%;border-radius:50%;background:radial-gradient(ellipse,rgba(52,169,220,.23),rgba(4,33,57,.06) 54%,transparent 70%);filter:blur(12px)}
+.kp-hero-feature-equipment{position:absolute;z-index:3;top:19%;left:14%;width:72%;height:46%;transform-style:preserve-3d;animation:kp-product-presence 13s ease-in-out infinite;will-change:transform}
+.kp-hero-feature-equipment .kp-hero-oem-product{position:absolute;inset:0;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center;max-width:100%;filter:drop-shadow(0 30px 35px rgba(0,12,29,.62));-webkit-mask-image:radial-gradient(ellipse 65% 58% at center,#000 48%,transparent 100%);mask-image:radial-gradient(ellipse 65% 58% at center,#000 48%,transparent 100%);opacity:1}
+.kp-hero-support{position:absolute;z-index:2;top:35%;width:34%;height:25%;opacity:.73;filter:drop-shadow(0 19px 22px rgba(0,9,19,.47));transform-style:preserve-3d;animation:kp-support-drift 15s ease-in-out infinite}
+.kp-hero-support--1{left:2%;transform:translateZ(-90px) rotateY(11deg) rotate(-4deg)}
+.kp-hero-support--2{right:0;animation-delay:-5s;transform:translateZ(-110px) rotateY(-12deg) rotate(4deg)}
+.kp-hero-support img{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 68% 61% at center,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 68% 61% at center,#000 50%,transparent 100%)}
+.kp-hero-stage-ground{position:absolute;z-index:1;left:12%;width:78%;top:64%;height:6%;border-radius:50%;background:rgba(0,8,18,.6);filter:blur(22px)}
+@keyframes kp-product-presence{0%,100%{transform:translate3d(0,2px,0) rotateY(-5deg) rotateX(2deg)}50%{transform:translate3d(0,-9px,25px) rotateY(6deg) rotateX(-1deg)}}
+@keyframes kp-support-drift{0%,100%{translate:0 3px}50%{translate:0 -8px}}
+@media(min-width:1100px){
+ .vf-app .kp-hero-feature-equipment{top:21%;height:43%}
+ .vf-app .kp-hero-support{top:37%}
+}
+@media(min-width:701px) and (max-width:1099px){
+ .vf-app .kp-hero-feature-equipment{top:25%;left:10%;width:80%;height:38%}
+ .vf-app .kp-hero-support{top:39%;height:22%}
+}
+@media(max-width:700px){
+ .vf-app .kp-hero-equipment-stage{inset:0}
+ .vf-app .kp-hero-feature-equipment{top:40%;left:12%;width:76%;height:27%}
+ .vf-app .kp-hero-support{top:48%;height:16%;width:31%;opacity:.63}
+ .vf-app .kp-hero-support--1{left:0}
+ .vf-app .kp-hero-support--2{right:0}
+ .vf-app .kp-hero-stage-glow{top:39%;height:34%}
+ .vf-app .kp-hero-stage-ground{top:65%}
+}
+@media(prefers-reduced-motion:reduce){
+ .kp-hero-feature-equipment,.kp-hero-support{animation:none!important;will-change:auto}
+}
