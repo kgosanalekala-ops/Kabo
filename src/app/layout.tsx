@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.kaboitgroup.co.za"),
   title: "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
   description: "KABO IT Group supplies ICT equipment and workplace products and helps organisations plan integrated networking, data centre, AI infrastructure and security solutions in South Africa.",
-  keywords: ["KABO IT Group", "ICT supplies", "enterprise networking", "SD-WAN", "data centre", "AI infrastructure", "South Africa", "Pretoria", "HPE", "Dell", "Lenovo", "HP", "H3C", "Huawei", "Veeam"],
+  keywords: ["KABO IT Group", "ICT supplies", "enterprise networking", "SD-WAN", "data centre", "AI infrastructure", "South Africa", "HPE", "Dell", "Lenovo", "HP", "H3C", "Veeam"],
   authors: [{ name: "KABO IT Group" }],
   icons: { icon: [{ url: "/favicon.png", type: "image/png" }], apple: [{ url: "/icon.png", type: "image/png" }] },
   openGraph: {

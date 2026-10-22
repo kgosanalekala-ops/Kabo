@@ -78,59 +78,58 @@ function serverRack(m:Mats):EquipmentModel {
 }
 
 function accessSystem(m:Mats):EquipmentModel {
- const group=new THREE.Group();group.name="02 · Network fabric and access point";
- box(group,m.dark,1.78,.22,.8,0,-1.23,0);
- box(group,m.steel,1.68,.043,.04,0,-1.13,.409);
+ const group=new THREE.Group();group.name="02 · 24-port managed network switch";
+ // One equipment subject per story: a rack-mount managed switch, not a podium display.
+ box(group,m.dark,2.26,.32,.94,0,0,0);
+ box(group,m.chassis,2.31,.24,.026,0,0,.482);
+ box(group,m.steel,2.26,.025,.04,0,.15,.486);
+ for(const side of [-1,1]){
+  box(group,m.trim,.12,.39,.065,side*1.19,0,.36);
+  for(const dy of [-.115,.115])cylinder(group,m.chassis,.026,.026,.014,side*1.19,dy,.4,12).rotation.x=Math.PI/2;
+ }
  for(let i=0;i<16;i++){
-  const x=-.735+i*.098;
-  box(group,m.chassis,.068,.060,.013,x,-1.26,.41,false);
-  if(i%3===0)box(group,m.accent,.036,.014,.018,x,-1.194,.427,false);
+  const x=-.99+i*.105;
+  box(group,m.steel,.084,.099,.021,x,-.035,.502,false);
+  box(group,m.chassis,.063,.073,.024,x,-.038,.519,false);
+  box(group,m.chassis,.062,.018,.026,x,-.012,.532,false);
+  if(i%3===0)box(group,m.accent,.017,.011,.02,x,.088,.513,false);
  }
- box(group,m.chassis,.19,.08,.015,-.64,-1.26,.431);
- for(const x of [-.76,.76])box(group,m.steel,.09,.12,.08,x,-1.23,.43);
- // Dedicated showroom stand, so the access point is connected to a surface.
- cylinder(group,m.steel,.06,.092,1.55,0,-.27,-.19,28);
- cylinder(group,m.dark,.39,.45,.085,0,-1.47,-.19);
- cylinder(group,m.porcelain,.62,.59,.14,0,.55,-.19,52);
- cylinder(group,m.trim,.57,.54,.016,0,.474,-.19,52);
- ring(group,m.accent,.31,.013,0,.633,-.19,"x");
- cylinder(group,m.status,.018,.018,.009,0,.632,.13,14);
- // Faint radial fins on the rear of the AP.
- for(let i=0;i<12;i++){
-  const a=i*Math.PI/6;
-  box(group,m.trim,.09,.012,.018,Math.cos(a)*.40,.64,Math.sin(a)*.40-.19,false);
- }
+ box(group,m.steel,.11,.12,.02,.89,-.035,.513,false);
+ box(group,m.accent,.018,.017,.019,1.00,.07,.513,false);
+ box(group,m.chassis,2.10,.018,.68,0,.155,-.045,false);
+ for(let i=0;i<12;i++)box(group,m.steel,.027,.016,.22,-1.01+i*.175,.166,-.21,false);
+ group.rotation.x=-.13;
  return {group,accents:[m.accent,m.status]};
 }
 
 function securityCamera(m:Mats):EquipmentModel {
- const group=new THREE.Group();group.name="03 · PTZ surveillance camera and recorder";
- // Bracket, restrained stem and mounted rotating camera housing.
- cylinder(group,m.dark,.42,.5,.11,0,-1.43,0);
- cylinder(group,m.steel,.065,.087,1.25,0,-.74,0,28);
- cylinder(group,m.porcelain,.29,.30,.20,0,-.02,0);
- cylinder(group,m.steel,.29,.26,.04,0,-.14,0);
- cylinder(group,m.porcelain,.47,.41,.32,0,.22,0,48);
- cylinder(group,m.steel,.46,.46,.025,0,.395,0,48);
- const dome=new THREE.Mesh(new THREE.SphereGeometry(.42,48,32,0,Math.PI*2,Math.PI/2,Math.PI/2),m.lens);
- dome.position.y=.21;dome.rotation.x=Math.PI;dome.castShadow=true;group.add(dome);
- // Front optical stack: proper glass recession and two concentric lens rings.
- cylinder(group,m.lens,.17,.16,.12,0,.16,.366,48).rotation.x=Math.PI/2;
- ring(group,m.trim,.174,.021,0,.16,.428);
- ring(group,m.accent,.102,.009,0,.16,.445);
- cylinder(group,m.lens,.08,.08,.004,0,.16,.451,48).rotation.x=Math.PI/2;
- cylinder(group,m.accent,.026,.026,.018,.29,.25,.27,24).rotation.x=Math.PI/2;
- // Recorder remains grounded under the camera on the podium.
- box(group,m.dark,1.10,.16,.65,0,-1.26,.45);
- for(let i=0;i<4;i++)box(group,m.steel,.10,.018,.008,-.30+i*.18,-1.27,.781,false);
- box(group,m.status,.018,.018,.011,.43,-1.24,.78,false);
+ const group=new THREE.Group();group.name="03 · Motorised PTZ surveillance camera";
+ // Curved housing, mechanical gimbal and nested optical assembly, shown as one object.
+ const hood=new THREE.Mesh(new THREE.SphereGeometry(.63,56,32,0,Math.PI*2,0,Math.PI/2),m.porcelain);
+ hood.position.y=.45;hood.scale.y=.72;hood.castShadow=true;group.add(hood);
+ cylinder(group,m.trim,.605,.605,.07,0,.415,0,56);
+ cylinder(group,m.porcelain,.50,.40,.16,0,.25,0,48);
+ const dome=new THREE.Mesh(new THREE.SphereGeometry(.46,48,32,0,Math.PI*2,Math.PI/2,Math.PI/2),m.lens);
+ dome.position.y=.12;dome.rotation.x=Math.PI;dome.castShadow=true;group.add(dome);
+ // Small recessed camera lens and concentric machined-metal focusing rings.
+ cylinder(group,m.trim,.185,.188,.04,0,.12,.419,48).rotation.x=Math.PI/2;
+ cylinder(group,m.lens,.153,.153,.015,0,.12,.448,48).rotation.x=Math.PI/2;
+ ring(group,m.accent,.103,.007,0,.12,.463);
+ ring(group,m.steel,.066,.018,0,.12,.468);
+ cylinder(group,m.lens,.042,.042,.012,0,.12,.478,32).rotation.x=Math.PI/2;
+ for(let x of [-.30,.30]){
+  cylinder(group,m.steel,.027,.027,.028,x,-.045,.31,20).rotation.x=Math.PI/2;
+  cylinder(group,m.status,.013,.013,.012,x,-.045,.33,16).rotation.x=Math.PI/2;
+ }
+ cylinder(group,m.porcelain,.27,.33,.17,0,.87,0,42);
+ cylinder(group,m.steel,.23,.23,.03,0,.985,0,42);
  return {group,accents:[m.accent,m.status]};
 }
 
 const DESCRIPTIONS=[
  "Three-dimensional enterprise server rack with drive bays, ventilation and management LEDs",
- "Three-dimensional managed Ethernet switch and ceiling-style wireless access point",
- "Three-dimensional PTZ surveillance camera with glass lens and network recorder",
+ "Three-dimensional managed Ethernet network switch with rack-mounting hardware and network ports",
+ "Three-dimensional PTZ surveillance camera with curved housing, optical lens and gimbal",
 ];
 
 export function RealEquipment3D({slide}:{slide:number}){
@@ -157,60 +156,57 @@ export function RealEquipment3D({slide}:{slide:number}){
   renderer.domElement.setAttribute("aria-label","Rotating true 3D visual of enterprise server, network equipment and security camera. Drag left or right to inspect the hardware.");
   holder.appendChild(renderer.domElement);
   const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(37,1,.1,40);
-  camera.position.set(0,.5,8.7);
-  camera.lookAt(0,-.1,0);
+  const camera=new THREE.PerspectiveCamera(35,1,.1,40);
+  camera.position.set(0,.25,5.8);
+  camera.lookAt(0,0,0);
   scene.add(new THREE.HemisphereLight(0xe9f6ff,0x203443,2.15));
   const key=new THREE.SpotLight(0xc3eaff,75,16,Math.PI/4,.58,1.4);
   key.position.set(-2.8,5.5,4.5);key.castShadow=!coarse;key.shadow.mapSize.set(512,512);scene.add(key,key.target);
   const rim=new THREE.DirectionalLight(0x45bdff,4.2);rim.position.set(4,2,-5);scene.add(rim);
   const front=new THREE.PointLight(0xffffff,12,9);front.position.set(1,-.2,4);scene.add(front);
   const mats=hardwareMaterials();
-  const carousel=new THREE.Group();scene.add(carousel);
-  const stage=new THREE.Group();carousel.add(stage);
-  const base=new THREE.Mesh(new THREE.CylinderGeometry(3.62,3.72,.21,84),mats.ground);
-  base.position.y=-1.75;base.receiveShadow=true;stage.add(base);
-  ring(stage,mats.accent,3.18,.012,0,-1.635,0,"x");
-  ring(stage,mats.steel,2.82,.012,0,-1.64,0,"x");
+  // One standalone rotating subject replaces the previous 3-device wheel and stage.
+  const subject=new THREE.Group();scene.add(subject);
   const server=serverRack(mats),access=accessSystem(mats),security=securityCamera(mats);
   const machines=[server,access,security];
-  server.group.position.x=-2.03;access.group.position.x=.01;security.group.position.x=2.04;
-  machines.forEach(item=>stage.add(item.group));
+  server.group.position.y=.20;
+  access.group.scale.setScalar(1.17);
+  security.group.scale.setScalar(1.64);
+  machines.forEach((item,index)=>{item.group.visible=index===selection.current%3;subject.add(item.group);});
   let width=0,height=0;
   const resize=()=>{
    const w=Math.max(holder.clientWidth,1),h=Math.max(holder.clientHeight,1);
    if(w===width&&h===height)return;
    width=w;height=h;camera.aspect=w/h;
-   camera.position.z=Math.max(9.2,3.94/(Math.tan(37*Math.PI/360)*(w/h)));
-   camera.position.y=w<410?.35:.5;
+   const heightScale=h<300?.90:h<400?.96:1;
+   camera.position.z=Math.max(4.45,1.65/(Math.tan(35*Math.PI/360)*(w/h)))*heightScale;
+   camera.position.y=.23;
+   camera.lookAt(0,.10,0);
    camera.updateProjectionMatrix();renderer.setSize(w,h,false);
   };
   resize();
   const ro=new ResizeObserver(resize);ro.observe(holder);
   let pointerId:number|null=null,lastX=0,rotationOffset=0;
-  const begin=(event:PointerEvent)=>{if(event.pointerType!=="touch"&&event.button!==0)return;pointerId=event.pointerId;lastX=event.clientX;renderer.domElement.setPointerCapture(event.pointerId);};
+  const begin=(event:PointerEvent)=>{if(event.pointerType==="touch"||event.button!==0)return;pointerId=event.pointerId;lastX=event.clientX;renderer.domElement.setPointerCapture(event.pointerId);};
   const move=(event:PointerEvent)=>{if(event.pointerId!==pointerId)return;rotationOffset+=(event.clientX-lastX)*.008;lastX=event.clientX;};
   const finish=(event:PointerEvent)=>{if(event.pointerId===pointerId)pointerId=null;};
   renderer.domElement.addEventListener("pointerdown",begin);
   renderer.domElement.addEventListener("pointermove",move);
   renderer.domElement.addEventListener("pointerup",finish);
   renderer.domElement.addEventListener("pointercancel",finish);
-  let active=true,visible=document.visibilityState==="visible",raf=0,lastFrame=0,phase=0;
+  let active=true,visible=document.visibilityState==="visible",raf=0,lastFrame=0,phase=.20,current=selection.current%3;
   const observer=new IntersectionObserver(entries=>{active=entries[0]?.isIntersecting??false;}, {threshold:.03});observer.observe(holder);
   const onVisibility=()=>{visible=document.visibilityState==="visible"};document.addEventListener("visibilitychange",onVisibility);
   const render=(ms:number)=>{
    raf=requestAnimationFrame(render);
    if(!active||!visible||ms-lastFrame<(coarse?32:18))return;
    lastFrame=ms;
-   if(!reduced&&pointerId===null)phase+=.003;
-   carousel.rotation.y=phase+rotationOffset-.19;
-   // Directional emphasis follows the existing three headline states, without hiding any machine.
-   const focus=selection.current%3;
-   for(let i=0;i<3;i++){
-    const target=i===focus?1:0.45;
-    const accent=machines[i].accents[0];
-    accent.emissiveIntensity+=(target-accent.emissiveIntensity)*.04;
-   }
+   if(current!==selection.current%3){current=selection.current%3;phase=.2;rotationOffset=0;}
+   machines.forEach((model,index)=>{model.group.visible=index===current;});
+   // At 60 fps: one full revolution in roughly 36 seconds, matching subtle product-showcase motion.
+   if(!reduced&&pointerId===null)phase+=.0029;
+   subject.rotation.y=phase+rotationOffset-.42;
+   subject.position.y=reduced?0:Math.sin(ms*.00052)*.035;
    renderer.render(scene,camera);
   };
   raf=requestAnimationFrame(render);
@@ -225,10 +221,10 @@ export function RealEquipment3D({slide}:{slide:number}){
    if(holder.contains(renderer.domElement))holder.removeChild(renderer.domElement);
   };
  },[]);
- return <div className="kp-real-3d" onTouchStart={event=>event.stopPropagation()} onTouchEnd={event=>event.stopPropagation()}>
+ return <div className="kp-real-3d">
   <div ref={host} className="kp-real-3d-viewport" role="img" aria-label={DESCRIPTIONS[slide%DESCRIPTIONS.length]}/>
   {unsupported&&<div className="kp-real-3d-fallback" role="status">3D graphics aren’t supported in this browser. Equipment specifications remain available below.</div>}
   <span className="kp-real-3d-corner kp-real-3d-corner--top" aria-hidden="true">KABO / EQUIPMENT SHOWROOM</span>
-  <span className="kp-real-3d-corner kp-real-3d-corner--bottom" aria-hidden="true">TRUE 3D · DRAG TO ORBIT</span>
+  <span className="kp-real-3d-corner kp-real-3d-corner--bottom" aria-hidden="true">3D EQUIPMENT · {unsupported?"STATIC VIEW":"AUTO-ROTATING"}</span>
  </div>;
 }
