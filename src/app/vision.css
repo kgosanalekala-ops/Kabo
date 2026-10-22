@@ -79,3 +79,24 @@
 .vf-app [data-vf-reveal="pending"],.vf-app [data-vf-reveal="visible"]{opacity:1!important;transform:none!important}
 .vf-home-hero .vf-hero-light,.vf-home-hero .vf-hero-datacenter,.vf-interior-image,.vf-interior-pattern{animation:none!important;transform:none!important}
 }
+
+
+/* KABO flagship: precision-lit interactive controls (preview workstream).
+   Restrained KABO-blue edge illumination rather than permanent neon. */
+@media (hover:hover) and (pointer:fine) {
+  :is(.vf-action,.vf-header-quote,.vf-domain-card,.vf-arch-tabs button,.vf-topology-node,.vf-arch-actions button,.vf-nav-large,.vf-procurement-grid button,.vf-oem-grid button):hover {
+    outline:1px solid rgba(89,202,255,.74);
+    outline-offset:2px;
+    box-shadow:0 0 0 5px rgba(24,155,229,.09),0 16px 35px rgba(0,55,105,.20);
+  }
+  .vf-action:hover svg,.vf-header-quote:hover svg { transform:translate(2px,-2px); }
+}
+:is(.vf-action,.vf-header-quote,.vf-domain-card,.vf-arch-tabs button,.vf-topology-node,.vf-arch-actions button,.vf-nav-large,.vf-procurement-grid button,.vf-oem-grid button):focus-visible {
+  outline:2px solid #5ad2ff;
+  outline-offset:4px;
+  box-shadow:0 0 0 6px rgba(0,143,220,.12);
+}
+.vf-action svg,.vf-header-quote svg { transition:transform .23s ease; }
+@media (prefers-reduced-motion:reduce){
+  .vf-action svg,.vf-header-quote svg { transition:none;transform:none!important; }
+}
