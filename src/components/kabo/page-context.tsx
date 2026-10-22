@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { pageToPath, pathToPage } from "@/lib/site-routes";
 
 export type Page =
-  | "home" | "about" | "solutions" | "solution-detail" | "products" | "product-detail"
+  | "home" | "about" | "company" | "solutions" | "solution-detail" | "products" | "product-detail"
   | "industries" | "industry-detail" | "services" | "partners" | "partner-detail"
   | "case-studies" | "support" | "contact" | "investors" | "procurement" | "rfq" | "architecture" | "configure";
 
