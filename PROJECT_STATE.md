@@ -74,3 +74,5 @@ A complete coherent desktop/mobile website with premium legible, blue-consistent
 - Non-touch desktop operation remains via existing tabs, story selectors, buttons and keyboard controls. The subtle swipe hint appears only on coarse touch pointers.
 - Gesture detection uses a 55px horizontal threshold and horizontal-to-vertical dominance check to avoid accidental scene changes.
 - Pending: real phone/tablet/touch-desktop regression checks; swipe handlers are source-level implementation, not yet user-device verified.
+- Review branch head `9c7fd96924575c8fa9be9cac9a5a3f57615dda95` has a GitHub Vercel combined-status check of `success`; the connected Vercel listing and authenticated-share tools returned HTTP 403 for the team, so a direct protected-preview walkthrough remains blocked on access.
+- Swipe changes verified locally with Next.js production build success and ESLint 0 errors (1 existing unrelated advisory). The public `main` branch is untouched.
