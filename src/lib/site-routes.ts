@@ -5,7 +5,7 @@ export const DETAIL_SEGMENTS = {
   "solution-detail": "solutions", "product-detail": "products",
   "industry-detail": "industries", "partner-detail": "partners",
 } as const;
-const architectureSlugs = new Set(["sd-wan", "campus-network", "data-centre", "surveillance", "ai-infrastructure", "continuity", "cybersecurity", "hybrid-cloud"]);
+const architectureSlugs = new Set(["campus-network", "ai-infrastructure", "data-centre", "surveillance", "wide-area", "document-systems", "cyber-resilience", "workplace", "sd-wan", "continuity", "cybersecurity", "hybrid-cloud"]);
 
 export function pageToPath(page: Page, detail?: string | null): string {
   if (page === "home") return "/";
