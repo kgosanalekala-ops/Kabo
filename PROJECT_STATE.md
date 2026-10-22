@@ -1,53 +1,50 @@
-# PROJECT_STATE — KABO Future Flagship Website
+# PROJECT_STATE — KABO IT Group Flagship Website
 
 Updated: 22/10/2026 (Africa/Johannesburg)
-Workstream: approved website refinement, preview-first.
+Repository: `kgosanalekala-ops/Kabo`
+Production branch: `main`
+Integration branch: `kabo-3d-interactions-20261022`
+Vercel project ID: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
 
-## Locked decisions
-- Preserve the approved KABO Future page structure, layout, navigation, typography, original logo and KABO Blue (#006197) visual system.
-- Keep detailed company information on Contact only. Preserve the restored compact footer.
-- Floating WhatsApp button must retain its recognisable WhatsApp mark; back-to-top must remain distinct.
-- Preserve existing architecture scene geometry and imagery until the user selects replacement images.
-- Never change the production website during exploratory refinement; use a reviewable Vercel preview.
+## Locked user decisions — authoritative
+- Goal: a truly complete, premium corporate website. Deliver ONE integrated review, not successive incomplete proposals.
+- User explicitly requests no further routine intervention or spoken progress reports; perform independent work and report a substantive verified result.
+- Preserve the approved landing-page composition, navigation feel, motion, scrolled progress, privacy/rights/terms presentation, charcoal KABO logo with blue dot, overall KABO Blue #006197 palette, and highly regarded responsive mobile arrangement.
+- Left/home visual and Architecture Studio were explicitly criticised as incomplete: replace generic hovering boxes with real, intelligible, illustrated infrastructure environments, buildings and specific equipment; provide connected topology/data paths and immediate click/tap contextual pop-ups; allow useful mobile exploration.
+- Align all architecture artwork, cyan/blue lighting, text, focus/hover controls and overlays to approved KABO blue; remove legacy green/teal washes that distort the identity.
+- Cover EIGHT major solution domains, consistent with procurement: connected campus, AI/accelerated compute, data centre, electronic security, WAN/SD-WAN, print/documents, cyber-resilience, and workplace equipment.
+- All buttons, cards, links and drop-downs must actually work and clearly indicate their action. Close nav overlays upon selection, release scroll locking and make Company navigate to dedicated `/company` page, separate from `/about` (Our Approach).
+- About KABO and other pages need genuinely informative, technically credible text for clients, OEMs and distributors; pages should be concise with supplementary detailed pop-ups rather than crowded layouts.
+- No public prices, on website or PDFs; quotations are discussed upon enquiry.
+- Two downloadable searchable PDFs: (1) detailed itemised KABO company profile stating actual equipment, supplies and services including A4 paper and laptops; (2) public solutions/approach overview without confidential implementation recipes. Print documents use charcoal KABO mark with blue dot on white, no ink-heavy dark top bands. Corporate profile still requires more sophisticated images/graphics and polish.
+- Do not assert unsupported qualifications, projects, OEM authorisations, facilities, guaranteed delivery or stock levels. Treat illustrative environments as representative designs, not client implementations.
+- Do not release or claim QA completeness without evidence. User wants the final, suitable release to go live, not the existing incomplete production.
 
-## Source of truth
-- Repository: `kgosanalekala-ops/Kabo`
-- Production branch: `main`
-- Baseline production commit: `0474327a059b716f980c4c0cff72e476ba48ae49`
-- Vercel project: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
-- Review branch (earlier): `kabo-flagship-polish-20261022`
-- Active design work branch: `kabo-3d-interactions-20261022`
+## Implemented and committed on integration branch
+- Eight domain-specific illustrated environment definitions and assets replace identical floating-box scenes; perspective/orbit, zoom, links and selectable components remain. Their quality is not yet visually approved.
+- Hotspot selection opens the explanatory detail dialog immediately, with keyboard focus management and dismissal support.
+- Expanded `/company` corporate content: company context, eight detailed capability domains, delivery process, client sectors and precise equipment/service descriptions in working pop-ups.
+- Procurement cards now open itemised details instead of immediately sending visitors to RFQ. Ecosystem cards open contextual explanation with an explicit enquiry route.
+- CSS aligns scene illustrations and studio accents to blue; explanatory dialogs and mobile tap targets received responsive styling.
+- Eight-domain routing for Architecture Studio and quote contexts, including direct routes `/architectures/{slug}`; corrected older five-architecture page label.
+- Company/about separate routes and nav-close work pre-existed on this branch.
+- Search results expose company profile and solutions overview PDF routes; initial PDF writer is in source but visual/publication quality is still below the requested standard.
 
-## Implemented on review branch
-- Architecture Studio: keyboard tab navigation, accessible tabpanel naming, focus-contained inspector dialogue, Escape to close, focus restoration, polite selected-layer updates.
-- Homepage: pauses automatic editorial slide changes during hover, keyboard interaction and when the document is hidden; honours reduced-motion preferences on Discover More scrolling.
-- Enquiry: maps internal architecture identifiers to clear customer-facing service descriptions and announces submission state accessibly.
+## Confirmed verification evidence
+- GitHub branch source exists and file updates are committed.
+- Vercel preview for previous integrated commit `65fda63c2a8324e74a8bdbe175c5f838f448b41e` reported READY at `https://kabo-kd6w8w3fh-kabo2.vercel.app`. This is build status only, not end-user browser QA.
+- Later commit `5930d9a888e0b729ae8e56420f0c293666cd976f` corrected deep-linked architecture and all eight enquiry context labels. Verify latest commit's preview status before any promotion.
+- Vercel is configured with SSO protection on non-custom deployments; direct external visual/browser testing may be blocked. Do not claim a completed independent visual/browser smoke test without a recorded result.
+- Production branch `main` has not been promoted from this branch.
 
-## Verification status
-- Source changes committed on review branch: implemented.
-- Production website: unchanged by this branch.
-- TypeScript/Next.js build: pending Vercel preview build.
-- Browser, keyboard, reduced-motion and physical device QA: pending.
-- Enquiry mail delivery / SMTP end-to-end: not tested here.
-- Image replacements: deferred until reviewed assets are approved.
+## Outstanding / blockers
+- Browser walkthrough on desktop and real mobile: navigation, same-route overlay dismissals, search, all 8 scenes/hotspots/pop-ups, focus trap, reduced motion, drag/orbit, viewport and scroll-lock regressions.
+- Document PDF visual production-quality redesign with the true provided brand mark and tasteful graphical/images; confirm rendering, pagination, accessibility, downloads and wording.
+- Confirm no unverified copy/OEM claims and no prices on public pages.
+- Confirm build on HEAD of this branch after the latest amendments; check Vercel logs/route responses where possible.
+- QA for enquiry form back-end mail delivery remains unconfirmed.
+- Performance checks for long animated pages and low-powered mobile handsets remain outstanding.
+- Full user visual approval and safe production promotion only after verified readiness.
 
 ## Definition of done
-- Vercel preview READY on the review branch, with no compile errors.
-- QA confirms no footer or layout regressions, keyboard/ESC interactions work, enquiry context remains accurate, and reduced-motion/hero behaviour is stable.
-- User visually approves preview before production promotion.
-
-## User feedback received during review (22/10/2026)
-- Architecture Studio's **scene graphics**, not the inspector box layout, need a significant upgrade from flat 2D to engaging, performant, genuine 3D (e.g. interactive camera/orbit, selectable devices, directional data paths, contextual overlays).
-- Experts from enterprise OEMs and technical engineering disciplines are the audience; diagrams must be technically defensible and illustrative scenarios must not imply an actual customer installation.
-- Preserve approved header styling but re-evaluate repeated primary menu items inside the expanded site index. Propose useful new content/pages without inventing projects or qualifications.
-- Images should be brighter, natural-looking and consistent with KABO Blue; image selections are intentionally deferred until separate review.
-- User reported inability to scroll the preview while reviewing. This may be a scroll-locking overlay or a viewer/browser issue; root cause is **not verified**.
-- Mitigation committed to the preview branch: Escape/backdrop can dismiss site navigation or search overlays, restoring body scroll. Browser diagnosis and user confirmation remain outstanding.
-- Avoid modifying production without review.
-
-## Navigation correction / user feedback (22/10/2026)
-- Implemented in active preview branch: the Company menu item now navigates to a separate `/company` About KABO page, while Our approach stays at `/about`.
-- All primary site-index and search-result navigation actions close open menu/search overlays directly, including navigation to the current page; body scroll locking is released by the overlay effect cleanup.
-- Refined restrained blue hover/focus treatment for actions and cards is committed in the same branch.
-- Awaiting preview build and browser/mobile verification. Production remains unchanged.
-- Do not publish unverified credentials, operating facilities, partnerships or public pricing.
+A complete coherent desktop/mobile website with premium legible, blue-consistent environment illustrations, 8 useful scenes, working pop-ups and navigation, complete publications, searchable resources, no public prices, verified browser/build/contact/PDF flows, and an approved preview promoted to production; production smoke-tested.
