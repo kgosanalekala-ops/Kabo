@@ -49,6 +49,16 @@ Vercel project ID: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
 ## Definition of done
 A complete coherent desktop/mobile website with premium legible, blue-consistent environment illustrations, 8 useful scenes, working pop-ups and navigation, complete publications, searchable resources, no public prices, verified browser/build/contact/PDF flows, and an approved preview promoted to production; production smoke-tested.
 
+## Responsive navigation and equipment hero review — 22/10/2026
+- User reconfirmed the existing navigation and logo are locked; only its sizing, animation and overlay usability may be refined. Mobile, tablet and desktop must each fit without a clipped menu.
+- Added a compact CSS Grid site index (two columns when space allows, one at very narrow widths), dynamic-viewport scroll containment, smaller header and restrained hover/focus motion. The original eight destinations and header actions remain.
+- Reworked the photo-first hero to group the HPE, H3C and Hikvision product photography with depth, restrained CSS movement and a grounded photographic scene. This is an **interim 2.5D presentation**, not a true rotating mesh or 360-degree product model. Never describe it as the promised real GLB 3D.
+- The rotating headline states already cycle every 8.5 seconds and now carry a photographic equipment grouping per story.
+- The existing image-based eight-domain architecture viewer and hotspots are preserved.
+- Verified locally: `npm run build` passed (Next.js 16.3.5); `npm run lint` passed with one pre-existing internal navigation advisory in configurator-page.tsx.
+- Figma authenticated successfully after reconnection, and a KABO responsive design-review file was created. Its actual design composition is still outstanding.
+- Remaining: inspect responsive browser screenshots at phone/tablet/desktop sizes, real manufacturer 3D mesh sourcing, end-to-end overlay testing, final approval and production release.
+
 ## Static cross-file coverage audit — 22/10/2026
 - GitHub source checks: 8/8 solution domains, 8/8 procurement catalogue sections, and 8 unique Architecture Studio scene definitions.
 - Every solution domain maps to a defined scene; no unmapped architecture type.
