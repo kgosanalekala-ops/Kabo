@@ -28,12 +28,12 @@ Vercel project ID: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
 - CSS aligns scene illustrations and studio accents to blue; explanatory dialogs and mobile tap targets received responsive styling.
 - Eight-domain routing for Architecture Studio and quote contexts, including direct routes `/architectures/{slug}`; corrected older five-architecture page label.
 - Company/about separate routes and nav-close work pre-existed on this branch.
-- Search results expose company profile and solutions overview PDF routes; initial PDF writer is in source but visual/publication quality is still below the requested standard.
+- Search results expose company profile and solutions overview PDF routes; the PDF writer creates white, itemised printable pages and now includes eight distinct original vector infrastructure plates in the company profile. Photographic quality, exact supplied logo and PDF rendering still require separate visual verification.
 
 ## Confirmed verification evidence
 - GitHub branch source exists and file updates are committed.
-- Vercel preview for previous integrated commit `65fda63c2a8324e74a8bdbe175c5f838f448b41e` reported READY at `https://kabo-kd6w8w3fh-kabo2.vercel.app`. This is build status only, not end-user browser QA.
-- Later commit `5930d9a888e0b729ae8e56420f0c293666cd976f` corrected deep-linked architecture and all eight enquiry context labels. Verify latest commit's preview status before any promotion.
+- Vercel preview at commit `92fff17f2e9799dc9a764fd88f28baba87b5c648` reported READY: `https://kabo-2ikw4fcmm-kabo2.vercel.app` (deployment `dpl_HgTUp5soRBBbgANxCBTwb5Mx2caa`). This verifies deployment/build readiness, **not** end-user browser QA.
+- Commit `5930d9a888e0b729ae8e56420f0c293666cd976f` corrected deep-linked architecture and all eight enquiry context labels. The latest PDF-graphics commit above also passed the Vercel deployment state check.
 - Vercel is configured with SSO protection on non-custom deployments; direct external visual/browser testing may be blocked. Do not claim a completed independent visual/browser smoke test without a recorded result.
 - Production branch `main` has not been promoted from this branch.
 
@@ -41,7 +41,7 @@ Vercel project ID: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
 - Browser walkthrough on desktop and real mobile: navigation, same-route overlay dismissals, search, all 8 scenes/hotspots/pop-ups, focus trap, reduced motion, drag/orbit, viewport and scroll-lock regressions.
 - Document PDF visual production-quality redesign with the true provided brand mark and tasteful graphical/images; confirm rendering, pagination, accessibility, downloads and wording.
 - Confirm no unverified copy/OEM claims and no prices on public pages.
-- Confirm build on HEAD of this branch after the latest amendments; check Vercel logs/route responses where possible.
+- Current PDF-graphics HEAD is confirmed READY, but browser access and build logs are restricted. A Vercel build-log request returned a 403 requiring team-level authorisation; do not request additional user interaction unless independently required for release.
 - QA for enquiry form back-end mail delivery remains unconfirmed.
 - Performance checks for long animated pages and low-powered mobile handsets remain outstanding.
 - Full user visual approval and safe production promotion only after verified readiness.
