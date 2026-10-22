@@ -16,12 +16,12 @@ const PHOTOS:Record<ViewType,Photo>={
   workplace:{url:"https://imageio.forbes.com/specials-images/imageserve/61a787ec933e8ef4f55d7f55/0x0.jpg?fit=bounds&format=jpg&height=900&width=1600",alt:"Professional team collaborating in a sunlit office with business workstations",credit:"Contemporary office reference photograph",subject:"People, workstations, Wi-Fi and collaboration"}
 };
 export function Architecture3D({type,zones,active,onSelect,selector}:{type:ViewType;zones:Zone[];active:number;onSelect:(index:number)=>void;selector?:ReactNode}){
- const [failed,setFailed]=useState(false);
+ const [failedUrl,setFailedUrl]=useState("");
  const [help,setHelp]=useState(false);
  const photo=PHOTOS[type];
  return <section className="kp-explorer" aria-label={`${type} photographic infrastructure explorer`}>
    <div className="kp-scene">
-     <img key={type} src={failed?"/images/sol_noc.jpg":photo.url} alt={photo.alt} className="kp-scene-photo" style={{objectPosition:photo.focal||"center"}} onError={()=>setFailed(true)} onLoad={()=>setFailed(false)} decoding="async" loading="lazy"/>
+     <img key={type} src={failedUrl===photo.url?"/images/sol_noc.jpg":photo.url} alt={photo.alt} className="kp-scene-photo" style={{objectPosition:photo.focal||"center"}} onError={()=>setFailedUrl(photo.url)} decoding="async" loading="lazy"/>
      <div className="kp-scene-shade" aria-hidden="true"/>
      {selector&&<div className="kp-scene-tabs" aria-label="Choose a solution environment">{selector}</div>}
      <div className="kp-photo-overline"><span className="kp-pulse"/> KABO / INFRASTRUCTURE EXPLORER <span className="kp-photo-count">08 SYSTEMS</span></div>
