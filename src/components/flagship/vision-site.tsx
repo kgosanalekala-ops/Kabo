@@ -51,6 +51,18 @@ return <><header className={`vf-header ${scrolled?"is-scrolled":""}`}><div class
 function AccentLabel({children}:{children:React.ReactNode}){return <span className="vf-eyebrow"><span className="vf-eyebrow-line"/>{children}</span>}
 function Action({children,onClick,variant="dark"}:{children:React.ReactNode;onClick:()=>void;variant?:"dark"|"light"|"outline"}){return <button className={`vf-action vf-action--${variant}`} onClick={onClick}>{children}<ArrowUpRight size={18}/></button>}
 function Landing(){const {navigate}=usePage();const [slide,setSlide]=useState(0),reduced=useReducedMotion();const [hold,setHold]=useState(false);const [focusHold,setFocusHold]=useState(false);
+const storyTouch=useRef<{x:number;y:number}|null>(null);
+const beginStoryTouch=(event:React.TouchEvent<HTMLElement>)=>{
+ if(event.touches.length!==1||event.target instanceof Element&&event.target.closest("button,a,input,textarea,select,[role='tab']")){storyTouch.current=null;return;}
+ storyTouch.current={x:event.touches[0].clientX,y:event.touches[0].clientY};
+};
+const endStoryTouch=(event:React.TouchEvent<HTMLElement>)=>{
+ const origin=storyTouch.current;storyTouch.current=null;
+ if(!origin||event.changedTouches.length!==1)return;
+ const dx=event.changedTouches[0].clientX-origin.x,dy=event.changedTouches[0].clientY-origin.y;
+ if(Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.35)return;
+ setSlide(current=>(current+(dx<0?1:ROTATING.length-1))%ROTATING.length);
+};
 useEffect(()=>{
  if(hold||focusHold||reduced)return;
  let timer:number|undefined;
@@ -62,7 +74,7 @@ useEffect(()=>{
  document.addEventListener("visibilitychange",sync);
  return()=>{document.removeEventListener("visibilitychange",sync);if(timer!==undefined)window.clearInterval(timer);};
 },[hold,focusHold,reduced]);return <>
-<section className="vf-home-hero" aria-label="KABO vision"><div className="vf-hero-light" aria-hidden="true"/><div className="vf-hero-grid" aria-hidden="true"/><div className="vf-hero-datacenter" aria-hidden="true"/>
+<section className="vf-home-hero" aria-label="KABO vision" onTouchStart={beginStoryTouch} onTouchEnd={endStoryTouch} onTouchCancel={()=>{storyTouch.current=null;}}><div className="vf-hero-light" aria-hidden="true"/><div className="vf-hero-grid" aria-hidden="true"/><div className="vf-hero-datacenter" aria-hidden="true"/>
 <div className="vf-home-hero-inner"><div className="vf-home-copy"><div className="vf-prelude"><span className="vf-status"/> POWERING AFRICA’S INTELLIGENT INFRASTRUCTURE <span> / 001</span></div>
 <div className="vf-hero-slides"><AnimatePresence mode="wait" initial={false}><motion.div key={slide} initial={reduced?false:{opacity:0,y:15}} animate={{opacity:1,y:0}} exit={reduced?{opacity:0}:{opacity:0,y:-10}} transition={{duration:.65,ease:[.25,.8,.2,1]}}><p className="vf-slide-kicker">{ROTATING[slide].over}</p><h1>{ROTATING[slide].lines.map((x,i)=><span key={i} className={x===ROTATING[slide].accent?"vf-highlight":""}>{x}</span>)}</h1><p className="vf-lede">{ROTATING[slide].desc}</p></motion.div></AnimatePresence></div>
 <div className="vf-hero-actions"><Action variant="light" onClick={()=>navigate("procurement")}>Explore what we supply</Action><button className="vf-simple-link" onClick={()=>navigate("case-studies")}>Explore the architecture <ArrowRight size={17}/></button></div>
