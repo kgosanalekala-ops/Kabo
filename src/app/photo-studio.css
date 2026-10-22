@@ -57,3 +57,47 @@
  .vf-app .vf-arch-actions{grid-column:auto;display:flex;flex-flow:row wrap}
 }
 @media(prefers-reduced-transparency:reduce){.kp-map-point,.kp-hotspot-chip,.kp-scene-tabs .vf-arch-tabs button{backdrop-filter:none;background:#0d405d}}
+
+
+/* Full-bleed photographic hero. Live OEM photos, NOT generated spinning meshes. */
+.vf-app .vf-home-hero{background:#061924;isolation:isolate;overflow:hidden}
+.vf-app .vf-home-hero-inner{position:relative;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(0px,2vw,28px);min-height:clamp(660px,85svh,920px)}
+.vf-app .vf-home-copy{position:relative;z-index:5}
+.vf-app .vf-home-visual{position:relative;z-index:2;min-width:0;width:100%;max-width:none;align-self:stretch;overflow:visible}
+.kp-hero-product-scene{position:relative;isolation:isolate;min-height:520px;height:100%;overflow:hidden;background:#082339}
+.kp-hero-world-photo{position:absolute;inset:0;height:100%;width:100%;object-fit:cover;object-position:center;filter:saturate(.85) contrast(1.04)}
+.kp-hero-world-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(3,22,35,.77),rgba(3,21,36,.12) 60%),linear-gradient(180deg,rgba(4,20,35,.36),rgba(4,21,35,.15) 48%,#051c2d 100%)}
+.kp-hero-oem-product{position:absolute;z-index:2;top:21%;left:10%;width:83%;height:46%;object-fit:contain;object-position:center;filter:drop-shadow(0 25px 28px rgba(0,9,20,.49));-webkit-mask-image:radial-gradient(ellipse 70% 65% at 50% 50%,black 49%,transparent 100%);mask-image:radial-gradient(ellipse 70% 65% at 50% 50%,black 49%,transparent 100%)}
+.kp-hero-product-caption{position:absolute;z-index:3;left:6%;bottom:9%;right:6%;display:grid;gap:5px;text-shadow:0 2px 12px #071420}
+.kp-hero-product-caption span{color:#9ce6ff;font-size:clamp(9px,.78vw,11px);font-weight:700;letter-spacing:.16em}
+.kp-hero-product-caption strong{font-size:clamp(20px,2vw,32px);font-weight:570;letter-spacing:-.035em;color:#fff}
+.kp-hero-product-caption small{font-size:clamp(10px,.9vw,13px);color:#c3e0ee}
+.kp-hero-product-caption a{display:inline-flex;align-items:center;gap:8px;width:max-content;min-height:42px;color:#a5e9ff;border-bottom:1px solid rgba(147,224,255,.52);font-size:12px;text-shadow:none}
+.kp-hero-product-caption a:hover{color:white}
+.kp-hero-disclosure{position:absolute;z-index:4;left:6%;bottom:3%;font-size:9px;color:#a9c5d2;letter-spacing:.08em}
+@media (min-width:701px) and (max-width:1099px){
+ .vf-app .vf-home-hero-inner{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);min-height:700px}
+ .kp-hero-oem-product{top:20%;height:43%}
+}
+@media(max-width:700px){
+ .vf-app .vf-home-hero{min-height:100svh}
+ .vf-app .vf-home-hero-inner{position:relative;display:block!important;width:100%!important;min-height:max(750px,calc(100svh - 115px));padding:0!important;overflow:hidden}
+ .vf-app .vf-home-visual{position:absolute;inset:0;z-index:1;margin:0!important;width:100%;height:100%;pointer-events:none}
+ .kp-hero-product-scene{min-height:0;height:100%;width:100%}
+ .kp-hero-world-photo{object-position:center}
+ .kp-hero-world-shade{background:linear-gradient(180deg,rgba(2,18,31,.9) 0%,rgba(2,20,36,.74) 29%,rgba(3,21,35,.19) 51%,rgba(2,20,33,.88) 79%,#041725 100%)}
+ .kp-hero-oem-product{top:38%;left:9%;width:82%;height:30%;opacity:.78;filter:drop-shadow(0 14px 20px rgba(0,6,15,.50))}
+ .kp-hero-product-caption{left:19px;right:19px;bottom:7%;gap:5px}
+ .kp-hero-product-caption strong{font-size:clamp(18px,5vw,23px)}
+ .kp-hero-product-caption small{font-size:11px}
+ .kp-hero-product-caption a{pointer-events:auto;font-size:11px}
+ .kp-hero-disclosure{left:19px;bottom:3%;font-size:8px}
+ .vf-app .vf-home-copy{position:relative;z-index:5;max-width:none;padding:clamp(48px,7vh,70px) 20px 0!important;pointer-events:none}
+ .vf-app .vf-home-copy button{pointer-events:auto}
+ .vf-app .vf-home-copy h1{font-size:clamp(40px,10.25vw,59px);line-height:1.06;max-width:95%}
+ .vf-app .vf-home-copy .vf-prelude{font-size:9px}
+ .vf-app .vf-home-copy .vf-lede{max-width:370px;font-size:clamp(12px,3.15vw,14px);line-height:1.6}
+ .vf-app .vf-home-copy .vf-slide-picker{pointer-events:auto;position:relative;z-index:7}
+ .vf-app .vf-hero-bottom{position:relative;z-index:7}
+}
+@media(prefers-reduced-transparency:reduce){.kp-hero-product-caption a{background:#103e58}}
