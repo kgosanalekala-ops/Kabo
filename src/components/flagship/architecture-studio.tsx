@@ -95,7 +95,7 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
  },[open]);
  return <div className="vf-architecture" id="architecture-studio">
   <div className="vf-arch-frame">
-   <div className="vf-arch-mast"><span><span className="vf-pulse"/> KABO SYSTEMS INTELLIGENCE / INTERACTIVE MODEL</span><span>{view.label} <span className="vf-mono">// 2026</span></span></div>
+   <div className="vf-arch-mast"><span><span className="vf-pulse"/> KABO SYSTEMS INTELLIGENCE / INTERACTIVE MODEL</span><span>{view.label} <span className="vf-mono">{"// 2026"}</span></span></div>
    <AnimatePresence mode="wait" initial={false}>
     <motion.div key={type} id="vf-arch-panel" role="tabpanel" aria-labelledby={`vf-arch-tab-${type}`} initial={motionPref?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={motionPref?{opacity:0}:{opacity:0,y:-10}} transition={{duration:0.38}}>
      <div className="vf-arch-context"><p>SCENE / {String(VIEWS.indexOf(view)+1).padStart(2,"0")}</p><h3>{view.name}</h3><span>{view.intro}</span></div>
