@@ -1,6 +1,6 @@
 import type { Page } from "@/components/kabo/page-context";
 
-export const SIMPLE_PAGES = ["home", "about", "solutions", "products", "industries", "services", "partners", "case-studies", "support", "contact", "investors", "procurement", "rfq", "configure"] as const;
+export const SIMPLE_PAGES = ["home", "about", "company", "solutions", "products", "industries", "services", "partners", "case-studies", "support", "contact", "investors", "procurement", "rfq", "configure"] as const;
 export const DETAIL_SEGMENTS = {
   "solution-detail": "solutions", "product-detail": "products",
   "industry-detail": "industries", "partner-detail": "partners",
