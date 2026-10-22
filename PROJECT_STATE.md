@@ -67,3 +67,10 @@ A complete coherent desktop/mobile website with premium legible, blue-consistent
 - No literal ZAR price-like strings detected in the main site component during this static audit.
 - Preview for source commit `92fff17f2e9799dc9a764fd88f28baba87b5c648` and subsequent documentation commit `b9822dc6192de40113ad71c9ec5dce6ecf061765` both returned Vercel READY.
 - These checks are **not** substitutes for real browser, mobile, PDF rendering, runtime API, mail and visual QA.
+
+## Touch navigation refinement — 22/10/2026
+- Horizontal one-finger swipes on the homepage hero move between equipment stories. Horizontal swipes within the Architecture Studio photographic scene move between all eight architecture environments, wrapping in both directions.
+- Vertical touch movement stays native page scrolling via `touch-action: pan-y`; no swipe-handler `preventDefault()` is used. Buttons, links, hotspot controls and architecture tabs are excluded from gesture capture. This works with touch-equipped desktop screens as well as mobile/tablet touch events.
+- Non-touch desktop operation remains via existing tabs, story selectors, buttons and keyboard controls. The subtle swipe hint appears only on coarse touch pointers.
+- Gesture detection uses a 55px horizontal threshold and horizontal-to-vertical dominance check to avoid accidental scene changes.
+- Pending: real phone/tablet/touch-desktop regression checks; swipe handlers are source-level implementation, not yet user-device verified.
