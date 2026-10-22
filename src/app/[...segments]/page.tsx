@@ -5,7 +5,7 @@ import { pathToPage } from "@/lib/site-routes";
 
 type Props = { params: Promise<{ segments: string[] }> };
 const titles: Record<string, string> = {
-  solutions: "Solutions", products: "Products", industries: "Industries", services: "Services", about: "About KABO",
+  solutions: "Solutions", products: "Products", industries: "Industries", services: "Services", about: "Our Approach", company: "About KABO",
   procurement: "ICT and Workplace Procurement", partners: "Technology Ecosystem", support: "Support", contact: "Contact",
   rfq: "Request a Quote", configure: "Configure a Solution", architecture: "Infrastructure Architecture", investors: "Investor Enquiries",
 };
