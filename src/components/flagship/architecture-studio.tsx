@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Cpu, Layers3, MoveUpRight, Router, ShieldCheck, Waypoints, X } from "lucide-react";
 import { NetworkScene, type SceneKey } from "./network-scene";
 import { SceneArt } from "./scene-art";
+import { Architecture3D } from "./architecture-3d";
 import type { Domain } from "./vision-data";
 
 export type ViewType = "campus"|"compute"|"security"|"workplace"|"widearea";
@@ -82,17 +83,7 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
    <AnimatePresence mode="wait" initial={false}>
     <motion.div key={type} id="vf-arch-panel" role="tabpanel" aria-labelledby={`vf-arch-tab-${type}`} initial={motionPref?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={motionPref?{opacity:0}:{opacity:0,y:-10}} transition={{duration:0.38}}>
      <div className="vf-arch-context"><p>SCENE / {String(VIEWS.indexOf(view)+1).padStart(2,"0")}</p><h3>{view.name}</h3><span>{view.intro}</span></div>
-     {type==="campus"?<div className="vf-main-campus"><NetworkScene compact initial="campus" onPick={key=>{const index=view.zones.findIndex(v=>v.id===key);if(index>=0)setZone(index)}}/></div>:
-      <div className="vf-topology" aria-label={view.name+" selectable architecture diagram"}>
-       <SceneArt type={type} />
-       <svg className="vf-topology-lines" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="route-grad" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#67CAFA"/><stop offset="1" stopColor="#97A7B4"/></linearGradient></defs>
-        <path d="M180 205C270 205 280 122 395 140 S610 245 795 208" fill="none" stroke="url(#route-grad)" strokeWidth="2" strokeOpacity=".53" strokeDasharray="7 9" className="vf-studio-path" />
-        <path d="M180 205C280 275 350 275 395 140 M620 240 Q700 300 795 208" fill="none" stroke="#67CAFA" strokeOpacity=".18" strokeWidth="1.5" />
-       </svg>
-       <div className="vf-topo-stars" aria-hidden="true"/>
-       {view.zones.map((z,i)=><button key={z.id} className={`vf-topology-node ${zone===i?"active":""}`} style={{left:z.left+"%",top:z.top+"%"}} aria-pressed={zone===i} onClick={()=>setZone(i)}><span className="vf-topo-number">{z.number}</span><span className="vf-topo-label"><strong>{z.name}</strong><small>{z.caption}</small></span></button>)}
-       <div className="vf-topology-scope">KABO / OPEN DESIGN REFERENCE<br/>NOT TO SCALE</div>
-      </div>}
+     <Architecture3D type={type} zones={view.zones} active={zone} onSelect={i=>setZone(i)}/>
     </motion.div>
    </AnimatePresence>
    <div className="vf-arch-inspector" aria-live="polite" aria-atomic="true"><div className="vf-arch-identified"><motion.span key={type+"-"+active.number} className="vf-arch-indicator" initial={motionPref?false:{opacity:.4,scale:.89}} animate={{opacity:1,scale:1}} transition={{duration:.28}}>{active.number}</motion.span><div><p>SELECTED LAYER</p><motion.h4 key={type+"-"+active.name} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.28}}>{active.name}</motion.h4></div></div><motion.p key={type+"-"+active.number+"-detail"} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.32}}>{active.details}</motion.p><div className="vf-arch-actions"><button onClick={()=>setOpen(true)}>Inspect layer <MoveUpRight size={15}/></button><button onClick={()=>onQuote?.(type)}>Discuss this architecture <ArrowUpRight size={15}/></button></div></div>
