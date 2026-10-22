@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 import "./vision.css";
+import "./photo-studio.css";
 import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
