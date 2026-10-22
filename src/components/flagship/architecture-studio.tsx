@@ -7,7 +7,7 @@ import { SceneArt } from "./scene-art";
 import { Architecture3D } from "./architecture-3d";
 import type { Domain } from "./vision-data";
 
-export type ViewType = "campus"|"compute"|"security"|"workplace"|"widearea";
+export type ViewType = "campus"|"compute"|"datacentre"|"security"|"widearea"|"document"|"resilience"|"workplace";
 type Zone={id:string;number:string;name:string;caption:string;details:string;left:number;top:number};
 const VIEWS:{type:ViewType;name:string;label:string;intro:string;zones:Zone[]}[]=[
  {type:"campus",name:"Connected campus",label:"CAMPUS / LIVE TOPOLOGY",intro:"Explore an end-to-end campus from identity-aware Wi-Fi through switching to a resilient core and data services.",zones:[
@@ -21,6 +21,13 @@ const VIEWS:{type:ViewType;name:string;label:string;intro:string;zones:Zone[]}[]
   {id:"fabric",number:"02",name:"High-speed fabric",caption:"Ethernet & transport",details:"East-west traffic and storage connectivity inform network fabrics, latency targets and interface selection.",left:38,top:37},
   {id:"gpu",number:"03",name:"AI-ready compute",caption:"CPU, GPU and memory",details:"Accelerator selection follows actual model size, inference/training requirements and budget—not marketing claims.",left:61,top:47},
   {id:"recover",number:"04",name:"Data resilience",caption:"Backup & recoverability",details:"Recovery objectives, immutable copies and verified restores are essential parts of the final solution.",left:79,top:62}]},
+
+ {type:"datacentre",name:"Data centre infrastructure",label:"FACILITY / RESILIENT SYSTEMS",intro:"Step inside a data centre environment, connecting physical racks, power systems, cooling, storage and network fabric.",zones:[
+  {id:"servers",number:"01",name:"Server racks",caption:"Compute and virtualisation",details:"Rack-mounted servers and management interfaces support business workloads. Capacity, resilience, power budgets and lifecycle needs are assessed against expected demand.",left:20,top:47},
+  {id:"storage",number:"02",name:"Enterprise storage",caption:"Protected data platforms",details:"Shared or distributed storage infrastructure is selected for capacity, throughput, latency, access control and backup compatibility.",left:37,top:60},
+  {id:"fabric",number:"03",name:"Network fabric",caption:"Data and management pathways",details:"Core switching connects compute, storage, management and upstream services. Traffic separation and appropriate interface speeds protect performance.",left:56,top:36},
+  {id:"power",number:"04",name:"Resilient power",caption:"UPS, PDU and distribution",details:"Power distribution and backup systems must be sized to the equipment load, available circuits and agreed uptime requirements.",left:77,top:61},
+  {id:"cooling",number:"05",name:"Thermal environment",caption:"Cooling and monitoring",details:"Airflow, thermal loads, environmental sensors and alerting form part of the facility design; cooling availability is critical to workload continuity.",left:83,top:35}]},
  {type:"security",name:"Secure environment",label:"SECURITY / CONVERGED CONTROL",intro:"Follow a monitored environment from cameras and access readers through secure network transport to control-room operations.",zones:[
   {id:"camera",number:"01",name:"IP surveillance",caption:"Cameras & video streams",details:"Coverage plans, camera placement and power/network budgets need to match the physical environment.",left:20,top:38},
   {id:"access",number:"02",name:"Electronic access",caption:"Readers & door control",details:"Controlled access combines identity, event logging, controllers and fail-safe operational policies.",left:42,top:62},
@@ -31,11 +38,23 @@ const VIEWS:{type:ViewType;name:string;label:string;intro:string;zones:Zone[]}[]
   {id:"edge",number:"02",name:"SD-WAN edge",caption:"Encryption & application policy",details:"Encrypted tunnels, health checks and application-aware routing adapt to multiple carrier links.",left:43,top:36},
   {id:"cloud",number:"03",name:"Cloud connectivity",caption:"SaaS and hybrid resources",details:"Secure egress, SaaS optimisation and cloud on-ramps minimise complexity across regions.",left:64,top:51},
   {id:"ops",number:"04",name:"Visibility",caption:"Monitoring & assurance",details:"Centralised visibility exposes application health, site readiness and performance problems.",left:82,top:31}]},
- {type:"workplace",name:"Document workflow",label:"WORKPLACE / DOCUMENT LIFECYCLE",intro:"A complete business document journey, from capture through governance to secure output and retention.",zones:[
+ {type:"document",name:"Document and print",label:"DOCUMENT / PRINT LIFECYCLE",intro:"A complete business document journey, from capture through governance to secure output and retention.",zones:[
   {id:"capture",number:"01",name:"Capture",caption:"Scanning & ingestion",details:"Scan profiles and metadata help route paper-based and digital records into the right process.",left:19,top:51},
   {id:"workflow",number:"02",name:"Workflow",caption:"Review & approval",details:"Role-aware routing, access controls and exceptions streamline business processes.",left:40,top:33},
   {id:"store",number:"03",name:"Secure records",caption:"Search & retention",details:"Retention, indexing, auditability and permissions matter more than the printer alone.",left:63,top:52},
-  {id:"output",number:"04",name:"Output",caption:"Print & distribute",details:"Business multifunction devices can support secure release, controlled print and managed consumables.",left:82,top:34}]}
+  {id:"output",number:"04",name:"Output",caption:"Print & distribute",details:"Business multifunction devices can support secure release, controlled print and managed consumables.",left:82,top:34}]},
+ {type:"resilience",name:"Cyber resilience",label:"SECURITY / RECOVERY PATH",intro:"Explore security boundaries, protected information, monitoring and tested recoverability across a representative organisation.",zones:[
+  {id:"users",number:"01",name:"User access",caption:"Identity and device controls",details:"Account access, endpoint posture and minimum necessary privileges reduce exposure across users and managed devices.",left:15,top:57},
+  {id:"perimeter",number:"02",name:"Security gateway",caption:"Firewall and inspection",details:"Policy-controlled ingress and egress, remote access and segmentation help restrict traffic between different trust zones.",left:35,top:39},
+  {id:"workloads",number:"03",name:"Protected workloads",caption:"Server and application security",details:"Host configuration, application controls, protected management and monitoring work together to reduce operational risks.",left:55,top:56},
+  {id:"backup",number:"04",name:"Backup repository",caption:"Recoverable business data",details:"Backup targets and retention policies follow workload criticality and recovery objectives; isolated or immutable copies reduce tampering risk.",left:74,top:37},
+  {id:"recovery",number:"05",name:"Recovery location",caption:"Restoration and continuity",details:"A documented recovery environment and periodic restore exercises test whether essential data and services can actually be recovered.",left:86,top:62}]},
+ {type:"workplace",name:"Connected workplace",label:"WORKPLACE / PEOPLE AND DEVICES",intro:"Inspect laptops, collaboration spaces, business wireless, workstations and secure workplace services in a realistic office.",zones:[
+  {id:"laptops",number:"01",name:"Business laptops",caption:"Portable computing",details:"Device form factor, processing, memory, storage, security and supportability must match each user role.",left:17,top:61},
+  {id:"workstation",number:"02",name:"Professional workstations",caption:"Specialist endpoints",details:"Technical and creative workloads can require higher CPU, GPU, memory and professional software capabilities.",left:38,top:38},
+  {id:"network",number:"03",name:"Office connectivity",caption:"Wireless and switching",details:"Business Wi-Fi, switching and identity-aware access connect workstations, meeting spaces and shared services.",left:58,top:57},
+  {id:"meeting",number:"04",name:"Collaboration room",caption:"Meetings and communications",details:"Displays, cameras, headsets and conferencing equipment must interoperate with room requirements and supported platforms.",left:77,top:38},
+  {id:"supplies",number:"05",name:"Office supplies",caption:"Printing and daily essentials",details:"Consumables, licensed applications, printers, A4/A3 paper and stationery form part of workplace supply requirements.",left:88,top:61}]}
 ];
 export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:ViewType;onQuote?:(type:ViewType)=>void}) {
  const [type,setType]=useState<ViewType>(initial);
