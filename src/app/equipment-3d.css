@@ -1,0 +1,26 @@
+/* A native WebGL product showroom. No flat equipment photos or 2.5D cards. */
+.vf-app .kp-hero-product-scene--real{background:radial-gradient(ellipse 80% 62% at 57% 48%,#0b4761 0%,#052e48 38%,#061b2c 76%,#04131f 100%);isolation:isolate;min-height:0}
+.kp-real-ambient{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(130deg,rgba(35,154,210,.1),transparent 48%),repeating-linear-gradient(90deg,transparent 0 95px,rgba(87,202,248,.036) 95px 96px);mask-image:linear-gradient(to bottom,transparent,black 32%,black 76%,transparent)}
+.kp-real-3d{position:absolute;inset:0;z-index:2;min-height:320px;overflow:hidden}
+.kp-real-3d-viewport{position:absolute;inset:0;width:100%;height:100%;min-width:0;min-height:0}
+.kp-real-3d-canvas{position:absolute;inset:0;display:block;width:100%!important;height:100%!important;outline:none;pointer-events:auto;touch-action:pan-y;cursor:grab}
+.kp-real-3d-canvas:active{cursor:grabbing}
+.kp-real-3d-corner{position:absolute;z-index:4;color:rgba(190,228,243,.85);font-weight:680;letter-spacing:.20em;font-size:9px;pointer-events:none;text-shadow:0 1px 12px rgba(2,15,25,.85)}
+.kp-real-3d-corner--top{top:9%;left:7%}
+.kp-real-3d-corner--bottom{top:78%;right:6%}
+.kp-real-3d-fallback{position:absolute;left:12%;right:12%;top:35%;border:1px solid rgba(125,194,226,.34);padding:24px;color:#d6effa;text-align:center;background:rgba(5,32,49,.85);font-size:13px}
+.vf-app .kp-real-caption{z-index:7;bottom:10%;left:8%;right:8%;pointer-events:none}
+.vf-app .kp-real-caption a{pointer-events:auto}
+.vf-app .kp-real-disclosure{z-index:7;bottom:2%;left:8%;pointer-events:none}
+@media(min-width:1100px){.vf-app .kp-hero-product-scene--real{min-height:700px}.kp-real-3d-corner--top{top:14%}.kp-real-3d-corner--bottom{top:70%}}
+@media(max-width:700px){
+ .vf-app .kp-hero-product-scene--real{min-height:0;height:100%}
+ .kp-real-3d{min-height:0;height:100%}
+ .kp-real-3d-corner--top{top:36%;left:5%;font-size:7px}
+ .kp-real-3d-corner--bottom{top:69%;right:5%;font-size:7px}
+ .vf-app .kp-real-caption{bottom:8%;left:6%;right:6%;max-width:90%}
+ .vf-app .kp-real-caption strong{font-size:clamp(15px,5vw,20px)}
+ .vf-app .kp-real-caption small{font-size:10px}
+ .vf-app .kp-real-disclosure{bottom:1%;left:6%;font-size:7px;letter-spacing:.06em}
+}
+@media(prefers-reduced-motion:reduce){.kp-real-3d-canvas{cursor:default}}

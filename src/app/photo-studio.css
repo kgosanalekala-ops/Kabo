@@ -233,3 +233,102 @@
 @media(prefers-reduced-motion:reduce){
  .kp-hero-feature-equipment,.kp-hero-support{animation:none!important;will-change:auto}
 }
+
+/* REVIEW CORRECTION — single, aligned navigation column on all form factors.
+   Eight destinations are visible as one site index; a very short viewport
+   scrolls vertically within the menu rather than clipping any destination. */
+.vf-app .vf-navigation-panel{display:flex;flex-direction:column;gap:0;width:min(calc(100% - 48px),920px);padding:clamp(12px,2vh,22px) 0 24px}
+.vf-app .vf-overlay-top{width:100%;flex:0 0 auto;margin-bottom:5px;padding-bottom:11px}
+.vf-app .vf-nav-large{flex:0 0 auto;display:grid;grid-template-columns:34px minmax(0,1fr) 22px;column-gap:12px;align-items:center;width:100%;min-height:clamp(52px,7.1dvh,67px);padding:9px 2px;overflow:visible}
+.vf-app .vf-nav-large strong{font-size:clamp(17px,2.1vw,25px);line-height:1.13;overflow-wrap:normal}
+.vf-app .vf-nav-large small{display:none}
+.vf-app .vf-nav-large svg{width:17px;height:17px;justify-self:end}
+@media(max-width:1023px){
+ .vf-app .vf-navigation-panel{display:flex;flex-direction:column;width:calc(100% - 40px)}
+}
+@media(max-width:640px){
+ .vf-app .vf-navigation-cover{overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:auto}
+ .vf-app .vf-navigation-panel{display:flex;flex-direction:column;width:calc(100% - 36px);padding:9px 0 calc(20px + env(safe-area-inset-bottom,0px));gap:0}
+ .vf-app .vf-overlay-top{margin:0 0 3px;padding-bottom:10px;font-size:10px}
+ .vf-app .vf-nav-large{display:grid;grid-template-columns:25px minmax(0,1fr) 20px;min-height:clamp(45px,6.9dvh,56px);padding:7px 1px;gap:10px;justify-items:start}
+ .vf-app .vf-nav-large strong{font-size:clamp(17px,4.6vw,21px);font-weight:570;line-height:1.15}
+ .vf-app .vf-nav-large>span{font-size:10px}
+ .vf-app .vf-nav-large svg{width:17px;height:17px;justify-self:end}
+}
+@media(max-width:340px){
+ .vf-app .vf-navigation-panel{display:flex;flex-direction:column;width:calc(100% - 28px)}
+ .vf-app .vf-nav-large{grid-template-columns:23px minmax(0,1fr) 17px;min-height:45px}
+ .vf-app .vf-nav-large strong{font-size:16px}
+}
+@media(max-height:520px){
+ .vf-app .vf-navigation-panel{display:flex;flex-direction:column}
+ .vf-app .vf-nav-large{min-height:45px}
+}
+
+/* REVIEW CORRECTION — architecture photographs are 763x230–262 px panoramic
+   assets. Never use object-fit:cover on a tall mobile box: that crops the scene.
+   Tabs are fully visible above the image, with an accessible full-size viewer. */
+.vf-app .kp-explorer{min-width:0;overflow:hidden;background:#071c2a}
+.vf-app .kp-scene-tabs{position:relative;top:auto;right:auto;left:auto;z-index:7;padding:13px 13px 10px;background:#092538}
+.vf-app .kp-scene-tabs .vf-arch-tabs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px!important;overflow:visible!important;padding:0!important;margin:0!important;max-width:none;scroll-snap-type:none}
+.vf-app .kp-scene-tabs .vf-arch-tabs button{display:flex;align-items:center;justify-content:center;gap:5px;white-space:normal!important;overflow-wrap:anywhere;text-align:center;min-width:0;min-height:45px;padding:8px 7px!important;font-size:clamp(10px,.95vw,12px)!important;line-height:1.25;background:#103b52!important;box-shadow:none}
+.vf-app .kp-scene-tabs .vf-arch-tabs button span{white-space:nowrap;font-size:9px;color:#87d4f6}
+.vf-app .kp-scene-tabs .vf-arch-tabs button.active{background:#006197!important;box-shadow:inset 0 0 0 1px #a4e7ff!important}
+.vf-app .kp-scene{position:relative;height:auto;min-height:0;aspect-ratio:763/248;overflow:hidden;background:#092638;touch-action:pan-y}
+.vf-app .kp-scene-photo{object-fit:contain;object-position:center!important;width:100%;height:100%;filter:saturate(1.04) contrast(1.02)}
+.vf-app .kp-scene-shade{background:linear-gradient(180deg,rgba(0,14,28,.55),transparent 20%,transparent 73%,rgba(0,20,35,.22));}
+.vf-app .kp-photo-overline{top:10px;left:12px;right:12px;font-size:9px;letter-spacing:.07em}
+.vf-app .kp-map-point{min-height:36px;padding:5px 8px}
+.vf-app .kp-map-point strong{font-size:11px;max-width:112px}
+.vf-app .kp-scene-details{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:13px;padding:17px 19px 15px;background:linear-gradient(125deg,#0a2638,#0a1d2d);border-top:1px solid rgba(188,231,250,.18);color:#eefaff}
+.vf-app .kp-scene-intro{position:static;display:grid;gap:5px;max-width:none;min-width:0;text-shadow:none;pointer-events:auto}
+.vf-app .kp-scene-intro span{font-size:9px;letter-spacing:.12em;color:#8fdfff}
+.vf-app .kp-scene-intro strong{font-size:clamp(16px,1.8vw,23px);font-weight:590;line-height:1.23;letter-spacing:-.02em}
+.vf-app .kp-scene-controls{display:flex;align-items:center;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.vf-app .kp-guide-trigger,.vf-app .kp-expand-trigger{position:static;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;min-height:43px;border:1px solid rgba(187,234,255,.37);border-radius:4px;color:#eaf9ff;font-size:11px;font-weight:600;background:#104560;backdrop-filter:none;white-space:nowrap;cursor:pointer}
+.vf-app .kp-guide-trigger:hover,.vf-app .kp-expand-trigger:hover{background:#006197}
+.vf-app .kp-guide-trigger:focus-visible,.vf-app .kp-expand-trigger:focus-visible{outline:3px solid #a0eaff;outline-offset:3px}
+.vf-app .kp-help-copy{position:static;grid-column:1/-1;max-width:none;padding:13px 15px!important;margin:0!important;line-height:1.6;font-size:12px;background:#0c405d;color:#e9f9ff;border:1px solid #36718e}
+.vf-app .kp-mobile-hotspots{display:none}
+.vf-app .kp-scene-meta{grid-column:1/-1;display:flex;gap:12px;align-items:center;justify-content:space-between;min-width:0}
+.vf-app .kp-photo-credit{position:static;max-width:100%;font-size:9px;color:#94baca;letter-spacing:.01em;text-shadow:none}
+.vf-app .kp-swipe-hint{display:none;position:static;flex:0 0 auto;color:#b8eaff;text-shadow:none;font-size:9px;letter-spacing:.12em}
+@media(hover:none) and (pointer:coarse){.vf-app .kp-swipe-hint{display:inline-block}}
+@media(max-width:1050px){
+ .vf-app .kp-scene-tabs .vf-arch-tabs button{font-size:11px!important}
+ .vf-app .kp-map-point strong{display:none}
+}
+@media(max-width:700px){
+ .vf-app .kp-scene-tabs{padding:10px 10px 9px}
+ .vf-app .kp-scene-tabs .vf-arch-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px!important}
+ .vf-app .kp-scene-tabs .vf-arch-tabs button{justify-content:flex-start;min-height:43px;padding:8px 9px!important;font-size:11px!important;text-align:left}
+ .vf-app .kp-scene{height:auto;min-height:0;aspect-ratio:763/248}
+ .vf-app .kp-scene-photo{object-fit:contain;object-position:center!important}
+ .vf-app .kp-photo-overline{top:7px;left:8px;right:8px;font-size:7px;letter-spacing:.03em}
+ .vf-app .kp-map-points{display:none}
+ .vf-app .kp-scene-details{grid-template-columns:minmax(0,1fr);gap:11px;padding:16px 13px 13px}
+ .vf-app .kp-scene-intro{position:static;max-width:none}
+ .vf-app .kp-scene-intro strong{font-size:clamp(17px,4.5vw,22px);line-height:1.25}
+ .vf-app .kp-scene-controls{justify-content:stretch;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .vf-app .kp-guide-trigger,.vf-app .kp-expand-trigger{display:flex;padding:8px;min-height:44px;white-space:normal;font-size:11px;text-align:center}
+ .vf-app .kp-mobile-hotspots{position:static;grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:0}
+ .vf-app .kp-hotspot-chip{display:flex;align-items:center;gap:7px;min-height:45px;min-width:0;padding:9px 10px;border:1px solid rgba(211,239,252,.38);border-radius:4px;background:#12415b;color:#fff;text-align:left}
+ .vf-app .kp-hotspot-chip strong{font-size:clamp(10px,2.8vw,12px);font-weight:600;line-height:1.2;overflow-wrap:anywhere;min-width:0}
+ .vf-app .kp-hotspot-chip svg{margin-left:auto;flex:0 0 12px;color:#94dfff}
+ .vf-app .kp-hotspot-chip.is-active{background:#006197;border-color:#b7edff}
+ .vf-app .kp-scene-meta{flex-wrap:wrap;gap:6px}
+ .vf-app .kp-photo-credit{font-size:8px}
+ .vf-app .kp-swipe-hint{font-size:8px}
+}
+
+/* Expanded panorama: the overview always shows the full composition; this
+   optional inspector lets narrow screens pan the original resolution. */
+.kp-expanded-backdrop{position:fixed;z-index:130;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(1,11,19,.9);backdrop-filter:blur(10px)}
+.kp-expanded-dialog{width:min(98vw,1200px);max-height:94dvh;display:flex;flex-direction:column;overflow:hidden;background:#081c2b;border:1px solid rgba(159,224,255,.4);color:#edfaff;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.kp-expanded-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-bottom:1px solid rgba(175,226,255,.25)}
+.kp-expanded-bar strong{min-width:0;font-size:clamp(12px,2vw,18px);font-weight:600;line-height:1.3}
+.kp-expanded-bar button{border:0;background:none;color:#fff;padding:6px;flex:0 0 auto;cursor:pointer}
+.kp-expanded-bar button:focus-visible{outline:3px solid #8ad9fa;outline-offset:2px}
+.kp-expanded-scroll{overflow:auto;overscroll-behavior:contain;max-height:74dvh;background:#122c3e;touch-action:pan-x pan-y}
+.kp-expanded-scroll img{display:block;width:max(763px,100%);height:auto;max-width:none}
+.kp-expanded-dialog>p{padding:10px 15px 15px!important;margin:0!important;font-size:11px;line-height:1.5;color:#b4d5e7}

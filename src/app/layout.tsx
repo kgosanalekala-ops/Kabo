@@ -3,6 +3,7 @@ import { Poppins, Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 import "./vision.css";
 import "./photo-studio.css";
+import "./equipment-3d.css";
 import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
