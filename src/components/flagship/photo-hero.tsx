@@ -17,13 +17,21 @@ const EQUIPMENT=[
 ] as const;
 export function HeroPhoto({slide}:{slide:number}){
  const data=EQUIPMENT[slide]||EQUIPMENT[0];
+ const supporting=EQUIPMENT.filter((_,index)=>index!==slide);
  const [photoFailed,setPhotoFailed]=useState<string|null>(null);
  const [sceneFailed,setSceneFailed]=useState<string|null>(null);
  return <div className="kp-hero-product-scene" aria-label={`${data.maker} equipment and infrastructure visual reference`}>
   <img key={data.scene} className="kp-hero-world-photo" src={sceneFailed===data.scene?"/images/sol_noc.jpg":data.scene} alt={data.sceneAlt} onError={()=>setSceneFailed(data.scene)} decoding="async"/>
   <div className="kp-hero-world-shade" aria-hidden="true"/>
-  {photoFailed!==data.photo&&<img key={data.photo} className="kp-hero-oem-product" src={data.photo} alt={`${data.maker} ${data.name} product photograph`} onError={()=>setPhotoFailed(data.photo)} decoding="async"/>}
+  <div className="kp-hero-equipment-stage">
+   <span className="kp-hero-stage-glow" aria-hidden="true"/>
+   {supporting.map((item,index)=><div className={`kp-hero-support kp-hero-support--${index+1}`} key={item.maker}>
+    <img src={item.photo} alt="" aria-hidden="true" loading="lazy" decoding="async" onError={e=>{e.currentTarget.style.opacity="0"}}/>
+   </div>)}
+   {photoFailed!==data.photo&&<div className="kp-hero-feature-equipment"><img key={data.photo} className="kp-hero-oem-product" src={data.photo} alt={`${data.maker} ${data.name} product photograph`} onError={()=>setPhotoFailed(data.photo)} decoding="async"/></div>}
+   <span className="kp-hero-stage-ground" aria-hidden="true"/>
+  </div>
   <div className="kp-hero-product-caption"><span>{data.maker} / EQUIPMENT REFERENCE</span><strong>{data.name}</strong><small>{data.line}</small><a href={data.link} rel="noopener noreferrer" target="_blank">Official product information <ExternalLink size={13} aria-hidden="true"/></a></div>
-  <span className="kp-hero-disclosure">PRODUCT PHOTOGRAPHY / CONCEPT ENVIRONMENTS</span>
+  <span className="kp-hero-disclosure">GENUINE EQUIPMENT PHOTOS / CINEMATIC DEPTH PRESENTATION</span>
  </div>;
 }
