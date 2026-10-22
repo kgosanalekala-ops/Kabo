@@ -99,7 +99,7 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
    <AnimatePresence mode="wait" initial={false}>
     <motion.div key={type} id="vf-arch-panel" role="tabpanel" aria-labelledby={`vf-arch-tab-${type}`} initial={motionPref?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={motionPref?{opacity:0}:{opacity:0,y:-10}} transition={{duration:0.38}}>
      <div className="vf-arch-context"><p>SCENE / {String(VIEWS.indexOf(view)+1).padStart(2,"0")}</p><h3>{view.name}</h3><span>{view.intro}</span></div>
-     <Architecture3D type={type} zones={view.zones} active={zone} onSelect={i=>{setZone(i);setOpen(true)}} selector={<div className="vf-arch-tabs" role="tablist" aria-label="Select an architecture" ref={tabsRef}>
+     <Architecture3D type={type} zones={view.zones} active={zone} onSelect={i=>{setZone(i);setOpen(true)}} onSwipe={direction=>{const index=VIEWS.findIndex(v=>v.type===type);setView(VIEWS[(index+(direction==="next"?1:VIEWS.length-1))%VIEWS.length].type);}} selector={<div className="vf-arch-tabs" role="tablist" aria-label="Select an architecture" ref={tabsRef}>
    {VIEWS.map((v,i)=><button key={v.type} id={`vf-arch-tab-${v.type}`} role="tab" tabIndex={type===v.type?0:-1} aria-controls="vf-arch-panel" aria-selected={type===v.type} className={type===v.type?"active":""} onKeyDown={e=>onTabKeyDown(e,i)} onClick={()=>setView(v.type)}><span>0{i+1}</span>{v.name}</button>)}
   </div>}/>
     </motion.div>
