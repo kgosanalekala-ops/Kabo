@@ -48,3 +48,12 @@ Vercel project ID: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
 
 ## Definition of done
 A complete coherent desktop/mobile website with premium legible, blue-consistent environment illustrations, 8 useful scenes, working pop-ups and navigation, complete publications, searchable resources, no public prices, verified browser/build/contact/PDF flows, and an approved preview promoted to production; production smoke-tested.
+
+## Static cross-file coverage audit — 22/10/2026
+- GitHub source checks: 8/8 solution domains, 8/8 procurement catalogue sections, and 8 unique Architecture Studio scene definitions.
+- Every solution domain maps to a defined scene; no unmapped architecture type.
+- Company route, industry pop-up, procurement detail dialog, and direct architecture hotspot dialog handlers are present in the code.
+- Four source links to two PDF download endpoints found across public search/company/about.
+- No literal ZAR price-like strings detected in the main site component during this static audit.
+- Preview for source commit `92fff17f2e9799dc9a764fd88f28baba87b5c648` and subsequent documentation commit `b9822dc6192de40113ad71c9ec5dce6ecf061765` both returned Vercel READY.
+- These checks are **not** substitutes for real browser, mobile, PDF rendering, runtime API, mail and visual QA.
