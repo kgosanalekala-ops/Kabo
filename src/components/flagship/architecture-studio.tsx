@@ -94,15 +94,14 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
   return()=>{document.removeEventListener("keydown",onKey);previous?.focus();};
  },[open]);
  return <div className="vf-architecture" id="architecture-studio">
-  <div className="vf-arch-tabs" role="tablist" aria-label="Select an architecture" ref={tabsRef}>
-   {VIEWS.map((v,i)=><button key={v.type} id={`vf-arch-tab-${v.type}`} role="tab" tabIndex={type===v.type?0:-1} aria-controls="vf-arch-panel" aria-selected={type===v.type} className={type===v.type?"active":""} onKeyDown={e=>onTabKeyDown(e,i)} onClick={()=>setView(v.type)}><span>0{i+1}</span>{v.name}</button>)}
-  </div>
   <div className="vf-arch-frame">
    <div className="vf-arch-mast"><span><span className="vf-pulse"/> KABO SYSTEMS INTELLIGENCE / INTERACTIVE MODEL</span><span>{view.label} <span className="vf-mono">// 2026</span></span></div>
    <AnimatePresence mode="wait" initial={false}>
     <motion.div key={type} id="vf-arch-panel" role="tabpanel" aria-labelledby={`vf-arch-tab-${type}`} initial={motionPref?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={motionPref?{opacity:0}:{opacity:0,y:-10}} transition={{duration:0.38}}>
      <div className="vf-arch-context"><p>SCENE / {String(VIEWS.indexOf(view)+1).padStart(2,"0")}</p><h3>{view.name}</h3><span>{view.intro}</span></div>
-     <Architecture3D type={type} zones={view.zones} active={zone} onSelect={i=>{setZone(i);setOpen(true)}}/>
+     <Architecture3D type={type} zones={view.zones} active={zone} onSelect={i=>{setZone(i);setOpen(true)}} selector={<div className="vf-arch-tabs" role="tablist" aria-label="Select an architecture" ref={tabsRef}>
+   {VIEWS.map((v,i)=><button key={v.type} id={`vf-arch-tab-${v.type}`} role="tab" tabIndex={type===v.type?0:-1} aria-controls="vf-arch-panel" aria-selected={type===v.type} className={type===v.type?"active":""} onKeyDown={e=>onTabKeyDown(e,i)} onClick={()=>setView(v.type)}><span>0{i+1}</span>{v.name}</button>)}
+  </div>}/>
     </motion.div>
    </AnimatePresence>
    <div className="vf-arch-inspector" aria-live="polite" aria-atomic="true"><div className="vf-arch-identified"><motion.span key={type+"-"+active.number} className="vf-arch-indicator" initial={motionPref?false:{opacity:.4,scale:.89}} animate={{opacity:1,scale:1}} transition={{duration:.28}}>{active.number}</motion.span><div><p>SELECTED LAYER</p><motion.h4 key={type+"-"+active.name} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.28}}>{active.name}</motion.h4></div></div><motion.p key={type+"-"+active.number+"-detail"} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.32}}>{active.details}</motion.p><div className="vf-arch-actions"><button onClick={()=>setOpen(true)}>Inspect layer <MoveUpRight size={15}/></button><button onClick={()=>onQuote?.(type)}>Discuss this architecture <ArrowUpRight size={15}/></button></div></div>
