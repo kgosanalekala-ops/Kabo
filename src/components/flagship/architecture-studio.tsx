@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Cpu, Layers3, MoveUpRight, Router, ShieldCheck, Waypoints, X } from "lucide-react";
 import { NetworkScene, type SceneKey } from "./network-scene";
@@ -40,18 +40,47 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
  const [type,setType]=useState<ViewType>(initial);
  const [zone,setZone]=useState(0);
  const [open,setOpen]=useState(false);
+ const tabsRef=useRef<HTMLDivElement>(null);
+ const dialogRef=useRef<HTMLElement>(null);
+ const closeRef=useRef<HTMLButtonElement>(null);
  const motionPref=useReducedMotion();
  const view=VIEWS.find(v=>v.type===type)||VIEWS[0];
  const active=view.zones[Math.min(zone,view.zones.length-1)];
  const setView=(key:ViewType)=>{setType(key);setZone(0);setOpen(false)};
+ const onTabKeyDown=(event:KeyboardEvent<HTMLButtonElement>,index:number)=>{
+  const last=VIEWS.length-1;
+  const next=event.key==="ArrowRight"?(index+1)%VIEWS.length:
+   event.key==="ArrowLeft"?(index+last)%VIEWS.length:
+   event.key==="Home"?0:event.key==="End"?last:-1;
+  if(next<0)return;
+  event.preventDefault();
+  setView(VIEWS[next].type);
+  tabsRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
+ };
+ useEffect(()=>{
+  if(!open)return;
+  const previous=document.activeElement instanceof HTMLElement?document.activeElement:null;
+  closeRef.current?.focus();
+  const onKey=(event:globalThis.KeyboardEvent)=>{
+   if(event.key==="Escape"){event.preventDefault();setOpen(false);return;}
+   if(event.key!=="Tab")return;
+   const focusable=Array.from(dialogRef.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')||[]);
+   if(!focusable.length)return;
+   const first=focusable[0],last=focusable[focusable.length-1];
+   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  };
+  document.addEventListener("keydown",onKey);
+  return()=>{document.removeEventListener("keydown",onKey);previous?.focus();};
+ },[open]);
  return <div className="vf-architecture" id="architecture-studio">
-  <div className="vf-arch-tabs" role="tablist" aria-label="Select an architecture">
-   {VIEWS.map((v,i)=><button key={v.type} role="tab" aria-selected={type===v.type} className={type===v.type?"active":""} onClick={()=>setView(v.type)}><span>0{i+1}</span>{v.name}</button>)}
+  <div className="vf-arch-tabs" role="tablist" aria-label="Select an architecture" ref={tabsRef}>
+   {VIEWS.map((v,i)=><button key={v.type} id={`vf-arch-tab-${v.type}`} role="tab" tabIndex={type===v.type?0:-1} aria-controls="vf-arch-panel" aria-selected={type===v.type} className={type===v.type?"active":""} onKeyDown={e=>onTabKeyDown(e,i)} onClick={()=>setView(v.type)}><span>0{i+1}</span>{v.name}</button>)}
   </div>
   <div className="vf-arch-frame">
    <div className="vf-arch-mast"><span><span className="vf-pulse"/> KABO SYSTEMS INTELLIGENCE / INTERACTIVE MODEL</span><span>{view.label} <span className="vf-mono">// 2026</span></span></div>
    <AnimatePresence mode="wait" initial={false}>
-    <motion.div key={type} initial={motionPref?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={motionPref?{opacity:0}:{opacity:0,y:-10}} transition={{duration:0.38}}>
+    <motion.div key={type} id="vf-arch-panel" role="tabpanel" aria-labelledby={`vf-arch-tab-${type}`} initial={motionPref?false:{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={motionPref?{opacity:0}:{opacity:0,y:-10}} transition={{duration:0.38}}>
      <div className="vf-arch-context"><p>SCENE / {String(VIEWS.indexOf(view)+1).padStart(2,"0")}</p><h3>{view.name}</h3><span>{view.intro}</span></div>
      {type==="campus"?<div className="vf-main-campus"><NetworkScene compact initial="campus" onPick={key=>{const index=view.zones.findIndex(v=>v.id===key);if(index>=0)setZone(index)}}/></div>:
       <div className="vf-topology" aria-label={view.name+" selectable architecture diagram"}>
@@ -66,8 +95,8 @@ export function ArchitectureStudio({ initial="campus", onQuote }: {initial?:View
       </div>}
     </motion.div>
    </AnimatePresence>
-   <div className="vf-arch-inspector"><div className="vf-arch-identified"><motion.span key={type+"-"+active.number} className="vf-arch-indicator" initial={motionPref?false:{opacity:.4,scale:.89}} animate={{opacity:1,scale:1}} transition={{duration:.28}}>{active.number}</motion.span><div><p>SELECTED LAYER</p><motion.h4 key={type+"-"+active.name} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.28}}>{active.name}</motion.h4></div></div><motion.p key={type+"-"+active.number+"-detail"} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.32}}>{active.details}</motion.p><div className="vf-arch-actions"><button onClick={()=>setOpen(true)}>Inspect layer <MoveUpRight size={15}/></button><button onClick={()=>onQuote?.(type)}>Discuss this architecture <ArrowUpRight size={15}/></button></div></div>
+   <div className="vf-arch-inspector" aria-live="polite" aria-atomic="true"><div className="vf-arch-identified"><motion.span key={type+"-"+active.number} className="vf-arch-indicator" initial={motionPref?false:{opacity:.4,scale:.89}} animate={{opacity:1,scale:1}} transition={{duration:.28}}>{active.number}</motion.span><div><p>SELECTED LAYER</p><motion.h4 key={type+"-"+active.name} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.28}}>{active.name}</motion.h4></div></div><motion.p key={type+"-"+active.number+"-detail"} initial={motionPref?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.32}}>{active.details}</motion.p><div className="vf-arch-actions"><button onClick={()=>setOpen(true)}>Inspect layer <MoveUpRight size={15}/></button><button onClick={()=>onQuote?.(type)}>Discuss this architecture <ArrowUpRight size={15}/></button></div></div>
   </div>
-  {open&&<div className="vf-overlay" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setOpen(false)}}><section className="vf-dialog" role="dialog" aria-modal="true" aria-labelledby="vf-zone-heading"><div className="vf-dialog-kicker">ARCHITECTURE / {view.name.toUpperCase()} / {active.number}</div><button className="vf-dialog-close" onClick={()=>setOpen(false)} aria-label="Close layer details"><X size={22}/></button><h3 id="vf-zone-heading">{active.name}</h3><p>{active.details}</p><div className="vf-dialog-note"><CheckCircle2 size={17}/> Illustrative design only. Final architecture follows customer discovery and validation.</div><button className="vf-btn-primary" onClick={()=>{setOpen(false);onQuote?.(type)}}>Request a solution discussion <ArrowUpRight size={17}/></button></section></div>}
+  {open&&<div className="vf-overlay" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setOpen(false)}}><section className="vf-dialog" role="dialog" aria-modal="true" aria-labelledby="vf-zone-heading" ref={dialogRef}><div className="vf-dialog-kicker">ARCHITECTURE / {view.name.toUpperCase()} / {active.number}</div><button className="vf-dialog-close" ref={closeRef} onClick={()=>setOpen(false)} aria-label="Close layer details"><X size={22}/></button><h3 id="vf-zone-heading">{active.name}</h3><p>{active.details}</p><div className="vf-dialog-note"><CheckCircle2 size={17}/> Illustrative design only. Final architecture follows customer discovery and validation.</div><button className="vf-btn-primary" onClick={()=>{setOpen(false);onQuote?.(type)}}>Request a solution discussion <ArrowUpRight size={17}/></button></section></div>}
  </div>
 }
