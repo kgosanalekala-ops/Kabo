@@ -15,7 +15,8 @@ Workstream: approved website refinement, preview-first.
 - Production branch: `main`
 - Baseline production commit: `0474327a059b716f980c4c0cff72e476ba48ae49`
 - Vercel project: `prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni`
-- Review branch: `kabo-flagship-polish-20261022`
+- Review branch (earlier): `kabo-flagship-polish-20261022`
+- Active design work branch: `kabo-3d-interactions-20261022`
 
 ## Implemented on review branch
 - Architecture Studio: keyboard tab navigation, accessible tabpanel naming, focus-contained inspector dialogue, Escape to close, focus restoration, polite selected-layer updates.
@@ -43,3 +44,10 @@ Workstream: approved website refinement, preview-first.
 - User reported inability to scroll the preview while reviewing. This may be a scroll-locking overlay or a viewer/browser issue; root cause is **not verified**.
 - Mitigation committed to the preview branch: Escape/backdrop can dismiss site navigation or search overlays, restoring body scroll. Browser diagnosis and user confirmation remain outstanding.
 - Avoid modifying production without review.
+
+## Navigation correction / user feedback (22/10/2026)
+- Implemented in active preview branch: the Company menu item now navigates to a separate `/company` About KABO page, while Our approach stays at `/about`.
+- All primary site-index and search-result navigation actions close open menu/search overlays directly, including navigation to the current page; body scroll locking is released by the overlay effect cleanup.
+- Refined restrained blue hover/focus treatment for actions and cards is committed in the same branch.
+- Awaiting preview build and browser/mobile verification. Production remains unchanged.
+- Do not publish unverified credentials, operating facilities, partnerships or public pricing.
