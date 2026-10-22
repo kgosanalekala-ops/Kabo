@@ -1,5 +1,5 @@
 "use client";
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode, type TouchEvent } from "react";
 import { Info, ArrowUpRight } from "lucide-react";
 import type { ViewType } from "./architecture-studio";
 
@@ -16,12 +16,23 @@ const PHOTOS:Record<ViewType,Photo>={
  workplace:{url:"/images/architecture/workplace.webp",alt:"Detailed modern enterprise workplace and digital collaboration concept illustration",credit:"KABO approved infrastructure concept artwork",subject:"Digital workplace • Devices, connectivity and collaboration"}
 
 };
-export function Architecture3D({type,zones,active,onSelect,selector}:{type:ViewType;zones:Zone[];active:number;onSelect:(index:number)=>void;selector?:ReactNode}){
+export function Architecture3D({type,zones,active,onSelect,onSwipe,selector}:{type:ViewType;zones:Zone[];active:number;onSelect:(index:number)=>void;onSwipe?:(direction:"next"|"previous")=>void;selector?:ReactNode}){
  const [failedUrl,setFailedUrl]=useState("");
  const [help,setHelp]=useState(false);
+ const touchStart=useRef<{x:number;y:number}|null>(null);
+ const startSwipe=(event:TouchEvent<HTMLDivElement>)=>{
+  if(event.touches.length!==1||event.target instanceof Element&&event.target.closest("button,a,input,textarea,select,[role='tab']")){touchStart.current=null;return;}
+  touchStart.current={x:event.touches[0].clientX,y:event.touches[0].clientY};
+ };
+ const finishSwipe=(event:TouchEvent<HTMLDivElement>)=>{
+  const start=touchStart.current;touchStart.current=null;
+  if(!start||event.changedTouches.length!==1)return;
+  const dx=event.changedTouches[0].clientX-start.x,dy=event.changedTouches[0].clientY-start.y;
+  if(Math.abs(dx)>=55&&Math.abs(dx)>=Math.abs(dy)*1.35)onSwipe?.(dx<0?"next":"previous");
+ };
  const photo=PHOTOS[type];
  return <section className="kp-explorer" aria-label={`${type} photographic infrastructure explorer`}>
-   <div className="kp-scene">
+   <div className="kp-scene" onTouchStart={startSwipe} onTouchEnd={finishSwipe} onTouchCancel={()=>{touchStart.current=null;}}>
      <img key={type} src={failedUrl===photo.url?"/images/sol_noc.jpg":photo.url} alt={photo.alt} className="kp-scene-photo" style={{objectPosition:photo.focal||"center"}} onError={()=>setFailedUrl(photo.url)} decoding="async" loading="lazy"/>
      <div className="kp-scene-shade" aria-hidden="true"/>
      {selector&&<div className="kp-scene-tabs" aria-label="Choose a solution environment">{selector}</div>}
@@ -34,6 +45,7 @@ export function Architecture3D({type,zones,active,onSelect,selector}:{type:ViewT
      </div>
      <div className="kp-mobile-hotspots" role="group" aria-label="Inspect a technology layer">{zones.map((item,index)=><button type="button" key={item.id} className={`kp-hotspot-chip ${active===index?"is-active":""}`} onClick={()=>onSelect(index)} aria-haspopup="dialog"><span>{item.number}</span><strong>{item.name}</strong><ArrowUpRight size={12}/></button>)}</div>
      <div className="kp-photo-credit">{photo.credit} · Not a KABO customer installation</div>
+     <span className="kp-swipe-hint" aria-hidden="true">← SWIPE TO EXPLORE →</span>
    </div>
  </section>;
 }
