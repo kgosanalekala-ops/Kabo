@@ -34,3 +34,12 @@ Workstream: approved website refinement, preview-first.
 - Vercel preview READY on the review branch, with no compile errors.
 - QA confirms no footer or layout regressions, keyboard/ESC interactions work, enquiry context remains accurate, and reduced-motion/hero behaviour is stable.
 - User visually approves preview before production promotion.
+
+## User feedback received during review (22/10/2026)
+- Architecture Studio's **scene graphics**, not the inspector box layout, need a significant upgrade from flat 2D to engaging, performant, genuine 3D (e.g. interactive camera/orbit, selectable devices, directional data paths, contextual overlays).
+- Experts from enterprise OEMs and technical engineering disciplines are the audience; diagrams must be technically defensible and illustrative scenarios must not imply an actual customer installation.
+- Preserve approved header styling but re-evaluate repeated primary menu items inside the expanded site index. Propose useful new content/pages without inventing projects or qualifications.
+- Images should be brighter, natural-looking and consistent with KABO Blue; image selections are intentionally deferred until separate review.
+- User reported inability to scroll the preview while reviewing. This may be a scroll-locking overlay or a viewer/browser issue; root cause is **not verified**.
+- Mitigation committed to the preview branch: Escape/backdrop can dismiss site navigation or search overlays, restoring body scroll. Browser diagnosis and user confirmation remain outstanding.
+- Avoid modifying production without review.
