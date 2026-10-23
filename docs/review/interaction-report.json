@@ -1,0 +1,94 @@
+{
+  "checks": [
+    {
+      "name": "Three homepage stories and pause control",
+      "pass": true
+    },
+    {
+      "name": "Real horizontal touch swipe changes story in both directions",
+      "pass": true
+    },
+    {
+      "name": "Vertical touch scroll remains native and preserves story",
+      "pass": true
+    },
+    {
+      "name": "Mobile menu fits, is one column and traps focus",
+      "pass": true
+    },
+    {
+      "name": "Company navigation has distinct route and closes same-route menu",
+      "pass": true
+    },
+    {
+      "name": "Search resolves Company, support, investor and publication results",
+      "pass": true
+    },
+    {
+      "name": "All legal dialogs fit short phone, trap focus and close with Escape",
+      "pass": true
+    },
+    {
+      "name": "Phone page /company: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /about: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /solutions: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /products: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /products/compute-platforms: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /industries: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /industries/healthcare: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /services: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /procurement: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /partners: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /support: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /investors: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /contact: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /rfq: renders without overflow/bad images/prices",
+      "pass": true
+    },
+    {
+      "name": "Phone page /configure: renders without overflow/bad images/prices",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}

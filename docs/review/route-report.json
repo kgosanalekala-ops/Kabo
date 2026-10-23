@@ -1,0 +1,299 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/company",
+      "status": 200
+    },
+    {
+      "path": "/about",
+      "status": 200
+    },
+    {
+      "path": "/solutions",
+      "status": 200
+    },
+    {
+      "path": "/products",
+      "status": 200
+    },
+    {
+      "path": "/procurement",
+      "status": 200
+    },
+    {
+      "path": "/partners",
+      "status": 200
+    },
+    {
+      "path": "/services",
+      "status": 200
+    },
+    {
+      "path": "/industries",
+      "status": 200
+    },
+    {
+      "path": "/support",
+      "status": 200
+    },
+    {
+      "path": "/contact",
+      "status": 200
+    },
+    {
+      "path": "/investors",
+      "status": 200
+    },
+    {
+      "path": "/rfq",
+      "status": 200
+    },
+    {
+      "path": "/configure",
+      "status": 200
+    },
+    {
+      "path": "/studio/campus",
+      "status": 200
+    },
+    {
+      "path": "/studio/compute",
+      "status": 200
+    },
+    {
+      "path": "/studio/datacentre",
+      "status": 200
+    },
+    {
+      "path": "/studio/security",
+      "status": 200
+    },
+    {
+      "path": "/studio/widearea",
+      "status": 200
+    },
+    {
+      "path": "/studio/document",
+      "status": 200
+    },
+    {
+      "path": "/studio/resilience",
+      "status": 200
+    },
+    {
+      "path": "/studio/workplace",
+      "status": 200
+    },
+    {
+      "path": "/solutions/campus-network",
+      "status": 200
+    },
+    {
+      "path": "/solutions/ai-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/solutions/data-centre",
+      "status": 200
+    },
+    {
+      "path": "/solutions/surveillance",
+      "status": 200
+    },
+    {
+      "path": "/solutions/wide-area",
+      "status": 200
+    },
+    {
+      "path": "/solutions/document-systems",
+      "status": 200
+    },
+    {
+      "path": "/solutions/cyber-resilience",
+      "status": 200
+    },
+    {
+      "path": "/solutions/workplace",
+      "status": 200
+    },
+    {
+      "path": "/solutions/compute",
+      "status": 200
+    },
+    {
+      "path": "/solutions/data",
+      "status": 200
+    },
+    {
+      "path": "/solutions/networking",
+      "status": 200
+    },
+    {
+      "path": "/solutions/security",
+      "status": 200
+    },
+    {
+      "path": "/solutions/cloud",
+      "status": 200
+    },
+    {
+      "path": "/solutions/continuity",
+      "status": 200
+    },
+    {
+      "path": "/solutions/digital-workplace",
+      "status": 200
+    },
+    {
+      "path": "/solutions/physical-security",
+      "status": 200
+    },
+    {
+      "path": "/solutions/analytics-bi",
+      "status": 200
+    },
+    {
+      "path": "/solutions/iot-edge",
+      "status": 200
+    },
+    {
+      "path": "/products/compute-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/storage-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/networking-fabric",
+      "status": 200
+    },
+    {
+      "path": "/products/cyber-security",
+      "status": 200
+    },
+    {
+      "path": "/products/ai-gpu-compute",
+      "status": 200
+    },
+    {
+      "path": "/products/cloud-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/physical-security",
+      "status": 200
+    },
+    {
+      "path": "/products/analytics-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/backup-resilience",
+      "status": 200
+    },
+    {
+      "path": "/products/digital-workplace",
+      "status": 200
+    },
+    {
+      "path": "/industries/public-sector",
+      "status": 200
+    },
+    {
+      "path": "/industries/financial-services",
+      "status": 200
+    },
+    {
+      "path": "/industries/mining",
+      "status": 200
+    },
+    {
+      "path": "/industries/healthcare",
+      "status": 200
+    },
+    {
+      "path": "/industries/education",
+      "status": 200
+    },
+    {
+      "path": "/industries/telecommunications",
+      "status": 200
+    },
+    {
+      "path": "/industries/manufacturing",
+      "status": 200
+    },
+    {
+      "path": "/industries/retail",
+      "status": 200
+    },
+    {
+      "path": "/industries/smart-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/industries/transport-logistics",
+      "status": 200
+    },
+    {
+      "path": "/industries/energy-utilities",
+      "status": 200
+    },
+    {
+      "path": "/industries/construction-property",
+      "status": 200
+    },
+    {
+      "path": "/industries/agriculture-food",
+      "status": 200
+    },
+    {
+      "path": "/industries/hospitality-tourism",
+      "status": 200
+    },
+    {
+      "path": "/industries/professional-services",
+      "status": 200
+    },
+    {
+      "path": "/industries/nonprofit-organisations",
+      "status": 200
+    }
+  ],
+  "browser": [
+    {
+      "path": "/solutions/compute",
+      "heading": "Compute & Hyperconverged Infrastructure"
+    },
+    {
+      "path": "/solutions/data",
+      "heading": "Primary & Secondary Storage"
+    },
+    {
+      "path": "/solutions/security",
+      "heading": "Cybersecurity & security monitoring"
+    },
+    {
+      "path": "/solutions/physical-security",
+      "heading": "Surveillance, CCTV & Access Control"
+    },
+    {
+      "path": "/solutions/analytics-bi",
+      "heading": "Data Platform, Analytics & BI"
+    },
+    {
+      "path": "/solutions/iot-edge",
+      "heading": "IoT & Edge Computing"
+    },
+    {
+      "path": "/solutions/campus-network",
+      "heading": "Connected campus"
+    }
+  ],
+  "errors": []
+}

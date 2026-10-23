@@ -35,16 +35,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const fields = [fullName, organisation, email, phone, investorType, fundSize, timeline, message];
+    if (fields.some(value => value !== undefined && (typeof value !== "string" || value.length > 8000)) ||
+        [fullName, organisation, investorType, message].some(value => !String(value).trim()) ||
+        String(email).length > 254 || String(fullName).length > 150 ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email))) {
+      return NextResponse.json({ ok: false, error: "Please check your enquiry details and message length." }, { status: 400 });
+    }
+
     const now = new Date();
 
     const autoReply = {
       routeTo: "KABO Executive Team",
       acknowledgement:
-        "Your investor enquiry has been routed directly to the KABO executive team and flagged for executive attention. All investor conversations are treated in strict confidence. You will receive a personal response within two business days.",
+        "Your investor enquiry has been accepted for delivery to the KABO executive team. A representative can follow up using the contact details you provided.",
       nextSteps: [
         "Your request has been delivered directly to the KABO executive team.",
-        "A member of the executive team (or a delegated lead) will respond within two business days.",
-        "All correspondence is treated as confidential under NDA on request.",
+        "The team will review your enquiry and discuss appropriate next steps.",
+        "Any confidentiality or NDA arrangements require separate agreement.",
         "For follow-up, reply to the acknowledgement email or email info@kaboitgroup.co.za.",
       ],
       contact: {

@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { pageToPath, pathToPage } from "@/lib/site-routes";
 
 export type Page =
-  | "home" | "about" | "solutions" | "solution-detail" | "products" | "product-detail"
+  | "home" | "about" | "company" | "solutions" | "solution-detail" | "products" | "product-detail"
   | "industries" | "industry-detail" | "services" | "partners" | "partner-detail"
   | "case-studies" | "support" | "contact" | "investors" | "procurement" | "rfq" | "architecture" | "configure";
 
@@ -30,11 +30,16 @@ export function PageProvider({ children, initialPage = "home", initialDetail = n
   }, [pathname]);
 
   const navigate = useCallback((page: Page, detail?: string) => {
+    const destination = pageToPath(page, detail);
+    if (page === "architecture" || page === "case-studies") {
+      router.push(destination);
+      return;
+    }
     setCurrentPage(page);
     setSelectedDetail(detail ?? null);
-    router.push(pageToPath(page, detail));
+    router.push(destination);
     if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   }, [router]);
 

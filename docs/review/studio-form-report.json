@@ -1,0 +1,156 @@
+{
+  "checks": [
+    {
+      "name": "Studio campus: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 5,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio compute: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 4,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio datacentre: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 5,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio security: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 4,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio widearea: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 4,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio document: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 4,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio resilience: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 5,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Studio workplace: all hotspots and short-phone dialogs",
+      "detail": {
+        "hotspots": 5,
+        "image": {
+          "width": 1672,
+          "height": 941
+        }
+      }
+    },
+    {
+      "name": "Campus genuine spherical view opens and responds to controls"
+    },
+    {
+      "name": "Desktop Studio preserves full scene and proportional hotspots",
+      "detail": {
+        "width": 1317,
+        "height": 741
+      }
+    },
+    {
+      "name": "/contact shows delivery failure and accepted states without sending",
+      "detail": {
+        "api": "contact",
+        "fields": [
+          "firstName",
+          "lastName",
+          "email",
+          "organisation",
+          "phone",
+          "enquiryType",
+          "message"
+        ]
+      }
+    },
+    {
+      "name": "/support shows delivery failure and accepted states without sending",
+      "detail": {
+        "api": "tickets",
+        "fields": [
+          "category",
+          "subject",
+          "description",
+          "fullName",
+          "email",
+          "phone",
+          "organisation",
+          "contractRef"
+        ]
+      }
+    },
+    {
+      "name": "/investors shows delivery failure and accepted states without sending",
+      "detail": {
+        "api": "investor",
+        "fields": [
+          "fullName",
+          "organisation",
+          "email",
+          "phone",
+          "investorType",
+          "fundSize",
+          "timeline",
+          "message"
+        ]
+      }
+    },
+    {
+      "name": "Configurator carries all selected details into the editable RFQ",
+      "detail": "/rfq/ai-infrastructure?sites=11-50&priority=High+availability&deployment=New+deployment"
+    },
+    {
+      "name": "Contact-only address information and no private executive inbox in UI"
+    },
+    {
+      "name": "Reduced motion renders a stable real scene and stops story autoplay"
+    },
+    {
+      "name": "Server-rendered original scene fallback remains visible without JavaScript"
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}
