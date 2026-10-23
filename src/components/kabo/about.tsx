@@ -28,7 +28,7 @@ export function About() {
               Technology <span className="intel-text-gradient">follows</span>.
             </h2>
             <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-              KABO IT Group is a Pretoria-based ICT supplier and technology solutions business. We combine equipment sourcing with infrastructure architecture and project-specific integration planning for organisations across the region.
+              KABO IT Group is a South Africa-based ICT supplier and technology solutions business. We combine equipment sourcing with infrastructure architecture and project-specific integration planning for organisations across South Africa and international collaborators, subject to project scope.
             </p>
             <p className="mt-4 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
               Our portfolio connects compute, storage, networking, security, AI infrastructure, connectivity, digital workplace and procurement into coherent technical and commercial proposals.
@@ -84,7 +84,7 @@ export function About() {
               <div className="absolute inset-0 bg-gradient-to-tr from-[#001E3C]/80 via-[#001E3C]/30 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                 <div>
-                  <div className="text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display font-semibold mb-1">Gauteng SOC</div>
+                  <div className="text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display font-semibold mb-1">Integrated operations</div>
                   <div className="text-lg font-bold text-white font-display leading-tight">Integrated technology<br />solutions</div>
                 </div>
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-3 py-1 border border-white/20">
@@ -92,7 +92,7 @@ export function About() {
                     <span className="absolute inline-flex h-full w-full rounded-full bg-[#00C7FD] opacity-60 animate-ping" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00C7FD]" />
                   </span>
-                  <span className="text-[10px] tracking-[0.18em] uppercase text-white font-display font-semibold">Live</span>
+                  <span className="text-[10px] tracking-[0.18em] uppercase text-white font-display font-semibold">Illustrative</span>
                 </div>
               </div>
             </div>
