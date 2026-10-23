@@ -43,10 +43,13 @@ The exact uploaded archive is also retained in the cloud workspace. SHA-256: `2c
 - Seven API/PDF cases passed. Invalid submissions were rejected. Both documents downloaded and yielded searchable text; unknown pages/documents returned 404.
 - Four responsive browser captures passed at 1440×1000, 768×1024, 360×800 and 360×640. The scene rendered as WebGL, changed between animation frames and produced no page errors, broken images or page overflow. Text/action bounds were checked separately at all four sizes.
 - All 66 public sitemap routes returned rendered headings. Original technology deep links were checked on a phone viewport for their actual distinct content.
+- The actual public HTTPS preview passed desktop and phone browser checks: real WebGL rendering, client-side Company navigation, Studio equipment dialogs, rejected invalid enquiries and a PDF download. Public screenshots and the request summary are also in `review/`.
 
 Evidence is in [review/](review/), including screenshots, structured outcomes and the PDF cover. Browser checks use Chromium; they are responsive browser simulations, not a claim of testing the user's physical devices. Initial failures exposed a short-phone dialog translation issue and stale location wording; these were corrected and affected checks rerun successfully.
 
 Actual SMTP/WhatsApp message delivery was not exercised. Form success/error browser checks intercepted the outgoing requests, so no test messages were sent. The current local instance has neither delivery channel configured; deployment-specific bindings remain necessary for real delivery.
+
+Chromium's direct external connection lacks the cloud proxy CA. Automatic approval review rejected a persistent certificate-store modification, and no such change was made. Public browser checks instead used Playwright's disposable request relay: the HTTP client validated normal HTTPS certificates and supplied the live responses to the browser. No certificate errors were ignored. Reduced motion made software-rendered public captures stable; normal animation was separately verified in the four-viewport local capture suite.
 
 ## Repeat the checks
 
@@ -67,6 +70,12 @@ npm run qa:studio
 npm run qa:api
 npm run qa:capture
 npm run qa:routes
+```
+
+To repeat the public deployment checks from the cloud proxy environment:
+
+```bash
+KABO_QA_URL=https://ai7yue-ip-90-96-191-71.tunnelmole.net KABO_QA_HTTPS_RELAY=1 npm run qa:public
 ```
 
 Set `CHROMIUM_PATH` for a different installed Chromium executable, and `KABO_QA_OUTPUT` for a different evidence directory. Generated evidence under `artifacts/qa/` is ignored. Keep normal TLS verification enabled for any external checks.

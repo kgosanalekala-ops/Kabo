@@ -1,0 +1,27 @@
+{
+  "url": "https://ai7yue-ip-90-96-191-71.tunnelmole.net",
+  "transport": "TLS-verified HTTPS request relay; no certificate-store changes",
+  "motionPreference": "reduce for stable software-rendered captures; normal motion verified in local capture suite",
+  "checks": [
+    {
+      "viewport": "desktop",
+      "homepage": 200,
+      "renderer": "webgl",
+      "companyNavigation": true,
+      "studioHotspot": true
+    },
+    {
+      "viewport": "phone",
+      "homepage": 200,
+      "renderer": "webgl",
+      "companyNavigation": true,
+      "studioHotspot": true
+    },
+    {
+      "contactValidation": 400,
+      "companyProfile": 200
+    }
+  ],
+  "errors": [],
+  "requests": 132
+}

@@ -11,7 +11,8 @@
     "qa:studio": "node scripts/qa/studio-and-forms.mjs",
     "qa:api": "node scripts/qa/api-pdf.mjs",
     "qa:capture": "node scripts/qa/capture.mjs",
-    "qa:routes": "node scripts/qa/routes.mjs"
+    "qa:routes": "node scripts/qa/routes.mjs",
+    "qa:public": "node --use-system-ca scripts/qa/public-browser.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",
