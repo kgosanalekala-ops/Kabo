@@ -11,7 +11,7 @@ export function PartnerStrip({ context = "our solutions" }: PartnerStripProps) {
     <section className="py-16 sm:py-20 bg-[#F5F9FC] border-y border-[#DCE6EF]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">
-          Leading OEM Partners
+          Technology Ecosystem
         </span>
         <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold text-[#001E3C] font-display leading-tight">
           Technology portfolios supporting {context}
