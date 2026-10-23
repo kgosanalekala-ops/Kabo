@@ -5,9 +5,9 @@ import { TrendingUp, ArrowRight, PieChart, Globe } from "lucide-react";
 import { usePage } from "./page-context";
 
 const PILLARS = [
-  { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is positioned for sustained growth across South Africa's enterprise ICT market — driven by AI infrastructure demand, B-BBEE procurement acceleration and sovereign cloud adoption." },
+  { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is exploring opportunities in AI-ready data centres, resilient energy infrastructure and integrated enterprise technology, with each initiative assessed for technical and commercial feasibility." },
   { icon: PieChart, title: "Diversified Revenue", desc: "A portfolio spanning ICT equipment, workplace procurement, enterprise infrastructure and project-led services, with commercial terms scoped to each engagement." },
-  { icon: Globe, title: "Expansion Vision", desc: "Based in Pretoria, KABO is focused on growing its project delivery capability in South Africa and exploring regional opportunities as capacity allows." },
+  { icon: Globe, title: "Expansion Vision", desc: "Based in South Africa, KABO seeks collaborations with investors, technology manufacturers and engineering delivery partners on projects whose capacity and responsibilities can be established." },
 ];
 
 export function Investor() {
@@ -27,7 +27,7 @@ export function Investor() {
             Building Africa&rsquo;s <span className="intel-text-gradient">ecosystem orchestrator</span>.
           </h2>
           <p className="mt-5 text-base sm:text-lg text-white/70 leading-relaxed">
-            KABO IT Group is building the integrated ICT platform that African enterprise needs for the AI era. We welcome conversations with strategic investors aligned with our mission.
+            KABO brings together infrastructure architecture, technology sourcing and project integration planning. We welcome discussions with strategic investors and development partners working on South African digital and energy infrastructure.
           </p>
         </div>
         <div className="grid sm:grid-cols-3 gap-5 sm:gap-6 mb-12">
