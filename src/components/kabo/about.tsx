@@ -97,26 +97,6 @@ export function About() {
               </div>
             </div>
 
-            {/* Floating stat tile */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-5 -left-5 sm:-left-8 rounded-2xl bg-white shadow-xl border border-[#DCE6EF] p-4 hidden sm:block"
-            >
-              <div className="text-xs tracking-[0.18em] uppercase text-[#0071C5] font-display font-semibold mb-1">Founded</div>
-              <div className="text-2xl font-bold text-[#001E3C] font-display leading-none">2016</div>
-              <div className="text-[10px] text-[#5A6B7C] mt-1">Gauteng, South Africa</div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-              className="absolute -bottom-5 -right-5 sm:-right-8 rounded-2xl bg-gradient-to-br from-[#003865] to-[#001E3C] shadow-xl border border-[#00C7FD]/30 p-4 hidden sm:block"
-            >
-              <div className="text-xs tracking-[0.18em] uppercase text-[#00C7FD] font-display font-semibold mb-1">B-BBEE</div>
-              <div className="text-2xl font-bold text-white font-display leading-none">L1<span className="text-[#00C7FD]"> · </span>135%</div>
-              <div className="text-[10px] text-white/60 mt-1">procurement</div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
