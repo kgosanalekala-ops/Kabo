@@ -221,18 +221,18 @@ export const SOLUTIONS: Solution[] = [
     description:
       "KABO supports specification and sourcing of IP cameras, PoE switching, network video recording, video management and electronic access control. We design how system components connect to operator workflows and network security. Vendor selection, functionality and support scope are confirmed per project.",
     capabilities: [
-      { title: "AI Video Analytics", spec: "DeepinView edge inference for target classification, behaviour analysis and metadata streaming" },
-      { title: "Low-Light Imaging", spec: "ColorVu full-colour imaging at 0.0005 lux with F1.0 optics and dual-illuminator (LED + IR)" },
-      { title: "ANPR & Perimeter", spec: "AcuSense classification, virtual tripwires, thermal zero-light perimeter and object left/removed detection" },
-      { title: "Access & Control-room Integration", spec: "HikCentral VMS federated across sites, integrated with identity systems and SOC telemetry" },
+      { title: "AI Video Analytics", spec: "Project-specific edge analytics for event classification and metadata streaming" },
+      { title: "Low-Light Imaging", spec: "Camera selection based on lighting, optics and operational conditions" },
+      { title: "ANPR & Perimeter", spec: "Number-plate recognition, thermal imaging and rule-based alerting where lawful and appropriate" },
+      { title: "Access & Control-room Integration", spec: "Video management and access control integrated with identity and incident workflows" },
     ],
-    stack: ["Hikvision DeepinView", "ColorVu", "AcuSense", "HikCentral Pro VMS", "DeepinMind NVR", "ANPR cameras", "Thermal perimeter", "Access control"],
+    stack: ["IP cameras", "Video management software", "Network video recording", "ANPR cameras", "Thermal perimeter", "Access control"],
     outcomes: [
       "Configurable event analytics selected for the operational environment",
       "Recording, user permissions and incident workflows aligned with site requirements",
       "Documented alerting, escalation and operational handover where contracted",
     ],
-    partners: ["Hikvision"],
+    partners: [],
   },
   {
     slug: "analytics-bi",
@@ -292,16 +292,16 @@ export const SOLUTIONS: Solution[] = [
     capabilities: [
       { title: "Ruggedised Edge Compute", spec: "Edge servers for distributed inference at remote sites, mines, plants and substations" },
       { title: "OT/IT Convergence", spec: "Zero-trust segmentation across operational technology and enterprise IT" },
-      { title: "Industrial Networking", spec: "Schneider, Huawei and Hikvision industrial networking and telemetry" },
+      { title: "Industrial Networking", spec: "Suitable industrial networking and telemetry platforms" },
       { title: "Infrastructure Monitoring", spec: "Schneider EcoStruxure DCIM for power, cooling and capacity visibility" },
     ],
-    stack: ["Schneider EcoStruxure", "Schneider Galaxy VS/VM", "Huawei IoT", "Hikvision AI Video", "Ruggedised edge servers", "Industrial networking"],
+    stack: ["Schneider EcoStruxure", "Schneider Galaxy VS/VM", "Huawei IoT", "Video analytics", "Ruggedised edge servers", "Industrial networking"],
     outcomes: [
       "A unified observability plane across IT, OT and physical infrastructure",
       "Edge inference at the point of operation — mines, plants, substations, campuses",
       "DCIM that makes power, cooling and capacity visible against the growth curve",
     ],
-    partners: ["Schneider", "Huawei", "Hikvision", "HPE"],
+    partners: ["Schneider", "Huawei", "HPE"],
   },
   {
     slug: "managed-services-itsm",
@@ -416,7 +416,6 @@ const ALL_TECHNOLOGY_PORTFOLIOS: Partner[] = [
   { name: "Huawei", slug: "huawei", colour: "#C7000B", category: "Compute · Network · Storage", tagline: "TaiShan servers, OceanStor storage, CloudEngine switching and AirEngine Wi-Fi.", description: "Huawei broadens KABO's optionality across servers, storage and networking — TaiShan servers, OceanStor storage and CloudEngine switching. A critical supply-chain alternative for cost-sensitive, scale-out and edge workloads across Africa.", portfolio: ["Huawei TaiShan", "Huawei OceanStor", "Huawei CloudEngine", "Huawei AirEngine Wi-Fi", "Huawei IoT"], relationship: "KABO can propose technology from Huawei partner delivering servers, storage, networking and IoT with project-specific implementation arrangements.", integration: ["TaiShan servers for cost-sensitive compute and edge workloads", "OceanStor all-flash for latency-sensitive workloads", "CloudEngine switching and AirEngine Wi-Fi for distributed estates"], solutions: ["compute", "data", "networking", "iot-edge"], strategic: true },
   { name: "ManageEngine", slug: "manageengine", colour: "#E11932", category: "ITOM · Monitoring · ITSM · CX", tagline: "OpManager, ServiceDesk Plus, MDM, Analytics Plus and contact-centre platforms.", description: "ManageEngine powers KABO's IT operations management and contact-centre stack — OpManager for network/server monitoring, ServiceDesk Plus for ITSM, MDM for endpoint, Analytics Plus for BI on operational telemetry, and the contact-centre platforms that route, assist and analyse every customer interaction.", portfolio: ["ManageEngine OpManager", "ManageEngine ServiceDesk Plus", "ManageEngine MDM", "ManageEngine Analytics Plus", "ManageEngine Contact Center"], relationship: "KABO partners with ManageEngine to deliver ITOM, ITSM, endpoint management and contact-centre platforms with managed operations.", integration: ["OpManager network/server monitoring correlated with security telemetry", "ServiceDesk Plus integrated with NOC and SOC workflows", "Contact Centre platforms engineered into the same secure, observable fabric"], solutions: ["analytics-bi", "digital-workplace", "security"], strategic: true },
   { name: "H3C", slug: "h3c", colour: "#FF6A00", category: "Networking · Compute", tagline: "Campus switching, routers, Wi-Fi 6, servers and UniStor storage.", description: "H3C extends KABO's networking and compute optionality — campus switching, routers, Wi-Fi 6, servers and storage. A high-value, cost-effective alternative for distributed estates and public-sector deployments where supply-chain diversity matters.", portfolio: ["H3C Campus Switching", "H3C Routers", "H3C Wi-Fi 6", "H3C Servers", "H3C UniStor"], relationship: "KABO can propose technology from H3C partner delivering networking, wireless, servers and storage with project-specific implementation arrangements and managed operations.", integration: ["Campus switching and Wi-Fi 6 with predictive heat-mapping", "Servers and UniStor storage for cost-sensitive workloads", "Supply-chain diversity for public-sector and distributed estates"], solutions: ["networking", "compute", "data"], strategic: true },
-  { name: "Hikvision", slug: "hikvision", colour: "#E60012", category: "Surveillance · AI Video · Access Control", tagline: "DeepinView AI cameras, ColorVu, AcuSense, ANPR, perimeter detection and HikCentral VMS.", description: "Hikvision technologies are an example option for video surveillance, AI video analytics and physical access control — DeepinView AI cameras, ColorVu low-light imaging, AcuSense target classification, ANPR, perimeter detection, NVR/VMS platforms and centralised video management integrated into the SOC. Hikvision underpins every KABO industry practice — public sector, financial services, mining, healthcare, education, telecommunications, manufacturing, retail and smart infrastructure.", portfolio: ["Hikvision DeepinView", "Hikvision ColorVu", "Hikvision AcuSense", "Hikvision ANPR", "Hikvision Perimeter Detection", "Hikvision Access Control", "HikCentral Pro VMS"], relationship: "KABO architects, integrates and operates the surveillance estate. Technology options are confirmed at project stage. A single accountable partner, a single observable surveillance fabric, every industry.", integration: ["DeepinView edge AI for face recognition, ANPR and behaviour analysis", "HikCentral VMS federated across sites, integrated with identity and SOC telemetry", "Joint cyber + physical IR runbooks with SLA-backed 24/7 response"], solutions: ["physical-security"], strategic: true },
 ];
 
 // Extended vendor portfolio — beyond the strategic fifteen
@@ -466,7 +465,7 @@ export const WHY_KABO_POINTS = [
   { num: "02", title: "One Team", desc: "The same engineers integrate and operate. No hand-off, no diffusion of accountability." },
   { num: "03", title: "Technology Ecosystems", desc: "Vendor-neutral selection across verified OEM portfolios — fit-for-purpose, never fit-for-catalogue." },
   { num: "04", title: "Managed Service Options", desc: "Monitoring, support and reporting scoped to each agreement." },
-  { num: "05", title: "Level 1 · 135%", desc: "Maximum B-BBEE procurement recognition — and Gauteng-established." },
+  { num: "05", title: "Commercial Clarity", desc: "Compliance documentation, authorisation status and delivery terms are confirmed for each engagement." },
   { num: "06", title: "AI-Ready", desc: "GPU compute, low-latency fabric and high-throughput storage — engineered for the AI era." },
 ];
 
@@ -477,7 +476,7 @@ export const WHY_KABO_POINTS = [
 export const COMPETITIVE_PILLARS = [
   { title: "Depth vs. Resellers", desc: "From hardware supply to integration planning, KABO connects sourcing with requirements-led technical design." },
   { title: "Breadth vs. Specialists", desc: "Where specialists carry one domain, KABO carries ten — compute, data, network, security, AI, cloud, workplace, surveillance, analytics and edge." },
-  { title: "Profile vs. Multinationals", desc: "Where multinationals bring global brand and local overhead, KABO brings Level 1 B-BBEE with maximum procurement recognition — maximum procurement value, local accountability." },
+  { title: "Local Accountability", desc: "A South Africa-based technology company able to coordinate specialist expertise and supply arrangements to suit each project." },
 ];
 
 // ============================================================================
@@ -529,8 +528,8 @@ export interface CaseStudy {
 }
 
 export const CASE_STUDIES: CaseStudy[] = [
-  { slug: "multi-operator-sd-wan", title: "Multi-Operator SD-WAN Across Nine Provinces", client: "National Retailer", sector: "Retail", challenge: "A national retailer needed consistent branch networking across all nine provinces. Multiple operators, inconsistent SLAs, and a fragmented support model were driving up cost and downtime.", solution: "KABO delivered multi-operator SD-WAN with application-aware routing and 24/7 monitoring from a single NOC. Branches were rolled out province by province with zero-touch provisioning.", outcome: "Consistent branch networking across all nine provinces, with a single accountable partner and a single escalation path. Application-aware routing prioritised POS and voice traffic.", stack: ["Juniper SD-WAN", "Juniper Mist", "Multi-Operator WAN", "contracted infrastructure monitoring"] },
-  { slug: "sovereign-ai-gpu-cluster", title: "Sovereign AI GPU Cluster for Research", client: "Research Institution", sector: "Education", challenge: "A research institution needed GPU compute for LLM training and HPC, but could not expose regulated datasets to offshore cloud providers.", solution: "KABO engineered a liquid-cooled NVIDIA H100 HGX cluster with InfiniBand 400G fabric, Pure Storage FlashBlade, and an MLOps platform — all hosted in a sovereign African data centre.", outcome: "AI workloads trained and inferred without exposing data offshore. GPU capacity matched to demand with elastic burst to Azure for non-sensitive workloads.", stack: ["NVIDIA HGX H100", "HPE Apollo 6500", "InfiniBand 400G", "Pure Storage FlashBlade", "NVIDIA AI Enterprise"] },
-  { slug: "modular-data-centre-remote-mining", title: "Modular Data Centre for Remote Mining Operation", client: "Mining Group", sector: "Mining", challenge: "A mining group needed data centre capacity at a remote site with unstable grid power, high temperatures, and no on-site engineering staff.", solution: "KABO delivered a Schneider-powered modular data centre with Galaxy VS UPS, in-row cooling, solar PV integration, and EcoStruxure DCIM remote monitoring from the Gauteng NOC.", outcome: "Resilient data centre capacity at a remote site with unstable grid power. DCIM delivers granular energy visibility and capacity planning against the growth curve.", stack: ["Schneider Galaxy VS", "Schneider Uniflair Cooling", "Schneider EcoStruxure DCIM", "Solar PV", "contracted infrastructure monitoring"] },
-  { slug: "integrated-security-public-sector", title: "Integrated Security Architecture for Public Sector Estate", client: "Public Sector Department", sector: "Public Sector", challenge: "A public sector department needed to converge physical and cyber security under a single accountable contract, with POPIA-aligned evidence and 24/7 monitoring.", solution: "KABO deployed Hikvision AI video analytics, Palo Alto Strata NGFW, Sophos Intercept X endpoint, and Veeam ransomware resilience — all monitored from the Gauteng SOC.", outcome: "A unified, accountable security posture — not a portfolio of point tools. Measurable reduction in dwell time through appropriately scoped security monitoring monitoring and joint cyber + physical IR runbooks.", stack: ["Hikvision DeepinView", "Palo Alto Strata NGFW", "Sophos Intercept X", "Veeam Threat Detection", "contracted security operations"] },
+  { slug: "multi-operator-sd-wan", title: "Illustrative Multi-Site SD-WAN Architecture", client: "Illustrative scenario", sector: "Retail", challenge: "How might a distributed organisation connect branches across multiple network operators?", solution: "A proposed approach combines application-aware SD-WAN, redundant connectivity, centralised policy and a support model agreed per site.", outcome: "Illustrative objectives include improved traffic prioritisation, resilience and operational visibility; no delivered-client results are claimed.", stack: ["SD-WAN", "Multi-operator WAN", "Network monitoring"] },
+  { slug: "sovereign-ai-gpu-cluster", title: "Illustrative Sovereign AI Platform", client: "Illustrative scenario", sector: "Education", challenge: "How could an institution run GPU-intensive research workloads with appropriate data residency controls?", solution: "A reference architecture considers GPU compute, high-speed fabric, storage, secure MLOps and site-specific hosting requirements.", outcome: "Illustrative design goals include workload performance, privacy controls and a defined operating model; no implemented project is claimed.", stack: ["GPU compute", "High-speed fabric", "Enterprise storage", "MLOps"] },
+  { slug: "modular-data-centre-remote-mining", title: "Illustrative Modular Data Centre", client: "Illustrative scenario", sector: "Mining", challenge: "How could a remote operation obtain reliable local compute despite challenging power and cooling conditions?", solution: "A reference design explores modular racks, resilient UPS, appropriate cooling, backup power and infrastructure monitoring.", outcome: "Illustrative objectives include reliable capacity, maintainability and energy visibility, subject to engineering design.", stack: ["Modular infrastructure", "UPS", "Cooling", "DCIM", "Backup power"] },
+  { slug: "integrated-security-public-sector", title: "Illustrative Integrated Security Design", client: "Illustrative scenario", sector: "Public Sector", challenge: "How might a distributed estate integrate electronic access, video management and cybersecurity?", solution: "A proposed design combines appropriate IP video, identity-aware access control, endpoint protection and privacy-conscious incident workflows.", outcome: "Illustrative goals include clearer accountability, auditable access and agreed escalation; no client deployment or security outcome is claimed.", stack: ["IP surveillance", "Access control", "Endpoint protection", "Data resilience"] },
 ];
