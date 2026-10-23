@@ -9,23 +9,25 @@ import { deliverFormSubmission, sendMail } from "@/lib/email";
  */
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-
-    const {
-      firstName,
-      lastName,
-      email,
-      organisation,
-      phone,
-      enquiryType,
-      message,
-    } = body ?? {};
-
-    if (!firstName || !lastName || !email || !enquiryType || !message) {
-      return NextResponse.json(
-        { ok: false, error: "Missing required fields." },
-        { status: 400 }
-      );
+    let body: unknown;
+    try { body = await req.json(); } catch {
+      return NextResponse.json({ ok: false, error: "Please submit valid JSON." }, { status: 400 });
+    }
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json({ ok: false, error: "Please submit an enquiry object." }, { status: 400 });
+    }
+    const form = body as Record<string, unknown>;
+    const limits: Record<string, number> = {firstName: 150, lastName: 150, email: 254, organisation: 300, phone: 80, enquiryType: 150, message: 8000};
+    const required = ["firstName", "lastName", "email", "enquiryType", "message"];
+    if (required.some(key => typeof form[key] !== "string" || !(form[key] as string).trim()) ||
+        Object.entries(limits).some(([key, limit]) => form[key] !== undefined && (typeof form[key] !== "string" || (form[key] as string).length > limit))) {
+      return NextResponse.json({ ok: false, error: "Please check the required contact details and field lengths." }, { status: 400 });
+    }
+    const fields: Record<string, string> = {};
+    for (const key of Object.keys(limits)) fields[key] = typeof form[key] === "string" ? (form[key] as string).trim() : "";
+    const { firstName, lastName, email, organisation, phone, enquiryType, message } = fields;
+    if (!/^[^\s@<>,;:"]+@[^\s@<>,;:"]+\.[^\s@<>,;:"]+$/.test(email) || Object.entries(fields).some(([key, value]) => value.includes("\0") || key !== "message" && /[\r\n]/.test(value))) {
+      return NextResponse.json({ ok: false, error: "Please check your email address and contact details." }, { status: 400 });
     }
 
     const now = new Date();
@@ -34,11 +36,11 @@ export async function POST(req: NextRequest) {
       routeTo: "info@kaboitgroup.co.za",
       enquiryType,
       acknowledgement:
-        "Your enquiry has been routed to the KABO general enquiries desk at info@kaboitgroup.co.za. The right specialist will respond within one business day. For urgent technical escalations, please raise a support ticket on the Support page instead — that path is SLA-backed.",
+        "Thank you for contacting KABO. Your enquiry has been sent to our general enquiries team. We’ll follow up using the details you provided.",
       nextSteps: [
-        `Your message has been logged under enquiry type: ${enquiryType}.`,
-        "A KABO specialist will respond within one business day.",
-        "For urgent production-impacting issues, raise a ticket on the Support page for SLA-backed response.",
+        `Your enquiry category: ${enquiryType}.`,
+        "The team can review your enquiry and follow up using the contact details you provided.",
+        "For support issues, use the Support page or contact support@kaboitgroup.co.za; service levels require a confirmed agreement.",
         "To follow up, reply to the acknowledgement email or email info@kaboitgroup.co.za.",
       ],
       contact: {
@@ -90,7 +92,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await deliverFormSubmission(
+    const delivery = await deliverFormSubmission(
       {
         to: "info@kaboitgroup.co.za",
         replyTo: email,
@@ -112,6 +114,10 @@ export async function POST(req: NextRequest) {
         body: message,
       }
     );
+
+    if (!delivery.accepted) {
+      return NextResponse.json({ ok: false, error: "Your enquiry could not be delivered. Please email info@kaboitgroup.co.za directly." }, { status: 503 });
+    }
 
     // ---- Email auto-reply to the customer (SMTP only — customer doesn't have WhatsApp to KABO) ----
     const customerText = [
@@ -161,21 +167,21 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
+    const acknowledgement = delivery.email.sent ? await sendMail({
       to: email,
       // Reply-To routes customer replies to a monitored inbox (info@) instead
       // of bouncing off the noreply@ sender. This is critical because the
       // auto-reply comes FROM noreply@kaboitgroup.co.za — without Reply-To,
       // a customer who hits "Reply" to the auto-reply would get a bounce.
       replyTo: "info@kaboitgroup.co.za",
-      subject: `[KABO] We've received your enquiry`,
+      subject: `[KABO] Your enquiry was accepted for delivery`,
       text: customerText,
       html: customerHtml,
-    });
+    }) : { sent: false };
 
-    return NextResponse.json({ ok: true, enquiry: autoReply });
+    return NextResponse.json({ ok: true, enquiry: autoReply, deliveryChannel: delivery.channel, acknowledgementSent: acknowledgement.sent });
   } catch (err) {
-    console.error("[POST /api/contact] error:", err);
+    console.error("[POST /api/contact] Unable to process the submission.");
     return NextResponse.json(
       {
         ok: false,

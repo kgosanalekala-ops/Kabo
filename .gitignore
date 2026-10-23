@@ -43,3 +43,6 @@ server.log
 
 # OS
 Thumbs.db
+
+# Browser review artifacts
+/artifacts/

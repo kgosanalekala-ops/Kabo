@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { Poppins, Space_Grotesk } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "./elevated.css";
+import "./elevated-interiors.css";
+import "./elevated-enquiry.css";
 import { Toaster } from "@/components/ui/sonner";
 
-const poppins = Poppins({
+const poppins = Manrope({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -18,6 +21,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.kaboitgroup.co.za"),
   title: "KABO IT Group — Intelligent Infrastructure, Engineered to Perform",
   description:
     "KABO IT Group is a Gauteng-established systems integrator — B-BBEE Level 1 with 135% procurement recognition. Fifteen strategic alliances. Twelve interlocking solution domains. A unified architecture, a single contract, a single escalation path, a single engineering team. Nationwide footprint today, expanding into the broader African continent.",
@@ -40,7 +44,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} ${spaceGrotesk.variable} antialiased bg-white text-[#001E3C]`}>
+      <body className={`${poppins.variable} ${spaceGrotesk.variable} antialiased`}>
         {children}
         <Toaster position="top-center" richColors closeButton />
       </body>

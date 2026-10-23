@@ -1,11 +1,13 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { hrefFor, pathToPage } from "@/lib/site-routes";
 
 export type Page =
   | "home" | "about" | "solutions" | "solution-detail" | "products" | "product-detail"
   | "industries" | "industry-detail" | "services" | "partners" | "partner-detail"
-  | "case-studies" | "support" | "contact" | "investors";
+  | "case-studies" | "support" | "contact" | "investors" | "privacy" | "terms";
 
 interface PageContextValue {
   currentPage: Page;
@@ -16,16 +18,28 @@ interface PageContextValue {
 const PageContext = createContext<PageContextValue | undefined>(undefined);
 
 export function PageProvider({ children }: { children: React.ReactNode }) {
-  const [currentPage, setCurrentPage] = useState<Page>("home");
-  const [selectedDetail, setSelectedDetail] = useState<string | null>(null);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [currentPage, setCurrentPage] = useState<Page>(() => pathToPage(pathname || "/")?.page || "home");
+  const [selectedDetail, setSelectedDetail] = useState<string | null>(() => pathToPage(pathname || "/")?.detail || null);
+
+  useEffect(() => {
+    const route = pathToPage(pathname || "/");
+    if (route) {
+      setCurrentPage(route.page);
+      setSelectedDetail(route.detail);
+    }
+  }, [pathname]);
 
   const navigate = useCallback((page: Page, detail?: string) => {
     setCurrentPage(page);
     setSelectedDetail(detail ?? null);
+    const destination = hrefFor(page, detail);
+    if (destination !== pathname) router.push(destination, { scroll: false });
     if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
-  }, []);
+  }, [pathname, router]);
 
   return (
     <PageContext.Provider value={{ currentPage, selectedDetail, navigate }}>

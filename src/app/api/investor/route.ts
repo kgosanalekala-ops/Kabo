@@ -15,24 +15,25 @@ import { deliverFormSubmission, sendMail } from "@/lib/email";
  */
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-
-    const {
-      fullName,
-      organisation,
-      email,
-      phone,
-      investorType,
-      fundSize,
-      timeline,
-      message,
-    } = body ?? {};
-
-    if (!fullName || !organisation || !email || !investorType || !message) {
-      return NextResponse.json(
-        { ok: false, error: "Missing required fields." },
-        { status: 400 }
-      );
+    let body: unknown;
+    try { body = await req.json(); } catch {
+      return NextResponse.json({ ok: false, error: "Please submit valid JSON." }, { status: 400 });
+    }
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json({ ok: false, error: "Please submit an enquiry object." }, { status: 400 });
+    }
+    const form = body as Record<string, unknown>;
+    const limits: Record<string, number> = {fullName: 300, organisation: 300, email: 254, phone: 80, investorType: 150, fundSize: 150, timeline: 150, message: 8000};
+    const required = ["fullName", "organisation", "email", "investorType", "message"];
+    if (required.some(key => typeof form[key] !== "string" || !(form[key] as string).trim()) ||
+        Object.entries(limits).some(([key, limit]) => form[key] !== undefined && (typeof form[key] !== "string" || (form[key] as string).length > limit))) {
+      return NextResponse.json({ ok: false, error: "Please check the required investor details and field lengths." }, { status: 400 });
+    }
+    const fields: Record<string, string> = {};
+    for (const key of Object.keys(limits)) fields[key] = typeof form[key] === "string" ? (form[key] as string).trim() : "";
+    const { fullName, organisation, email, phone, investorType, fundSize, timeline, message } = fields;
+    if (!/^[^\s@<>,;:"]+@[^\s@<>,;:"]+\.[^\s@<>,;:"]+$/.test(email) || Object.entries(fields).some(([key, value]) => value.includes("\0") || key !== "message" && /[\r\n]/.test(value))) {
+      return NextResponse.json({ ok: false, error: "Please check your email address and investor details." }, { status: 400 });
     }
 
     const now = new Date();
@@ -40,11 +41,11 @@ export async function POST(req: NextRequest) {
     const autoReply = {
       routeTo: "KABO Executive Team",
       acknowledgement:
-        "Your investor enquiry has been routed directly to the KABO executive team and flagged for executive attention. All investor conversations are treated in strict confidence. You will receive a personal response within two business days.",
+        "Thank you for your interest in KABO. Your investor enquiry has been sent to our executive team for review. We’ll use your supplied contact details to follow up.",
       nextSteps: [
-        "Your request has been delivered directly to the KABO executive team.",
-        "A member of the executive team (or a delegated lead) will respond within two business days.",
-        "All correspondence is treated as confidential under NDA on request.",
+        "Your enquiry has been accepted for delivery to the KABO executive team.",
+        "A representative can follow up using your supplied contact details; no response deadline is confirmed by this acknowledgement.",
+        "Request a confidentiality agreement before sharing confidential documents or deal information.",
         "For follow-up, reply to the acknowledgement email or email info@kaboitgroup.co.za.",
       ],
       contact: {
@@ -101,7 +102,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await deliverFormSubmission(
+    const delivery = await deliverFormSubmission(
       {
         to: "kenny@kaboitgroup.co.za",
         cc: "info@kaboitgroup.co.za",
@@ -125,6 +126,10 @@ export async function POST(req: NextRequest) {
         body: message,
       }
     );
+
+    if (!delivery.accepted) {
+      return NextResponse.json({ ok: false, error: "Your investor enquiry could not be delivered. Please email info@kaboitgroup.co.za directly." }, { status: 503 });
+    }
 
     // ---- Email auto-reply to the investor (SMTP only — customer-facing) ----
     const customerText = [
@@ -173,21 +178,21 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await sendMail({
+    const acknowledgement = delivery.email.sent ? await sendMail({
       to: email,
       // Reply-To routes customer replies to a monitored inbox (info@) instead
       // of bouncing off the noreply@ sender. The auto-reply comes FROM
       // noreply@kaboitgroup.co.za — without Reply-To, a customer who hits
       // "Reply" would get a bounce.
       replyTo: "info@kaboitgroup.co.za",
-      subject: `[KABO] We've received your investor enquiry`,
+      subject: `[KABO] Your investor enquiry was accepted for delivery`,
       text: customerText,
       html: customerHtml,
-    });
+    }) : { sent: false };
 
-    return NextResponse.json({ ok: true, enquiry: autoReply });
+    return NextResponse.json({ ok: true, enquiry: autoReply, deliveryChannel: delivery.channel, acknowledgementSent: acknowledgement.sent });
   } catch (err) {
-    console.error("[POST /api/investor] error:", err);
+    console.error("[POST /api/investor] Unable to process the submission.");
     return NextResponse.json(
       {
         ok: false,

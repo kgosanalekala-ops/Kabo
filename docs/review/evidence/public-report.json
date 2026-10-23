@@ -1,0 +1,12 @@
+{
+  "url": "https://oti7c8-ip-90-96-191-71.tunnelmole.net",
+  "transport": "TLS-verified request relay",
+  "checks": [
+    "Public HTTPS homepage serves the new design",
+    "desktop: actual WebGL, navigation, detailed AI page, contact form, no overflow",
+    "phone: actual WebGL, navigation, detailed AI page, contact form, no overflow",
+    "Public API validation400; removed Studio404"
+  ],
+  "errors": [],
+  "requests": 112
+}

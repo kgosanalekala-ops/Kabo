@@ -1,0 +1,377 @@
+{
+  "base": "http://localhost:3012",
+  "routes": [
+    {
+      "path": "/about",
+      "status": 200
+    },
+    {
+      "path": "/solutions",
+      "status": 200
+    },
+    {
+      "path": "/products",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/industries",
+      "status": 200
+    },
+    {
+      "path": "/case-studies",
+      "status": 200
+    },
+    {
+      "path": "/services",
+      "status": 200
+    },
+    {
+      "path": "/partners",
+      "status": 200
+    },
+    {
+      "path": "/contact",
+      "status": 200
+    },
+    {
+      "path": "/support",
+      "status": 200
+    },
+    {
+      "path": "/investors",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "path": "/terms",
+      "status": 200
+    },
+    {
+      "path": "/solutions/compute",
+      "status": 200
+    },
+    {
+      "path": "/solutions/data",
+      "status": 200
+    },
+    {
+      "path": "/solutions/networking",
+      "status": 200
+    },
+    {
+      "path": "/solutions/ai-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/solutions/security",
+      "status": 200
+    },
+    {
+      "path": "/solutions/cloud",
+      "status": 200
+    },
+    {
+      "path": "/solutions/digital-workplace",
+      "status": 200
+    },
+    {
+      "path": "/solutions/physical-security",
+      "status": 200
+    },
+    {
+      "path": "/solutions/analytics-bi",
+      "status": 200
+    },
+    {
+      "path": "/solutions/iot-edge",
+      "status": 200
+    },
+    {
+      "path": "/solutions/continuity",
+      "status": 200
+    },
+    {
+      "path": "/solutions/managed-services-itsm",
+      "status": 200
+    },
+    {
+      "path": "/products/compute-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/networking-fabric",
+      "status": 200
+    },
+    {
+      "path": "/products/cyber-security",
+      "status": 200
+    },
+    {
+      "path": "/products/storage-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/ai-gpu-compute",
+      "status": 200
+    },
+    {
+      "path": "/products/cloud-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/physical-security",
+      "status": 200
+    },
+    {
+      "path": "/products/analytics-platforms",
+      "status": 200
+    },
+    {
+      "path": "/products/backup-resilience",
+      "status": 200
+    },
+    {
+      "path": "/products/digital-workplace",
+      "status": 200
+    },
+    {
+      "path": "/industries/public-sector",
+      "status": 200
+    },
+    {
+      "path": "/industries/mining",
+      "status": 200
+    },
+    {
+      "path": "/industries/education",
+      "status": 200
+    },
+    {
+      "path": "/industries/healthcare",
+      "status": 200
+    },
+    {
+      "path": "/industries/financial-services",
+      "status": 200
+    },
+    {
+      "path": "/industries/retail",
+      "status": 200
+    },
+    {
+      "path": "/industries/smart-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/industries/telecommunications",
+      "status": 200
+    },
+    {
+      "path": "/industries/manufacturing",
+      "status": 200
+    },
+    {
+      "path": "/partners/hpe",
+      "status": 200
+    },
+    {
+      "path": "/partners/microsoft",
+      "status": 200
+    },
+    {
+      "path": "/partners/sophos",
+      "status": 200
+    },
+    {
+      "path": "/partners/dell",
+      "status": 200
+    },
+    {
+      "path": "/partners/fortinet",
+      "status": 200
+    },
+    {
+      "path": "/partners/veeam",
+      "status": 200
+    },
+    {
+      "path": "/partners/palo-alto",
+      "status": 200
+    },
+    {
+      "path": "/partners/pure-storage",
+      "status": 200
+    },
+    {
+      "path": "/partners/schneider",
+      "status": 200
+    },
+    {
+      "path": "/partners/juniper",
+      "status": 200
+    },
+    {
+      "path": "/partners/commvault",
+      "status": 200
+    },
+    {
+      "path": "/partners/h3c",
+      "status": 200
+    },
+    {
+      "path": "/partners/huawei",
+      "status": 200
+    },
+    {
+      "path": "/partners/lenovo",
+      "status": 200
+    },
+    {
+      "path": "/partners/hikvision",
+      "status": 200
+    },
+    {
+      "path": "/partners/manageengine",
+      "status": 200
+    },
+    {
+      "path": "/partners/nvidia",
+      "status": 200
+    },
+    {
+      "path": "/partners/hp",
+      "status": 200
+    },
+    {
+      "path": "/partners/canon",
+      "status": 200
+    },
+    {
+      "path": "/partners/aruba",
+      "status": 200
+    },
+    {
+      "path": "/partners/acer",
+      "status": 200
+    },
+    {
+      "path": "/studio",
+      "status": 404
+    },
+    {
+      "path": "/studio/campus",
+      "status": 404
+    },
+    {
+      "path": "/solutions/not-a-solution",
+      "status": 404
+    },
+    {
+      "path": "/partners/not-a-partner",
+      "status": 404
+    },
+    {
+      "path": "/products/not-a-product",
+      "status": 404
+    }
+  ],
+  "apis": [
+    {
+      "endpoint": "/api/contact",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/contact",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/contact",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/contact",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/contact",
+      "status": 400,
+      "kind": "malformed JSON"
+    },
+    {
+      "endpoint": "/api/tickets",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/tickets",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/tickets",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/tickets",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/tickets",
+      "status": 400,
+      "kind": "malformed JSON"
+    },
+    {
+      "endpoint": "/api/investor",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/investor",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/investor",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/investor",
+      "status": 400,
+      "kind": "invalid"
+    },
+    {
+      "endpoint": "/api/investor",
+      "status": 400,
+      "kind": "malformed JSON"
+    },
+    {
+      "endpoint": "/api/contact",
+      "status": 503,
+      "kind": "unconfigured delivery; no outbound provider"
+    },
+    {
+      "endpoint": "/api/tickets",
+      "status": 503,
+      "kind": "unconfigured delivery; no outbound provider"
+    },
+    {
+      "endpoint": "/api/investor",
+      "status": 503,
+      "kind": "unconfigured delivery; no outbound provider"
+    }
+  ]
+}

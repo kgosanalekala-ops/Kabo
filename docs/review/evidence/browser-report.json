@@ -1,0 +1,77 @@
+{
+  "base": "http://localhost:3012",
+  "checks": [
+    {
+      "name": "Homepage actual WebGL sculpture"
+    },
+    {
+      "name": "No Architecture Studio"
+    },
+    {
+      "name": "Menu focus trap, Escape and focus return"
+    },
+    {
+      "name": "Desktop solution mega menu deep link"
+    },
+    {
+      "name": "Catalogue search and reset"
+    },
+    {
+      "name": "Extended vendor detail, reload, Back and Forward"
+    },
+    {
+      "name": "Industry and delivery tabs with keyboard control"
+    },
+    {
+      "name": "Procurement content disclosure"
+    },
+    {
+      "name": "Support knowledge search and substantive article"
+    },
+    {
+      "name": "contact failed-delivery feedback, retained input and complete email draft"
+    },
+    {
+      "name": "contact successful acknowledgement and reset (intercepted; no email sent)"
+    },
+    {
+      "name": "support failed-delivery feedback, retained input and complete email draft"
+    },
+    {
+      "name": "support successful acknowledgement and reset (intercepted; no email sent)"
+    },
+    {
+      "name": "investor failed-delivery feedback, retained input and complete email draft"
+    },
+    {
+      "name": "investor successful acknowledgement and reset (intercepted; no email sent)"
+    },
+    {
+      "name": "Responsive pages and menu 320×568",
+      "pages": 14
+    },
+    {
+      "name": "Responsive pages and menu 360×640",
+      "pages": 14
+    },
+    {
+      "name": "Responsive pages and menu 390×844",
+      "pages": 14
+    },
+    {
+      "name": "Responsive pages and menu 768×1024",
+      "pages": 14
+    },
+    {
+      "name": "Responsive pages and menu 1440×1000",
+      "pages": 14
+    },
+    {
+      "name": "Normal-motion 3D frames change and pause truly freezes animation"
+    },
+    {
+      "name": "No-WebGL fallback keeps branding, artwork and primary navigation usable"
+    }
+  ],
+  "errors": []
+}
