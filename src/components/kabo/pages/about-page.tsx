@@ -23,7 +23,7 @@ export function AboutPage() {
   const { navigate } = usePage();
   return (
     <>
-      <VideoHero variant="abstract" tag="About KABO" title={<>{<>Intelligent infrastructure,</>}<br /><span className="intel-text-gradient">engineered</span> for the AI era.</>} subtitle="KABO IT Group is a Pretoria-based ICT supplier and technology solutions business. We help organisations source equipment and explore practical infrastructure architectures, including networking, data centres, security and AI." />
+      <VideoHero variant="abstract" tag="About KABO" title={<>{<>Intelligent infrastructure,</>}<br /><span className="intel-text-gradient">engineered</span> for the AI era.</>} subtitle="KABO IT Group is a South Africa-based ICT supplier and technology solutions business. We help organisations source equipment and explore practical infrastructure architectures, including networking, data centres, security and AI." />
       <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -42,7 +42,7 @@ export function AboutPage() {
                 { icon: Award, value: "ICT", label: "Equipment supply" },
                 { icon: Users, value: "B2B", label: "Business procurement" },
                 { icon: Zap, value: "AI", label: "Infrastructure options" },
-                { icon: MapPin, value: "ZA", label: "Pretoria-based" },
+                { icon: MapPin, value: "ZA", label: "South Africa-based" },
               ].map((s, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="rounded-2xl border border-[#DCE6EF] bg-[#F5F9FC] p-6 text-center">
                   <s.icon className="h-7 w-7 text-[#0071C5] mx-auto mb-3" strokeWidth={1.5} />
