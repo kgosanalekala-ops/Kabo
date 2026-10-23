@@ -8,16 +8,16 @@ import { usePage } from "../page-context";
 import { toast } from "sonner";
 
 const PILLARS = [
-  { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is positioned for sustained growth across South Africa's enterprise ICT market — driven by AI infrastructure demand, B-BBEE procurement acceleration and sovereign cloud adoption. Projects are assessed individually for ownership, service-level commitments and sustainable support arrangements." },
+  { icon: TrendingUp, title: "Growth Trajectory", desc: "KABO is exploring opportunities in AI-ready data centres, energy resilience, enterprise infrastructure and software ecosystems. Ownership, financing and delivery responsibilities would be agreed for each project." },
   { icon: PieChart, title: "Diversified Revenue", desc: "A commercial offering spanning ICT hardware, workplace products, integrated infrastructure and project services. Revenue composition and financial forecasts require verified reporting." },
-  { icon: Globe, title: "Expansion Vision", desc: "KABO is based in Pretoria and aims to pursue additional opportunities as delivery resources, customer demand and channel arrangements permit." },
+  { icon: Globe, title: "Expansion Vision", desc: "KABO is based in South Africa and welcomes collaboration with local and international investors, manufacturers and infrastructure developers, subject to agreed resources and responsibilities." },
 ];
 
 const INVESTMENT_HIGHLIGHTS = [
-  { value: "7", label: "Core OEM Portfolios", desc: "HPE, Dell, Lenovo, HP, H3C, Huawei and Veeam, with project-specific sourcing of other technologies." },
+  { value: "7", label: "Technology Portfolios", desc: "HPE, Dell, Lenovo, HP, H3C, Huawei and Veeam are part of the proposed solution ecosystem. OEM authorisation and supply eligibility are validated per engagement." },
   { value: "12", label: "Solution Domains", desc: "From compute and AI infrastructure to managed services — a complete portfolio across the infrastructure lifecycle." },
   { value: "16", label: "Industry Scenarios", desc: "Reference requirements across public and private sector environments. Sector scenarios are illustrative, not client references." },
-  { value: "L1", label: "B-BBEE · 135%", desc: "Level 1 contributor with maximum procurement recognition — a structural advantage in the South African market." },
+  { value: "ZA", label: "South Africa Based", desc: "A local point of engagement for international capital, technology providers and specialist implementation teams." },
 ];
 
 const THESIS = [
@@ -43,10 +43,10 @@ export function InvestorPage() {
           <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#0071C5] font-display">Investment Highlights</span>
             <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-[#001E3C] font-display leading-tight">
-              A national integrator with <span className="intel-text-gradient">enterprise depth</span>.
+              An integrated vision for <span className="intel-text-gradient">intelligent infrastructure</span>.
             </h2>
             <p className="mt-5 text-base sm:text-lg text-[#5A6B7C] leading-relaxed">
-              KABO occupies a distinct position in the South African infrastructure market — the engineering depth of an enterprise integrator, the partnership credibility of a Tier-1 reseller and the B-BBEE profile of a Level 1 contributor with maximum procurement recognition.
+              KABO's proposed role is to connect appropriate technology platforms, technical design, local execution arrangements and project-specific investment opportunities. Scope, authorisations and delivery credentials are established during due diligence.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
@@ -125,7 +125,7 @@ export function InvestorPage() {
               <div className="mt-8 space-y-4">
                 {[
                   { icon: Mail, label: "Investor Enquiries", value: "info@kaboitgroup.co.za" },
-                  { icon: MapPin, label: "Registered Address", value: "12886 Masemola Street, Mamelodi East, Pretoria, 0122" },
+                  { icon: MapPin, label: "Location", value: "South Africa" },
                 ].map((c, i) => (
                   <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="flex items-start gap-3">
                     <div className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-[#F1F6FB] text-[#0071C5] shrink-0">
