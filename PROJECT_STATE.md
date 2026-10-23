@@ -26,10 +26,11 @@ Original flow reference: historical commit 3bc49e1f2ab3 (22/09/2026)
 - Preserved production branch main unchanged.
 
 ## Verification
-- GitHub connector accepted file changes and commits.
-- Static readback and source comparison underway.
+- GitHub connector accepted five commits; compare main..review reports 5 commits ahead, 0 behind, exactly five changed files.
+- GitHub commit status for 9c3f33966e8f37ad831d6ec8b56636c8b20dbd44 reports Vercel=success (the remote build pipeline completed). This is CI-status evidence only, not a manually inspected preview.
+- Static inspection confirmed named components and route imports on source branch.
 - NOT YET VERIFIED: Next.js build, lint, real-browser responsive visuals, overlay keyboard behavior, API submissions, deployment.
-- Preview/deploy BLOCKED: existing Vercel kabo project prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni is under team kabo2 and the Vercel connector returned 403 requiring team-level authorization. Do not use another team/account to bypass.
+- Direct preview inspection BLOCKED: existing Vercel kabo project prj_QaHo6R5wMS8XY1FQrdgYYZjKqsni is under team kabo2 and the Vercel connector returned 403 requiring team-level authorization. Do not use another team/account to bypass.
 - Previous reference videos are not present in this workspace; precise frame-by-frame comparison must wait for an accessible upload/source.
 
 ## Pre-publication risk
