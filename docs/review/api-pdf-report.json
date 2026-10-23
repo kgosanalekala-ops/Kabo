@@ -1,0 +1,61 @@
+{
+  "base": "http://localhost:3002",
+  "created": "2026-10-23T00:05:54.798Z",
+  "checks": [
+    {
+      "name": "/api/contact rejects missing fields without delivery",
+      "pass": true,
+      "detail": {
+        "status": 400,
+        "error": "Missing required fields."
+      }
+    },
+    {
+      "name": "/api/tickets rejects missing fields without delivery",
+      "pass": true,
+      "detail": {
+        "status": 400,
+        "error": "Please complete the required support details."
+      }
+    },
+    {
+      "name": "/api/investor rejects missing fields without delivery",
+      "pass": true,
+      "detail": {
+        "status": 400,
+        "error": "Missing required fields."
+      }
+    },
+    {
+      "name": "company-profile PDF is downloadable and searchable",
+      "pass": true,
+      "detail": {
+        "bytes": 851507,
+        "characters": 20718,
+        "pages": "19",
+        "locationMentions": []
+      }
+    },
+    {
+      "name": "solutions-overview PDF is downloadable and searchable",
+      "pass": true,
+      "detail": {
+        "bytes": 779958,
+        "characters": 4836,
+        "pages": "4",
+        "locationMentions": []
+      }
+    },
+    {
+      "name": "Unknown PDF returns 404",
+      "pass": true,
+      "detail": 404
+    },
+    {
+      "name": "Unknown page returns 404",
+      "pass": true,
+      "detail": 404
+    }
+  ],
+  "failures": []
+}

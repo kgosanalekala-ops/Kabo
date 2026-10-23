@@ -27,7 +27,7 @@ export function StudioPanorama({ source }: { source: string }) {
       const camera = new THREE.PerspectiveCamera(73, 1, .1, 200);
       camera.position.set(0, 0, .01);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 700 ? 1.5 : 2));
       renderer.domElement.className = "ks-panorama-canvas";
       renderer.domElement.setAttribute("aria-hidden", "true");
       container.appendChild(renderer.domElement);
@@ -73,6 +73,7 @@ export function StudioPanorama({ source }: { source: string }) {
         render();
       }
       function pointerUp() { dragging = false; }
+      function contextLost(event: Event) { event.preventDefault(); if (!disposed) setLoadState("failed"); }
       function wheel(event: WheelEvent) {
         event.preventDefault();
         camera.fov = Math.max(35, Math.min(90, camera.fov + Math.sign(event.deltaY) * 4));
@@ -84,6 +85,7 @@ export function StudioPanorama({ source }: { source: string }) {
       canvas.addEventListener("pointermove", pointerMove);
       canvas.addEventListener("pointerup", pointerUp);
       canvas.addEventListener("pointercancel", pointerUp);
+      canvas.addEventListener("webglcontextlost", contextLost);
       canvas.addEventListener("wheel", wheel, { passive: false });
       controlRef.current = {
         rotate(degrees) { yaw += degrees; render(); },
@@ -104,6 +106,7 @@ export function StudioPanorama({ source }: { source: string }) {
         canvas.removeEventListener("pointermove", pointerMove);
         canvas.removeEventListener("pointerup", pointerUp);
         canvas.removeEventListener("pointercancel", pointerUp);
+        canvas.removeEventListener("webglcontextlost", contextLost);
         canvas.removeEventListener("wheel", wheel);
         cancelAnimationFrame(frameId);
         material.map?.dispose();
@@ -118,7 +121,7 @@ export function StudioPanorama({ source }: { source: string }) {
   }, [source]);
   return <div className="ks-panorama" role="group" aria-label="Concept campus 360 degree view. Drag or swipe to look around. Use the controls to rotate and zoom.">
     <img className="ks-panorama-fallback" src={source} alt="" aria-hidden="true" />
-    <div ref={containerRef} className="ks-panorama-stage"/>
+    <div ref={containerRef} className="ks-panorama-stage" style={{ visibility: loadState === "failed" ? "hidden" : "visible" }}/>
     {loadState === "loading" && <span className="ks-panorama-message">PREPARING INTERACTIVE VIEW…</span>}
     {loadState === "failed" && <span className="ks-panorama-message">360° panorama is unavailable on this device. The main studio scene remains available.</span>}
     {loadState === "ready" && <div className="ks-panorama-controls" aria-label="Panorama controls">

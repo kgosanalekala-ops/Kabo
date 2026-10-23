@@ -1,0 +1,223 @@
+{
+  "base": "http://localhost:3001",
+  "created": "2026-10-22T23:58:59.984Z",
+  "captures": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "title": "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
+      "renderer": "webgl",
+      "heading": "The hardware\nbehind every\nbold ambition.",
+      "bodyWidth": 1440,
+      "viewport": 1440,
+      "overflow": false,
+      "overflowingElements": [
+        {
+          "tag": "g",
+          "className": "[object SVGAnimatedString]",
+          "left": 456,
+          "right": 1469
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "left": 456,
+          "right": 1469
+        }
+      ],
+      "brokenImages": [],
+      "canvases": [
+        {
+          "width": 876,
+          "height": 765,
+          "clientWidth": 876,
+          "clientHeight": 765
+        }
+      ],
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 68,
+        "top": 0,
+        "right": 1440,
+        "bottom": 68,
+        "left": 0
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 960,
+        "top": 0,
+        "right": 1440,
+        "bottom": 960,
+        "left": 0
+      },
+      "animation": {
+        "first": "e71574f3ff5e6890e16d2d4a387d4d5a362f81f00cf855d2aad139dee2fb6c48",
+        "second": "a516092be7f9d82b3da9a0a4fbfdf33cef98009821e7c77a5ba92df117c49660",
+        "changed": true
+      }
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": 200,
+      "title": "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
+      "renderer": "webgl",
+      "heading": "The hardware\nbehind every\nbold ambition.",
+      "bodyWidth": 768,
+      "viewport": 768,
+      "overflow": false,
+      "overflowingElements": [],
+      "brokenImages": [],
+      "canvases": [
+        {
+          "width": 768,
+          "height": 430,
+          "clientWidth": 768,
+          "clientHeight": 430
+        }
+      ],
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 62,
+        "top": 0,
+        "right": 768,
+        "bottom": 62,
+        "left": 0
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1082.59375,
+        "top": 0,
+        "right": 768,
+        "bottom": 1082.59375,
+        "left": 0
+      },
+      "animation": {
+        "first": "ebb142541c82c4ac4157cefeb8ad26d6bd4892d94867e876ba4fe7420dccfb42",
+        "second": "8e1d836f73094fa074cc38ae80e596ff78a4b0ffd4e77eda80c3833c682d1b8b",
+        "changed": true
+      }
+    },
+    {
+      "name": "phone",
+      "width": 360,
+      "height": 800,
+      "status": 200,
+      "title": "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
+      "renderer": "webgl",
+      "heading": "The hardware\nbehind every\nbold ambition.",
+      "bodyWidth": 360,
+      "viewport": 360,
+      "overflow": false,
+      "overflowingElements": [
+        {
+          "tag": "g",
+          "className": "[object SVGAnimatedString]",
+          "left": -32,
+          "right": 384
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "left": -32,
+          "right": 384
+        }
+      ],
+      "brokenImages": [],
+      "canvases": [
+        {
+          "width": 360,
+          "height": 304,
+          "clientWidth": 360,
+          "clientHeight": 304
+        }
+      ],
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "top": 0,
+        "right": 360,
+        "bottom": 58,
+        "left": 0
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 834.546875,
+        "top": 0,
+        "right": 360,
+        "bottom": 834.546875,
+        "left": 0
+      },
+      "animation": {
+        "first": "4935d4058d98b730a79fb6ce01c455b73d9183754035ef153d4629fbb5929e0b",
+        "second": "75cdb034cbb5cafbc326ff9e2e50b9b8998693aaa71832c62bc7e501b3cf4c68",
+        "changed": true
+      }
+    },
+    {
+      "name": "phone-short",
+      "width": 360,
+      "height": 640,
+      "status": 200,
+      "title": "KABO IT Group | Powering Africa’s Intelligent Infrastructure",
+      "renderer": "webgl",
+      "heading": "The hardware\nbehind every\nbold ambition.",
+      "bodyWidth": 360,
+      "viewport": 360,
+      "overflow": false,
+      "overflowingElements": [],
+      "brokenImages": [],
+      "canvases": [
+        {
+          "width": 360,
+          "height": 230,
+          "clientWidth": 360,
+          "clientHeight": 230
+        }
+      ],
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "top": 0,
+        "right": 360,
+        "bottom": 58,
+        "left": 0
+      },
+      "hero": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 729.546875,
+        "top": 0,
+        "right": 360,
+        "bottom": 729.546875,
+        "left": 0
+      },
+      "animation": {
+        "first": "1663b75d5fda4735f195d20e557b90c952304cc0d0e54d4e03c29ab9e70b1763",
+        "second": "60d19779d4ec0a324c7c144c99960f7abd4810088388e89713fb681254f009ae",
+        "changed": true
+      }
+    }
+  ],
+  "errors": [],
+  "badResponses": [],
+  "failedRequests": []
+}

@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SiteShell } from "@/components/kabo/site-shell";
-import { pathToPage } from "@/lib/site-routes";
+import { pathToPage, studioSlug } from "@/lib/site-routes";
 
 type Props = { params: Promise<{ segments: string[] }> };
 const titles: Record<string, string> = {
@@ -20,5 +20,6 @@ export default async function SiteRoute({ params }: Props) {
   const { segments } = await params;
   const route = pathToPage("/" + segments.join("/"));
   if (!route) notFound();
+  if (route.page === "architecture" || route.page === "case-studies") redirect(`/studio/${studioSlug(route.detail)}`);
   return <SiteShell initialPage={route.page} initialDetail={route.detail} />;
 }

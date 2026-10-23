@@ -53,7 +53,7 @@ export const STUDIO_SCENES: StudioScene[] = [
     ],
   },
   {
-    slug: "security", title: "Secure Environment", editorial: "Every entrance.\nEvery signal.\nOne clear view.", subtitle: "Converged physical security with a reliable, auditable digital foundation.", icon: "shield", image: "/images/studio/security.webp", fallback: "/images/sol_government.jpg",
+    slug: "security", title: "Electronic Security", editorial: "Every entrance.\nEvery signal.\nOne clear view.", subtitle: "Converged physical security with a reliable, auditable digital foundation.", icon: "shield", image: "/images/studio/security.webp", fallback: "/images/sol_government.jpg",
     hotspots: [
       hotspot("01", "Video surveillance", "SITUATIONAL AWARENESS", 19, 38, "Site-specific camera placement enables useful coverage of approaches, corridors and assets. Image resolution, lighting and storage are designed together.", ["IP fixed and PTZ cameras", "Video management systems", "Recording servers", "PoE switches"], "Validate fields of view, low-light performance, retention and lawful access."),
       hotspot("02", "Electronic access", "IDENTITY & ENTRY", 39, 60, "Readers, controllers and approved credentials restrict sensitive zones while preserving safe, manageable building entry and exit.", ["Access readers", "Door controllers", "Electronic locks", "Event and identity software"], "Plan door-by-door with life-safety and accessibility requirements."),
@@ -62,7 +62,7 @@ export const STUDIO_SCENES: StudioScene[] = [
     ],
   },
   {
-    slug: "widearea", title: "Multi-site Fabric", editorial: "One business.\nMany locations.\nSeamless service.", subtitle: "Branches, carriers and cloud brought together through secure connectivity.", icon: "waypoints", image: "/images/studio/widearea.webp", fallback: "/images/sol_smartcity.jpg",
+    slug: "widearea", title: "WAN / SD-WAN", editorial: "One business.\nMany locations.\nSeamless service.", subtitle: "Branches, carriers and cloud brought together through secure connectivity.", icon: "waypoints", image: "/images/studio/widearea.webp", fallback: "/images/sol_smartcity.jpg",
     hotspots: [
       hotspot("01", "Connected branches", "LOCAL OPERATION", 20, 61, "Each facility has a consistent edge network that supports local users, safe segmentation and resilient connectivity to shared business services.", ["Branch routers", "Business Wi-Fi access points", "PoE switches", "Local firewall gateways"], "Document the facilities, service dependencies and minimum offline operation."),
       hotspot("02", "SD-WAN intelligence", "POLICY-BASED EDGE", 43, 35, "Encrypted overlays and application-aware routing steer traffic across internet, fibre and wireless access links according to quality and policy.", ["SD-WAN edge appliances", "Security subscriptions", "Dual-link interfaces", "Central orchestration"], "Test packet loss, jitter, path failover and encryption overhead."),
@@ -71,7 +71,7 @@ export const STUDIO_SCENES: StudioScene[] = [
     ],
   },
   {
-    slug: "document", title: "Document Intelligence", editorial: "Information moves.\nWork continues.\nControl remains.", subtitle: "Follow a secure document from capture to workflow, archive and output.", icon: "files", image: "/images/studio/document.webp", fallback: "/images/sol_callcenter.jpg",
+    slug: "document", title: "Document & Print", editorial: "Information moves.\nWork continues.\nControl remains.", subtitle: "Follow a secure document from capture to workflow, archive and output.", icon: "files", image: "/images/studio/document.webp", fallback: "/images/sol_callcenter.jpg",
     hotspots: [
       hotspot("01", "Capture & digitise", "PAPER TO INFORMATION", 21, 51, "Scanning, OCR and consistent metadata transform physical records into searchable business inputs while retaining relevant source evidence.", ["Document scanners", "Business multifunction printers", "OCR/capture applications", "Scan-profile configuration"], "Apply quality checks, file format standards and controlled intake."),
       hotspot("02", "Workflow automation", "DOCUMENTS IN MOTION", 41, 32, "Routing and approval rules help teams review, validate and act on records without losing accountability or document ownership.", ["Document workflow applications", "Approvals and access controls", "Integration connectors", "Event and exception logs"], "Define responsible roles and failure handling before automating."),

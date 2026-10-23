@@ -4,6 +4,8 @@ import "./globals.css";
 import "./vision.css";
 import "./photo-studio.css";
 import "./equipment-3d.css";
+import "./cinematic.css";
+import "./cinematic-interiors.css";
 import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({

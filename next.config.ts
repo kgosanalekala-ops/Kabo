@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["127.0.0.1"],
   // Mark nodemailer as an external package so Next.js doesn't try to bundle
   // it. nodemailer uses Node built-ins (net, tls, dns) that aren't bundleable.
   serverExternalPackages: ["nodemailer"],

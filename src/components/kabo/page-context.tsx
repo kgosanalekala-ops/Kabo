@@ -30,11 +30,16 @@ export function PageProvider({ children, initialPage = "home", initialDetail = n
   }, [pathname]);
 
   const navigate = useCallback((page: Page, detail?: string) => {
+    const destination = pageToPath(page, detail);
+    if (page === "architecture" || page === "case-studies") {
+      router.push(destination);
+      return;
+    }
     setCurrentPage(page);
     setSelectedDetail(detail ?? null);
-    router.push(pageToPath(page, detail));
+    router.push(destination);
     if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     }
   }, [router]);
 
